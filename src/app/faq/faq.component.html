@@ -1,0 +1,396 @@
+<!-- <div id="breadcrum">
+   <ul>
+      <li><a routerLink="/main/about">About</a></li>
+      <li>FAQ</li>
+   </ul>
+</div> -->
+<!-- Organisation -->
+<!-- <section id="faqs_wrapper">
+   <div class="container">
+      <div class="row">
+         <ul class="tabs">
+            <label>I AM AN </label> 
+            <li class="tab-link " (click)="tabView = 1" data-tab="tab-3" [ngClass]="{'current':tabView == 1}">ORGANISATON</li>
+            <li class="tab-link" (click)="tabView = 2" data-tab="tab-4" [ngClass]="{'current':tabView == 2}">CONSULTANT</li>
+         </ul>
+         <div [ngSwitch]="tabView">
+            <div id="tab-3" class="tab-content current" *ngSwitchCase="1">
+               <ul>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-1"><i class="fas fa-plus" ></i> <i class="fas fa-minus"></i> What is People Infinia? – Client & Consultant</div>
+                     <div id="accordion-1" class="content_area collapse">
+                        <p>People Infinia is India’s first AI powered recruitment platform that enables clients to work with 1000’s of freelance recruiters & firms for their recruitment requirement without managing any of them. The technology aims at streamlining the otherwise chaotic recruitment process with minimum human intervention. With the website driven by a world class technology, every client gets the perfect candidates for the position and every recruiter gets a fair chance to help the client close those positions.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-2"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> How is People Infinia different than any other recruitment portal? - Client & Consultant</div>
+                     <div id="accordion-2" class="content_area collapse">
+                        <p>People Infinia works on proprietary algorithm which helps the client to work with industry experts and likewise, a recruiter gets a chance to work with the best clients basis their skillset. Our TAT is our USP along with efficient 03 step screening which ensures a client gets the best candidate for the position.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-3"><i class="fas fa-plus" ></i> <i class="fas fa-minus"></i> What are the advantages to use People Infinia?</div>
+                     <div id="accordion-3" class="content_area collapse">
+                        <p>AConsultants: People Infinia only shares the positions with a recruiter basis their interest level. So if a recruiter want to work on a sales profile we will only share sales positions with that recruiter. With our world class technology a recruiter can also schedule the interview from the platform.</p>
+                         <p>Clients: People Infinia works with 1000’s of recruiters. Once you share your position with us, the same will be shared with relevant and active recruiters with proven track record to close those positions. We assure to deliver the right candidate with 7 working days with our effective 03 steps screening.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-4"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What kind of industries can I post on People Infinia? - Client</div>
+                     <div id="accordion-4" class="content_area collapse">
+                        <p>You can post for any industry on People Infinia</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-5"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> How does People Infinia work?</div>
+                     <div id="accordion-5" class="content_area collapse">
+                        <p>Consultant: Once you fill your complete profile with us, we will start sharing the relevant positions with you. After sharing the CV and candidate data in an excel format, we will share it with the client post our screening. Once your candidate gets shortlisted, we will share the profit with the recruiter.</p>
+                        <p>Clients: Share your positions with us and relax because we have experts working for you. You will start getting the CV’s within 48  working hours. You can shortlist and ask for an interview from the portal.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-6"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> How long will it take till I start getting job candidates? - Client</div>
+                     <div id="accordion-6" class="content_area collapse">
+                        <p>We do not assign a job candidate to our clients. Instead we share the job with multiple relevant recruiters who work on the position. We strive our best to start sharing the CV’s with you within 48 working hours.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-7"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i>Where is People Infinia located? - Client & Consultant</div>
+                     <div id="accordion-7" class="content_area collapse">
+                        <p>Corporate office:- Unit No. 305, 3rd Floor, North Ex Mall, Sector 9, Rohini, Delhi – 110085.</p>
+                         <p>Regional office:- Basement Villa 6109, DLF Phase 4, Behind Supermarket 1, Golf Course Road, Gurugram, Haryana.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-8"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i>Can I keep my job post confidential? – Client</div>
+                     <div id="accordion-8" class="content_area collapse">
+                        <p>Yes, you can choose not to disclose your name to the recruiters</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-9"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Will I get access to the contact details of the recruiters or clients? - Client & Consultant</div>
+                     <div id="accordion-9" class="content_area collapse">
+                        <p>No, you will not get access to the contact details of the recruiters or client.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-10"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if 2 recruiters submit the same resume? – Consultant</div>
+                     <div id="accordion-10" class="content_area collapse">
+                        <p>The recruiter who submits the resume first will be considered as the profile shared. The recruiter who submits the duplicated resume will be notified with 48 working hours.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-11"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if the candidate does not turn up for the job interview? </div>
+                     <div id="accordion-11" class="content_area collapse">
+                        <p>Recruiter: In such scenario a recruiter can reschedule the interview with the clients consent. If the same thing is repeated twice, we disregard the candidate from future prospective roles.</p>
+                         <p>Clients: You can ask to reschedule the interview. A People Infinia representative will get in touch with you. </p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-12"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if the candidate does not turn up for the job interview?</div>
+                     <div id="accordion-12" class="content_area collapse">
+                        <p>If you do not have the other candidates scheduled for the interview, in that case you can resume the job posting and start getting the fresh resumes. If you want to reschedule the interview with the same candidate, you can reach out to us to make that happen. In case you were not informed in advance about the candidate’s no show, we highly recommend you to leave review and write feedback to help us maintain the quality of the platform.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-13"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if the candidate joins but leaves within few days of joining? - Client</div>
+                     <div id="accordion-13" class="content_area collapse">
+                        <p>If a candidate leaves within 03 months of placement, we will provide you with a replacement without any extra charge. </p>
+                         <cite><i>Note: The fee will be charged on revised package offered to the candidate which could be less or more than the one left.</i></cite>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-14"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Who pays to the recruiter? – Client & Consultants</div>
+                     <div id="accordion-14" class="content_area collapse">
+                        <p>People Infinia collects the payment from the clients and pays the recruiter</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-15"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Will People Infinia assist me in posting the jobs? - Client</div>
+                     <div id="accordion-15" class="content_area collapse">
+                        <p>Yes, we are always happy to help. Please call our posting expert at: 123456789</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-16"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Why can’t I simply hire a recruitment agency instead of People Infinia? - Client</div>
+                     <div id="accordion-16" class="content_area collapse">
+                        <p>People Infinia works with 1000’s of recruiter instead of one recruitment agency. Our TAT along with right fit candidate is our USP which will help you close the desired position within deadline at an efficient cost.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-17"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Is People Infinia working completely working on AI?</div>
+                     <div id="accordion-17" class="content_area collapse">
+                        <p>Finding a single recruitment agency who can cater to all your job requirements is hard. If this is your first time to recruit an agency, finding the perfect one is going to be even harder. With People Infinia, you get access to 1000’s of recruiters and agencies without actually managing them. While working with a recruitment agency, it is typical for you to encounter multiple irrelevant resumes and lack of diversity. People Infinia with its 2 step screening sends you only the relevant resumes that may come from multiple recruiters.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-18"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Is People Infinia working completely working on AI?</div>
+                     <div id="accordion-18" class="content_area collapse">
+                        <p>Yes you can post jobs in more than one location or can even choose to post multiple jobs basis different location.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-19"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I post jobs in multiple functional areas? - Client</div>
+                     <div id="accordion-19" class="content_area collapse">
+                        <p>No, you cannot post jobs in multiple functional area. But you can post multiple jobs using multiple functional areas</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-20"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> I want to hire candidates outside of India. Is People Infinia useful for me? - Client</div>
+                     <div id="accordion-20" class="content_area collapse">
+                        <p>No, currently we are serving only Indian Market.</p>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-21"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I decide what kind of consultants send me the resumes? - Client</div>
+                     <div id="accordion-21" class="content_area collapse">
+                        <p>Yes, you can choose to work with selected consultants by sharing the job only with them.</p>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+
+             
+            <div id="tab-4" class="tab-content current" *ngSwitchCase="2">
+               <ul>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-22"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> How is People Infinia different than any other recruitment portal? - Client & Recruiter</div>
+                     <div id="accordion-22" class="content_area collapse">People Infinia works on proprietary algorithm which helps the client to work with industry experts and likewise, a recruiter gets a chance to work with the best clients basis their skillset. Our TAT is our USP along with efficient 03 step screening which ensures a client gets the best candidate for the position.</div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-23"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What kind of industries can I post on People Infinia? - Client</div>
+                     <div id="accordion-23" class="content_area collapse">You can post for any industry on People Infinia</div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-24"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> How long will it take till I start getting job candidates?- Client</div>
+                     <div id="accordion-24" class="content_area collapse">We do not assign a job candidate to our clients. Instead we share the job with multiple relevant recruiters who work on the position. We strive our best to start sharing the CV’s with you within 48 working hours..</div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-25"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I keep my job post confidential? – Client</div>
+                     <div id="accordion-25" class="content_area collapse">Yes, you can choose not to disclose your name to the recruiters</div>
+                  </li>
+                  <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-26"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if 2 recruiters submit the same resume? – Recruiter</div>
+                     <div id="accordion-26" class="content_area collapse">The recruiter who submits the resume first will be considered as the profile shared. The recruiter who submits the duplicated resume will be notified with 48 working hours.</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-27"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What happens if the candidate joins but leaves within few days of joining? - Client</div>
+                     <div id="accordion-27" class="content_area collapse">If a candidate leaves within 03 months of placement, we will provide you with a replacement without any extra charge. 
+                       <cite>Note: The fee will be charged on revised package offered to the candidate which could be less or more than the one left.</cite>
+                       </div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-28"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> What is the pricing for the People Infinia?</div>
+                     <div id="accordion-28" class="content_area collapse">People Infinia collects the payment from the clients and pays the recruiter</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-29"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Will People Infinia assist me in posting the jobs? - Client</div>
+                     <div id="accordion-29" class="content_area collapse">Yes, we are always happy to help. Please call our posting expert at: 123456789</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-30"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Why can’t I simply hire a recruitment agency instead of People Infinia? - Client</div>
+                     <div id="accordion-30" class="content_area collapse">People Infinia works with 1000’s of recruiter instead of one recruitment agency. Our TAT along with right fit candidate is our USP which will help you close the desired position within deadline at an efficient cost.</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-31"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I post jobs for more than 1 location? - Client</div>
+                     <div id="accordion-31" class="content_area collapse">Yes you can post jobs in more than one location or can even choose to post multiple jobs basis different location.</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-32"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I post jobs in multiple functional areas? - Client</div>
+                     <div id="accordion-32" class="content_area collapse">No, you cannot post jobs in multiple functional area. But you can post multiple jobs using multiple functional areas</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-33"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> I want to hire candidates outside of India. Is People Infiniauseful for me? - Client</div>
+                     <div id="accordion-33" class="content_area collapse">No, currently we are serving only Indian Market.</div>
+                  </li>
+                   <li>
+                     <div class="heading_tgl" data-toggle="collapse" data-target="#accordion-34"><i class="fas fa-plus"></i> <i class="fas fa-minus"></i> Can I decide what kind of consultants send me the resumes? - Client</div>
+                     <div id="accordion-34" class="content_area collapse">Yes, you can choose to work with selected consultants by sharing the job only with them.</div>
+                  </li>
+               </ul>
+            </div>
+
+             
+         </div>
+      </div>
+   </div>
+</section> -->
+<!-- Organisation End -->
+<!--get-in-touch-->
+<!-- <section id="cta">
+   <div class="cpntainer-fluid">
+      <div class="row">
+         <div class="get-in-touch">
+            <p>Couldn't find what you were looking for? <a routerlink="/main/home">Get in Touch</a></p>
+         </div>
+      </div>
+   </div>
+</section> -->
+
+<section class="contact-out pt-5">
+  <div class="container pt-4">
+    <div class="row pt-xl-3 pt-sm-2">
+      <div class="col-md-12">
+        <div class="faq">
+          <div class="faq-img mt-1">
+            <img src="/assets/img/faq.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="faq-content">
+            <!-- <h2 class="text-success text-center my-3">
+              SAME CONTENT AS CURRENT FAQ PAGE
+            </h2> -->
+            <div class="faq-tabs">
+              <ul class="nav nav-tabs my-4" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link text-secondary "  role="tab"
+                    >I AM AN</a
+                  >
+                </li>
+                <li class="nav-item active">
+                  <a
+                    class="nav-link text-secondary"
+                    href="#buzz"
+                    role="tab"
+                    data-toggle="tab"
+                    >ORGANISATION</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-secondary"
+                    href="#references"
+                    role="tab"
+                    data-toggle="tab"
+                    >CONSULTANT</a
+                  >
+                </li>
+              </ul>
+              <div class="tab-content mb-5 mt-1">
+                <div
+                  role="tabpanel"
+                  class="tab-pane fade "
+                  id="profile"
+                >
+                  <!-- <div class="row">
+                  <div class="col-md-6">
+                    <div class="accordion">
+                    <h4 class="accordion-toggle">What is People Infinia? - Client & Consultant</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">What are the advantages to use People Infinia?</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">How does People Infinia work?</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">Where is People Infinia located? - Client & Consultant</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">Will I get access to the contact details of the recruiters or clients? - Client & Consultant</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">What happens if the candidate does not turn up for the job interview?</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="accordion">
+                    <h4 class="accordion-toggle">How is People Infinia defferent than any other recruitment portal? - Client & Consultant</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">What king of industries can i post on people Infinia? - Client</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">How long will it take till I start getting job candidates? - Client</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">Can I keep my job post confidential? - Client</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                    <h4 class="accordion-toggle">What happens if 2 recruiters submit the same resume? - Consultant</h4>
+                    <div class="accordion-content">
+                      <p>Cras malesuada ultrices augue molestie risus.</p>
+                    </div>
+                  </div>
+                  </div>
+                </div> -->
+                </div>
+                <div role="tabpanel" class="tab-pane fade in active" id="buzz">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="accordion">
+                        <div *ngFor="let item of faqs; let i = index">
+                          <h4 class="accordion-toggle" (click)="faqController(i)">
+                            {{item.ques}}
+                          </h4>
+                          <div class="accordion-content" [innerHTML]="item.ans" [hidden]="faqsControl[i].isHidden">
+                          </div>
+                        </div>
+
+                    
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="accordion">
+                        <div *ngFor="let item2 of faqs2; let j = index">
+                          <h4 class="accordion-toggle" (click)="faqController2(j)">
+                            {{item2.ques}}
+                          </h4>
+                          <div class="accordion-content" [innerHTML]="item2.ans" [hidden]="faqsControl2[j].isHidden">
+                          </div>
+                        </div>
+
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="references">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="accordion">
+                        <div *ngFor="let item3 of faqs3; let k = index">
+                          <h4 class="accordion-toggle" (click)="faqController3(k)">
+                            {{item3.ques}}
+                          </h4>
+                          <div class="accordion-content" [innerHTML]="item3.ans" [hidden]="faqsControl3[k].isHidden">
+                          </div>
+                        </div>
+
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="accordion">
+                        <div *ngFor="let item4 of faqs4; let l = index">
+                          <h4 class="accordion-toggle" (click)="faqController4(l)">
+                            {{item4.ques}}
+                          </h4>
+                          <div class="accordion-content" [innerHTML]="item4.ans" [hidden]="faqsControl4[l].isHidden">
+                          </div>
+                        </div>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

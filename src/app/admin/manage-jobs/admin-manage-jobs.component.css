@@ -1,0 +1,14 @@
+#menu4{
+    color: #24B050;
+    background-color: transparent;
+    border-bottom: 5px solid #24B050;
+    font-weight: 600;
+}
+.rwd-table tr {
+    border-top: 10px solid #F8F8F8;
+    border-bottom: 10px solid #F8F8F8;
+
+}
+.rwd-table tbody tr{
+	background: #fff;
+}

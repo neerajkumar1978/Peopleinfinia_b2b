@@ -1,0 +1,115 @@
+<section>
+   <div class="col-md-3">
+       <div class="top-tabber-grp-btn">
+           <ul class="nav nav-pills nav-justified">
+    <!-- <li class="active"><a data-toggle="pill" href="#home" class="new-user-show">New Recruiters</a></li> -->
+    <!-- <li><a data-toggle="pill" href="#menu1" class="follow-up-show">Follow Up</a></li> -->
+           </ul>
+       </div>
+      <div class="filter-job-proposal m-t-40">
+         <!-- <h4><i _ngcontent-c3="" class="fas fa-plus"></i> Filter</h4> -->
+        
+            <div class="field-job-proposal">
+               <ul>
+                  <li>
+                     <div class="form-group">
+                        <label>Consultant</label>
+                        <input type="text"  name=""  [(ngModel)]="userName" class="form-control-cust" placeholder="Type the Consultant name">
+                     </div>
+                  </li>
+               </ul>
+               <!-- <p class="text-center">
+                  <a class="btn btn-success" routerLink="/recruiterHeader/sendProposal">Apply Filters</a>
+               </p> -->
+            </div>
+         
+      </div>
+   </div>
+    <div class="col-md-9">
+        <!-- <div class="row" id="select-opt-wrapper">
+            <div class="col-md-12">
+            <div class="select-opt-wrapper">
+                <ul class="list-inline f-left">
+                <li><a>2 selected</a></li>
+                <li><a>Selected All</a></li>
+                </ul>
+                <ul class="list-inline f-right">
+                    <li><a class="btn btn-warning">Archieved Accounts</a></li>
+                     <li><a class="btn btn-success">Active Accounts</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="row" id="follow-up">
+        <div class="col-md-9">
+        <div class="lead-tabber-wrapper">
+        <ul class="nav nav-pills nav-justified">
+    <li class="active"><a data-toggle="pill" href="#home">All <span>(200)</span></a></li>
+    <li><a data-toggle="pill" href="#menu1">Pending Response <span>(100)</span></a></li>
+           </ul>
+        </div>
+      </div>
+        </div> -->
+        
+        
+       
+            <table class="table table-responsive rwd-table ">
+               <thead  class="view-job-table-head white_color cst-table ng-star-inserted">
+                  <tr> 
+                     <th>Name</th>
+                     <th>ID</th>
+                     <th>Type</th>
+                     <th>Activation date <!-- <i class="fas fa-sort"> --></th>
+                     <th>Email <!-- <i class="fas fa-sort"> --></th>
+                     <th>Number</th>
+                     <th>Status</th>
+                     <th>Action</th>
+                    </tr></thead>
+             <tbody>
+                   <tr *ngFor ="let user of pendingUser | userSearch : userName : userId   | paginate: { itemsPerPage: 10, currentPage: page }">
+                     <td>{{user.user_name}}</td>
+                     <td>{{user.user_id}}</td>
+                     <td>{{user.type}}</td>
+                     <td>{{user.created_at  | date: 'dd/MM/yyyy hh:mm a'}}</td>
+                     <td>{{user.email_id}}</td>
+                     <td>{{user.mobile}}</td>
+                     <td>{{user.status}}</td> 
+                     <td>
+                       <div class="user-action">
+                            <a routerLink="/admin-home/profilereport/{{user._id}}">View</a>
+                          </div>
+                     </td>                  
+                   </tr> 
+                   </tbody>
+              </table>
+              <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+          
+<!-- <div class="view-job-list-content"> -->
+
+    <!-- <div class="view-job-table-list">
+        <ul class="list-inline">
+            <li>
+                           <div class="form_field">
+                              <label class="check label-cust" routerLink="/viewResume">Rohit Bharti
+                              <input type="checkbox" checked="checked" name="is_name">
+                              <span class="checkmark"></span>
+                              </label>
+                           </div>
+                        </li>
+                         
+                        <li><span class="name">UX Gorilla</span></li>
+                        <li><span>+91-8888888888</span><br>
+                           <span class="e-mail">aman.gautam@uxgorilla.com</span>
+                        </li>
+                     
+                        <li><span class="date">26/05/2018</span></li>
+                        <li><span class="send-mail"><a href="profile&report.html" class="theme_color">View Status</a></span></li>
+        </ul>
+    </div> -->
+    
+    
+    
+   </div>
+   
+    
+</section>

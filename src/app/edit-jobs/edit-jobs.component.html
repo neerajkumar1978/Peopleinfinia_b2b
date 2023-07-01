@@ -1,0 +1,435 @@
+<div class="post-edit-wrapper">
+    <div class="confrmation-notification btnView">
+
+                <div class="row">
+                  <div class="col-md-12 mb-4">
+                    <div *ngIf="Jd" >
+                      <button (click)="showJD()">View attached JD</button>
+                      <label *ngIf="!showJDFile" for="jdEdit1">Edit</label>
+                      <input type="file" id="jdEdit1" name="jdEdit1" style="visibility: hidden;" (change)='handleFileSelect($event)'>
+                    </div>
+                    <div *ngIf="!Jd" >
+                      <div *ngIf="fileName">
+                        <b>Attached JD :-</b>
+                        {{fileName}}
+                        <button (click)="removeJD()" class="btn btn-danger my-dismiss">x</button>
+                      </div>
+                      <div *ngIf="!fileName">
+                        <label *ngIf="!showJDFile" for="jdEdit2">Add JD</label>
+                        <input type="file" id="jdEdit2" name="jdEdit2" style="visibility: hidden;" (change)='handleFileSelect($event)'>
+                      </div>
+                    </div>
+                   </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngIf="showSampleCV">
+                      <button (click)="showCV()">View Sample CV</button>
+                      <label *ngIf="!EditDiv" for="cvEdit1">Edit</label>
+                      <input type="file" id="cvEdit1" name="cvEdit1" style="visibility: hidden;" (change)='handleFileSelect1($event)'>
+                    </div>
+                    <div *ngIf="!showSampleCV">
+                      <div *ngIf="fileName1">
+                        <b>Attached CV :-</b>
+                        {{fileName1}}
+                        <button (click)="removeCV()" class="btn btn-danger my-dismiss">x</button>
+                      </div>
+                      <div *ngIf="!fileName1">
+                        <label *ngIf="!EditDiv" for="cvEdit2">Add CV</label>
+                        <input type="file" id="cvEdit2" name="cvEdit2" style="visibility: hidden;" (change)='handleFileSelect1($event)'>
+                      </div>
+                    </div>
+                   </div>
+                </div>
+
+
+                 <!-- <div *ngIf="showSampleCV" >
+                  <button (click)="showCV()">View Sample CV</button> <label for="cvEdit1">Edit</label>
+                  <input type="file" id="cvEdit1" name="cvEdit1" style="visibility: hidden;" (change)='handleFileSelect1($event)'>
+                 </div>
+                 <div *ngIf="!showSampleCV" >
+                  <div *ngIf="!fileName1">
+                    <label for="cvEdit2">Add CV</label>
+                    <input type="file" id="cvEdit2" name="cvEdit2" style="visibility: hidden;" (change)='handleFileSelect1($event)'>
+                   </div>
+                   <div *ngIf = "CVFile" class="show-file">
+                    {{fileName1}}
+                    <button (click)="removeCV()" class="btn btn-danger my-dismiss">x</button>
+                   </div> -->
+
+            </div>
+
+           <form class="customize_form" [formGroup]="editPostJobForm" (ngSubmit)="updateJob()">
+             <div class="panel panel-info">
+                <div class="panel-heading">
+                   <div class="panel-title">GENERAL INFORMATION</div>
+               </div>
+            <div class="panel-body" >
+                <div class="post-job-form-wrapper">
+      	   	 	  <div class="genral-infm-form">
+            	      <div class="form-group">
+        	                <div class="form_field">
+    						         <label class="control-label">Job Title</label>
+                            <input class="form-control-cust" name="jobTitle" aria-label="jobTitle" formControlName="jobTitle" placeholder="Job Title"
+                                 type="text">
+                        </div>
+                        <div *ngIf="submitted && editPostJobForm.controls.jobTitle.hasError('required')" class="alert alert-danger">Title Required</div>
+               		     </div>
+
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Select FunctionalArea'"
+                            [data]="functionalArea"
+                            formControlName="functional"
+                            [settings]="dropdownSettingsF"
+                            (onSelect)="onItemSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)"
+                           >
+                        </ng-multiselect-dropdown>
+
+                         <div class="mt-10">
+
+                        <ng-multiselect-dropdown
+                          [placeholder]="'Select Industry'"
+                           [data]="industries"
+                           formControlName="industry"
+                          [settings]="dropdownSettingsI"
+                          (onSelect)="onItemSelectI($event)"
+                          (onSelectAll)="onSelectAllI($event)"
+                          (onDeSelect)="OnItemDeSelectI($event)"
+                          (onDeSelectAll)="onDeSelectAllI($event)"
+
+                          >
+                          </ng-multiselect-dropdown>
+               		     <!-- <div class="form-group">
+        	                <div class="form_field">
+	    						 <label class="control-label">Industry </label>
+								     <select class="form-control-selct" aria-label="industry" formControlName = 'industry' placeholder = 'industry'>
+								          <option *ngFor="let x of industries" value="{{x.value}}">
+								            {{x.value}}
+								        </option>
+								      </select>
+						     </div>
+	                    <div *ngIf="submitted && editPostJobForm.controls.industry.hasError('required')" class="alert alert-danger">Industry Required</div>
+	               		     </div>
+						<div class="form-group">
+        	                <div class="form_field">
+	    						 <label class="control-label"> Functional Area </label>
+								     <select   class="form-control-selct" aria-label="functionalArea" formControlName = 'functionalArea' placeholder = 'functionalArea'	>
+								          <option *ngFor="let x of functionalArea" value="{{x.value}}">
+								            {{x.value}}
+								        </option>
+								      </select>
+						     </div>
+	                            <div *ngIf="submitted && editPostJobForm.controls.functionalArea.hasError('required')" class="alert alert-danger">Functional Area Required</div>
+	               		     </div> -->
+                           <div class="form-group">
+                              <select aria-label="experiance"  class="select.form-control-selct min-sel" >
+                                <option value="" disabled>Select grade</option>
+                                <option *ngFor="let x of grade" [value]="x">{{x}}</option>
+                                </select>
+                            </div>
+                             <div class="form-group">
+                               <label class="control-label gender"></label>
+                                <input type="checkbox" formControlName = "All"  (click)="addprop1($event)"> All
+                            </div>
+	               		     <div class="form-group">
+						      <label class="control-label">Skills</label>
+						        <tag-input
+						         formControlName = "skills"
+						          (onRemove)="onItemRemoved($event)"
+						         (onAdd)="onItemAdded($event)"
+						         [placeholder]="'Enter Skills'"
+						         [secondaryPlaceholder]="'Enter Skills'">
+						         	  <tag-input-dropdown
+									      [autocompleteItems]="items"
+									      [showDropdownIfEmpty]="true"
+									      [dynamicUpdate]="false"
+									    >
+									     </tag-input-dropdown>
+						      </tag-input>
+						     </div>
+							<div class="form-group">
+        	               	 <div class="form_field">
+    						  <label class="control-label">Vacancy</label>
+		                            <input class="form-control-cust" name="vacancy" aria-label="vacancy" formControlName="vacancy" placeholder="vacancy"
+		                                 type="number">
+		                        </div>
+		                      <div *ngIf="submitted && editPostJobForm.controls.vacancy.hasError('required')" class="alert alert-danger">vacancy Required</div>
+		               		  </div>
+		               		  <div class="form-group">
+        	               	 <div class="form_field">
+                  <label class="control-label">Location</label>
+		                           <ng-multiselect-dropdown
+                      [placeholder]="'Select Locations '"
+                      [data]="locations"
+                      formControlName = "location"
+                      [settings]="dropdownSettingsLocation"
+                      (onSelect)="onItemSelectL($event)"
+                      (onSelectAll)="onSelectAllL($event)"
+                      (onDeSelect)="OnItemDeSelectL($event)"
+                      (onDeSelectAll)="onDeSelectAllL($event)"
+                    >
+                    </ng-multiselect-dropdown>
+		                        </div>
+		                      <div *ngIf="submitted && editPostJobForm.controls.location.hasError('required')" class="alert alert-danger">Location Required</div>
+		               		  </div>
+      	   	 			</div>
+      	   	 		</div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">JOB DESCRIPTION</div>
+            </div>
+            <div class="panel-body" >
+
+				 <div class="post-job-form-wrapper">
+				      <div class="genral-infm-head">
+				      <h5>Job description for new job post</h5>
+				      <p>facing issue filling this form? <span class="tooltip--right" data-tooltip="Call now: +91-8448533465 ">Get help form our customer happiness officer</span></p>
+				      </div>
+				  <div class="genral-infm-form job-description">
+               <div class="form-group">
+                <label class="control-label">UG Course</label>
+
+                <ng-multiselect-dropdown
+                      [placeholder]="'Select UG Courses'"
+                      [data]="UGCources"
+                      formControlName= "UG"
+                      [settings]="dropdownSettingsUG"
+                      (onSelect)="onItemSelectUG($event)"
+                      (onSelectAll)="onSelectAllUG($event)"
+                      (onDeSelect)="OnItemDeSelectUG($event)"
+                      (onDeSelectAll)="onDeSelectAllUG($event)"
+                    >
+                    </ng-multiselect-dropdown>
+                <!-- select class="form-control-selct mb-5" aria-label="qualifications" formControlName = 'UG' placeholder = 'Qualification'>
+                    <option value="" disabled>Select UG Course</option>
+                    <option *ngFor="let x of UGCources" value="{{x}}">
+                      {{x}}
+                  </option>
+                </select> -->
+         <div *ngIf="submitted && editPostJobForm.controls.UG.hasError('required')" class="alert alert-danger">Qualifications Required</div>
+                </div>
+
+                <div class="form-group">
+                <label class="control-label">UG College</label>
+
+                <select class="form-control-selct mb-5" aria-label="qualifications" formControlName = 'UGC' placeholder = 'Qualification'>
+                    <option value="" disabled>Select UG College</option>
+                    <option *ngFor="let x of UGColleges" value="{{x}}">
+                      {{x}}
+                  </option>
+                </select>
+         <div *ngIf="submitted && editPostJobForm.controls.UGC.hasError('required')" class="alert alert-danger">Qualifications Required</div>
+                </div>
+
+                <div class="form-group">
+                <label class="control-label">PG Course</label>
+                <select class="form-control-selct mb-5" aria-label="qualifications" formControlName = 'PG' placeholder = 'Qualification'>
+                    <option value="" disabled>Select PG Course</option>
+                    <option *ngFor="let x of PGCources" value="{{x}}">
+                      {{x}}
+                  </option>
+                </select>
+        <div *ngIf="submitted && editPostJobForm.controls.PG.hasError('required')" class="alert alert-danger">Qualifications Required</div>
+                </div>
+
+                <div class="form-group">
+                <label class="control-label">PG College</label>
+                <select class="form-control-selct mb-5" aria-label="qualifications" formControlName = 'PGC' placeholder = 'Qualification'>
+                    <option value="" disabled>Select PG College</option>
+                    <option *ngFor="let x of UGColleges" value="{{x}}">
+                      {{x}}
+                  </option>
+                </select>
+        <div *ngIf="submitted && editPostJobForm.controls.PGC.hasError('required')" class="alert alert-danger">Qualifications Required</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Experience</label>
+                  <ul class="ctc-select pny-slt">
+                    <li><select  class="form-control-selct mb-5" aria-label="experiance" formControlName = 'experiancemin' placeholder = 'Experiance'>
+                        <option value="" disabled>Select Experience</option>
+                        <option *ngFor="let x of MCTCLacs" value="{{x.display}}">
+                          {{x.display}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && editPostJobForm.controls.experiancemin.hasError('required')" class="alert alert-danger">Experiance Required</div>
+                  </li>
+                    <li>To</li>
+                    <li> <select  class="form-control-selct mb-5" aria-label="experiance" formControlName = 'experiancemax' placeholder = 'Experiance'>
+                        <option value="" disabled>Select Experience</option>
+                        <option *ngFor="let x of MCTCLacs" value="{{x.display}}">
+                          {{x.display}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && editPostJobForm.controls.experiancemax.hasError('required')" class="alert alert-danger">Experiance Required</div>
+                  </li>
+                    <li>Years</li>
+                  </ul>
+
+
+                  </div>
+					   	<!--< div class="form-group">
+					      <label class="control-label">Education Qualification</label>
+					      <select class="form-control-selct" aria-label="qualifications" formControlName = 'qualifications' placeholder = 'Qualification'>
+					          <option *ngFor="let x of qualifications" value="{{x}}">
+					            {{x}}
+					        </option>
+					      </select>
+					      </div>
+					      <div *ngIf="submitted && editPostJobForm.controls.qualifications.hasError('required')" class="alert alert-danger">Qualifications Required</div>
+
+	               		     	<div class="form-group">
+					      <label class="control-label">Education Qualification</label>
+					      <select class="form-control-selct" aria-label="experiance" formControlName = 'experiance' placeholder = 'Experiance'>
+					          <option *ngFor="let x of spans" value="{{x}}">
+					            {{x}}
+					        </option>
+					      </select>
+					      </div>
+					      <div *ngIf="submitted && editPostJobForm.controls.experiance.hasError('required')" class="alert alert-danger">Experiance Required</div>-->
+				</div>
+				</div>
+    </div>
+</div>
+<div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">CTC & PERKS</div>
+            </div>
+            <div class="panel-body" >
+
+			      <div class="post-job-form-wrapper">
+				      <div class="genral-infm-head">
+					       <h5>CTC and Perks for new job post</h5>
+					        <p>Having Difficulty? <span class="tooltip--right" data-tooltip="Call now: +91-8448533465 ">Get help form our customer happiness officer</span>
+				          </p>
+				      </div>
+				   <div class="genral-infm-form">
+				 	       <div class="form_field">
+						       <div class="form_field">
+						         <label>CTC</label>
+					         <ul class="ctc-select">
+					           <li>
+						       <div class="select">
+						     	 <select aria-label="experiance" formControlName = 'ctcType' placeholder = 'CTC' class="select.form-control-selct" >
+						     	 <option *ngFor="let x of currencies" name="ctcType"[value]="x">{{x}}</option>
+						    	  </select>
+						      <div class="select__arrow"></div>
+     			 			</div>
+     			 			<div *ngIf="submitted && editPostJobForm.controls.ctcType.hasError('required')" class="alert alert-danger">Currency Required</div>
+  					    </li>
+
+ 					 <li>
+  					    <input type="number" formControlName="min" name="minimum" value="minimum" class="form-control-cust">
+  					      <div *ngIf="submitted && editPostJobForm.controls.min.hasError('required')" class="alert alert-danger">Minmum  Required</div>
+
+     					 <span>to</span>
+     				 </li>
+    				  <li>
+     					 <input type="number" formControlName="max" name="maximun" value="maximun" class="form-control-cust">
+     					 <div *ngIf="submitted && editPostJobForm.controls.max.hasError('required')" class="alert alert-danger">Maximum  Required</div>
+     				 </li>
+     			 </ul>
+          </div>
+     		 </div>
+			      <!-- <div class="form-group">
+			      <label class="control-label">Perks</label>
+			      <input name="perks" type="text" formControlName="perks" placeholder=""  class="form-control-cust">
+			      </div>
+			      <div *ngIf="submitted && editPostJobForm.controls.perks.hasError('required')" class="alert alert-danger">Perks Required</div -->
+			      <div class="ctc-range-slider m-t-40">
+                      <div class="row">
+			    	  <!-- <div class="col-md-6">
+		    			  <div class="form_field">
+						    <label>Commission to consultant (% of CTC of Candidate)</label><br>
+				    		  <ng5-slider   (userChange)="setCommission($event)" [(value)]="value" [options]="options"></ng5-slider>
+			      		</div>
+                          </div> -->
+			      	</div>
+			      </div>
+				   </div>
+				  </div>
+         </div>
+        </div>
+    <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">PERIOD & CONTRACTS</div>
+            </div>
+            <div class="panel-body" >
+
+              <div class="post-job-form-wrapper">
+                <div class="genral-infm-head">
+                 <h5>Period and contract for new job post</h5>
+                 <p>facing issue filling this form? <span class="tooltip--right" data-tooltip="Call now: +91-8448533465 ">Get help form our customer happiness officer</span></p>
+               </div>
+              <div class="genral-infm-form">
+                        <div class="form-group">
+                          <div class="form_field">
+                           <label class="control-label">Job Deadline</label>
+                            <input class="form-control-cust" name="deadline" aria-label="deadline" formControlName="deadline" placeholder="Date"
+                                 type="date">
+                        </div>
+                        <div *ngIf="submitted && editPostJobForm.controls.deadline.hasError('required')" class="alert alert-danger">Deadline Required</div>
+                       </div>
+                        <div class="form-group">
+                          <div class="form_field">
+                         <label class="control-label">Company Name</label>
+                            <input class="form-control-cust" name="companyName" aria-label="companyName" formControlName="companyName" placeholder="Company Name"
+                                 type="text">
+                        </div>
+                        <div *ngIf="submitted && editPostJobForm.controls.companyName.hasError('required')" class="alert alert-danger">Company Name Required</div>
+                       </div>
+                        <div class="form-group">
+                          <div class="form_field">
+                         <label class="control-label">Company Description</label>
+                            <input class="form-control-cust" name="companyDescription" aria-label="companyDescription" formControlName="companyDescription" placeholder="Company Description"
+                                 type="text">
+                        </div>
+                        <div *ngIf="submitted && editPostJobForm.controls.companyDescription.hasError('required')" class="alert alert-danger">Company Description Required</div>
+                       </div>
+                       <div class="form_field">
+                          <label>Notice Period</label>
+                            <ul class="ctc-select">
+                           <li>
+                           <div class="select">
+                              <select aria-label="noticePeriod" formControlName = 'noticePeriod' placeholder = 'noticePeriod' >
+                              <option *ngFor="let x of periods" name="notice" value="{{x}}" >{{x}}</option>
+                              </select>
+                          </div>
+                           <div *ngIf="submitted && editPostJobForm.controls.noticePeriod.hasError('required')" class="alert alert-danger">noticePeriod Required</div>
+
+                          </li>
+                        </ul>
+                        </div>
+                          <!-- <div class="form_field">
+                            <label>Contract Period</label>
+                            <ul class="ctc-select">
+                          <li>
+                          <div class="select">
+                             <select aria-label="contactPeriod" formControlName = 'contactPeriod' placeholder = 'contactPeriod'  >
+                             <option *ngFor="let x of periods" name="contact" value="{{x}}">{{x}}</option>
+                            </select>
+                          </div>
+                        <div *ngIf="submitted && editPostJobForm.controls.contactPeriod.hasError('required')" class="alert alert-danger">contactPeriod Required</div>
+
+                            </li>
+                          </ul>
+                        </div> -->
+        			</div>
+            </div>
+           </div>
+          </div>
+            <div class="text-left">
+              <button class="btn btn-purple" type="submit"  aria-label="submit" >Update</button>
+            </div>
+        </form>
+      <div class="text-right">
+        <button class="btn btn-purple" (click)="updateAsJob()">Post As a job</button>
+     </div>
+    </div>
+    <a id="runforFun"></a>

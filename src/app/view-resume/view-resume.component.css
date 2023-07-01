@@ -1,0 +1,178 @@
+#resume-viewer{
+    background-color: #30384C;
+}
+
+/*
+   general styles
+*/
+.center-block-horiz {
+   margin-left: auto !important;
+   margin-right: auto !important;
+ }
+.set-margin-cicis-menu-to-go {
+  margin: 20px;
+}
+.set-padding-cicis-menu-to-go {
+  padding: 20px;
+}
+.set-border-cicis-menu-to-go {
+   background-color: #fff;
+}
+.set-box-shadow-cicis-menu-to-go {
+  -webkit-box-shadow: -32px 17px 121px -19px rgba(0,0,0,0.52);
+-moz-box-shadow: -32px 17px 121px -19px rgba(0,0,0,0.52);
+box-shadow: -32px 17px 121px -19px rgba(0,0,0,0.52);
+}
+  
+/*
+** Style the iframe
+** =========================
+*/
+/*
+    css commmon to all iframes
+*/
+.responsive-wrapper {
+  position: relative;
+  height: 1024px;    /* gets height from padding-bottom */
+  overflow: hidden;
+  /* put following styles (necessary for overflow and 
+     scrolling handling) inline in .embed-responsive-element-wrapper around iframe because not stable in CSS
+    -webkit-overflow-scrolling: touch; 
+                      overflow: auto; */
+}
+.responsive-wrapper img,
+.responsive-wrapper object,
+.responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*
+    css particular to this iframe
+*/
+
+#Iframe-Cicis-Menu-To-Go {
+  max-width: 1000px;
+  min-height:1000px;
+  overflow: hidden;
+}
+/*
+   padding-bottom = h/w as %
+*/
+.responsive-wrapper-padding-bottom-90pct {
+  padding-bottom: 90%;
+}
+
+/*pop-up*/
+.thank-you-popup-pdf-view h5{
+    font-weight: 500;
+    letter-spacing: 0.5;
+    color: #000;
+}
+.thank-you-popup-pdf-view h6{
+    font-weight: 500;
+    letter-spacing: 0.5;
+    color: #000;
+    opacity: 0.8;
+    font-size: 16px;
+}
+.thank-you-popup-pdf-view h5{
+    font-weight: 500;
+    letter-spacing: 0.5;
+    color: #000;
+    opacity: 0.9;
+    font-size: 18px;
+}
+.tick i{
+    color: #4cae4c;
+    font-size: 100px;
+    text-align: center;
+}
+
+
+/*chossen-candidate*/
+.modal-head-chossen-candidate{
+    padding: 20px;
+    background-color: #fff;
+}
+.modal-head-chossen-candidate h5{
+     font-weight: 500;
+    letter-spacing: 0.5;
+    color: #000;
+    font-size: 16px;
+}
+.modal-head-chossen-candidate h6{
+     font-weight: 500;
+    letter-spacing: 0.5;
+    color: #000;
+    opacity: 0.6;
+    font-size: 14px;
+}
+
+
+/*candiadte-chossen-table*/
+.candiadte-chosen-list .list-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #fff;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 2;
+}
+/*.chossen-candidate-pop-up .modal-body{
+    padding: 10px 0;
+}*/
+.candidate-rating-content{
+    margin-left: 35px;
+}
+.candiadte-chosen-list ul li.list-item:nth-child(odd){
+   background-color: #FCFBFC;
+}
+.candiadte-chosen-list .list-item .candidate-rating p{
+   font-size: 14px;
+}
+.candiadte-chosen-list .list-item .candidate-rating {
+   margin: 10px 0;
+}
+.candiadte-chosen-list .list-item .candidate-rating .star ul li{
+   font-size: 14px;
+}
+.view-resume-list a.view-resume{
+    color: #23b256;
+    font-size: 12px;
+    font-weight: 500;
+}
+.view-resume-list a.remove-cv{
+    color: #F8554E;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/*Media Queries*/
+
+@media (max-width: 1500px) {
+    #Iframe-Cicis-Menu-To-Go {
+  max-width: 700px;
+}
+}
+
+
+@media (max-width: 1500px) {
+.resume-pdf-viewer-head, .resume-pdf-viewer-head .panel-title {
+    font-size: 11px;
+}
+   .resume-pdf-viewer-head .panel-title img {
+    padding-right: 10px;
+    width: 35px;
+}
+}

@@ -1,0 +1,686 @@
+<div class="view-job-wrapper">
+    <div class="title-head">
+        <p class="text-left">Manage jobs
+          <!--   <span class="f-right">Showing 5/20 jobs</span> -->
+        </p>
+    </div>
+    <div class="select-job-post m-t-20">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="Shortlist-block">
+                 <div class="col-md-6">
+                  <!--  <div class="filter" (click)="showFilter = !showFilter">
+            <p><span *ngIf="!showFilter">+ </span><span>Add Filter </span> <span *ngIf="showFilter">x</span></p>
+         </div> -->
+                </div>
+
+
+                <div class="col-md-6 hidden-xs">
+                    <div class="text-right m-b-20">
+               <a class="btn btn-success" (click)="showAllActive()">All Active Candidates {{activeCandi.length}}</a>
+               <a class="btn btn-success" id="myBtn" (click)="showShortlisted()"> Shortlist candidate {{shortListed.length}}</a>
+                        </div>
+                </div>
+            </div>
+         </div>
+      </div>
+   </div>
+        <!--  <div class="job-filter" *ngIf="showFilter">
+            <div class="col-md-12">
+               <div class="filter-field-job">
+                  <ul>
+                     <li class="first-child">
+                        <div class="form_field">
+                           <label>experience</label>
+                           <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>key skills</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>qualification</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>designation</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="filter-radio">
+                           <label>Backgound Checked</label>
+                           <ul class="list-inline">
+                              <li>
+                                 <div class="form_field">
+                                    <label class="radio">Yes
+                                    <input type="radio" checked="checked" name="is_company">
+                                    <span class="checkround"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                              <li> <label class="radio">No
+                                 <input type="radio" checked="checked" name="is_company">
+                                 <span class="checkround"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="filter-field-job">
+                  <ul>
+                     <li class="first-child">
+                        <div class="custm-range-select">
+                           <div class="form_field">
+                              <label>current ctc</label>
+                              <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                           </div>
+                           <div class="select">
+                              <select>
+                                 <option>USD</option>
+                                 <option>Option</option>
+                                 <option>Option</option>
+                              </select>
+                              <div class="select__arrow"></div>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>current industry</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>current organisation</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>current role</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="filter-radio">
+                           <label>Grade of Consultant</label>
+                           <ul class="list-inline">
+                              <li>
+                                 <div class="form_field">
+                                    <label class="check ">1
+                                    <input type="checkbox" checked="checked" name="is_name">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="form_field">
+                                    <label class="check ">2
+                                    <input type="checkbox" checked="checked" name="is_name">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="form_field">
+                                    <label class="check ">3
+                                    <input type="checkbox" checked="checked" name="is_name">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="form_field">
+                                    <label class="check ">4
+                                    <input type="checkbox" checked="checked" name="is_name">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="form_field">
+                                    <label class="check ">5
+                                    <input type="checkbox" checked="checked" name="is_name">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="filter-field-job m-t-60-field">
+                  <ul>
+                     <li class="first-child">
+                        <div class="custm-range-select">
+                           <div class="form_field">
+                              <label>expected ctc</label>
+                              <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                           </div>
+                           <div class="select">
+                              <select>
+                                 <option>USD</option>
+                                 <option>Option</option>
+                                 <option>Option</option>
+                              </select>
+                              <div class="select__arrow"></div>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form_field">
+                           <label>location</label>
+                           <input type="text" name="">
+                        </div>
+                     </li>
+                     <li>
+                        <div class="custm-range-select">
+                           <div class="form_field">
+                              <label>notice period</label>
+                              <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                           </div>
+                           <div class="select">
+                              <select>
+                                 <option>USD</option>
+                                 <option>Option</option>
+                                 <option>Option</option>
+                              </select>
+                              <div class="select__arrow"></div>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="filter-field-job">
+                  <ul class="bottom-check-box">
+                     <li>
+                        <label class="check ">women candidate only
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                     </li>
+                     <li>
+                        <label class="check ">wiling to relocate
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div> -->
+</div>
+
+
+
+
+
+<div class="view-job-list-content">
+
+    <div class="view-job-table-list m-t-20">
+       <table class="table table-responsive rwd-table">
+        <thead class="view-job-table-head white_color cst-table">
+          <tr>
+              <th><span>Name</span></th>
+              <th><span>Location</span></th>
+              <th><span>Experience</span></th>
+              <th><span>Qualification</span></th>
+              <th><span>Current organisation</span></th>
+              <th><span>Designation</span></th>
+              <th><span>CTC</span></th>
+              <th><span>Action</span></th>
+
+        </tr>
+      </thead>
+      <tbody class="cst-body">
+        <tr *ngFor ="let Candidates of selectedArray ">
+          <td  data-th="Name"><span>{{Candidates.name}}</span>
+            <br>
+              <span></span>
+            </td>
+            <td data-th="Location"><span>location</span></td>
+            <td data-th="Experience"><span>{{Candidates.experience}}</span></td>
+            <td data-th="Qualification"><span>{{Candidates.qualification}}</span></td>
+            <td data-th="Current organisation"><span>{{Candidates.current_organisation}}</span></td>
+            <td data-th="Designation"><span>{{jobinfo.job_title}}</span></td>
+            <td data-th="CTC"><span>{{Candidates.ctc}}</span></td>
+         <td data-th="Action">
+            <ul class="list-unstyled">
+              <!-- <li *ngIf = "!scheduleInteview"><a>Rejected</a> </li> -->
+              <li *ngIf = "!scheduleInteview"><a (click) = "onShortList(Candidates._id)" id="myBtn" class="active-stats">Shortlist</a></li>
+              <a class="view-resume " (click) = "setCV(Candidates.cv)" >View Resume</a>
+              <li *ngIf = "scheduleInteview"> <a routerLink="/clientHeader/schedule/{{jobinfo._id}}/{{Candidates._id}}" id="myBtn" class="draft-stats">Schedule Interview</a> </li>
+            </ul>
+          </td>
+          </tr>
+       </tbody>
+      </table>
+        <!-- <ul class="list-inline">
+            <li>
+              <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul> -->
+    </div>
+
+
+    <!-- <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>
+
+    <div class="view-job-table-list m-t-20">
+        <ul class="list-inline">
+            <li>
+                     <div class="candidate-name">
+                        <label class="check ">Aman Gautam
+                        <input type="checkbox" checked="checked" name="is_name">
+                        <span class="checkmark"></span>
+                        </label>
+                        <a>View Resume</a>
+                     </div>
+                  </li>
+                  <li>
+                     Delhi
+                  </li>
+                  <li>Java Script, Leadership, Craetive, Thinking</li>
+                  <li class="text-center">4 year</li>
+                  <li>PG Diploma in Hr Managment</li>
+                  <li>Brain and Company</li>
+                  <li>Asst. HR Manager</li>
+                  <li class="text-center">Yes
+                  </li>
+         <div class="view-resp-list-footer">
+            <ul class="list-inline text-right">
+               <li><a class="btn btn-danger">Rejected</a></li>
+               <li><a class="btn btn-success" id="myBtn">Shortlist</a></li>
+            </ul>
+         </div>
+        </ul>
+    </div>-->
+</div>
+
+<!--
+<div class="footer-pagination m-t-20">
+   <span>Showing 1 to 5 of 15 entries</span>
+   <ul class="pagination pull-right">
+      <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+      <li><a href="#" class="active">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+   </ul>
+</div> -->
+<!--pop-up-candidate-list-->
+<!-- The Modal -->
+<div id="myModal" class="modal" [ngClass]="{'showCls':showPop}">
+   <!-- Modal content -->
+   <div class="modal-content-cust">
+      <div class="shortlisted-candiadte-view-response">
+         <div class="shortlisted-candiadte-head">
+            <h4>3 Shortlisted candiadte</h4>
+            <span class="close" (click)="showPop = false"><i class="fas fa-ellipsis-h"></i>
+            </span>
+         </div>
+         <div class="shorted-candiadte-list">
+            <ul>
+               <!--1-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--2-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--3-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--4-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--5-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--6-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+               <!--7-->
+               <li class="candiadte-shorted-warpper">
+                  <div class="col-md-6">
+                     <div class="candiadte-shorted-title">
+                        <h5>Aman Gautam</h5>
+                        <a>View resume</a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="schedule-intw">
+                        <a class="btn btn-purple">Schedule Interview</a>
+                        <a class="remove-btn"><i class="fas fa-times"></i>
+                        Remove</a>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>

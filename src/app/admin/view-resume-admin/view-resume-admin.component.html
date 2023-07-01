@@ -1,0 +1,313 @@
+<!--font-->
+<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet" type="text/css" />
+<!--header-->
+<!-- <header id="user-haeder">
+   <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
+            MENU
+            </button>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+            <img src="assets/img/logo.png">
+            </a>
+         </div>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+               <li><a><i class="fas fa-globe-asia"></i></a></li>
+               <li>
+                  <a>
+                  <img src="assets/img/user-placeholder.png" class="img-circle" > Rohan Mishra</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+</header> -->
+<!--header-end-->
+<div id="resume-viewer" >
+   <div class="container-fluid">
+      <div class="row">
+         <!--pdf-viewer-->
+         <div class="col-md-9">
+            <div class="panel-heading resume-pdf-viewer-head">
+               <div class="row">
+                    <!--back-btn-->
+                    <div class="col col-xs-6">
+                        <div class="back-to">
+                           <p class="text-left"> <a class="back-btn" (click)="backClicked()"><img src="assets/img/left-arrow.svg" width="20px" height="auto"> &nbsp;
+                  Back</a>
+                           </p>
+                     </div>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                     <span class="btn btn-success">Showing {{currentCandidate +1}}/{{candidateList}} jobs</span>
+                  </div>
+               </div>
+            </div>
+            <!--candidate-resume-pdf-view-->
+            <!--item-1-->
+            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+               <div class="responsive-wrapper 
+                  responsive-wrapper-padding-bottom-90pct"
+                  style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                   <pdf-viewer [src]="CV" 
+                            [render-text]="true"
+                            style="display: block;"
+                             ></pdf-viewer>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="candidate-resume-action">
+               <!--candidate-action-head-->
+               <div class="resume-action-head">
+                  <h4>{{candidateName}}'s Resume</h4>
+                 <!--  <p>You have 3 times slots available for this job <i class="fas fa-info-circle"></i>
+                  </p>
+                  <a class="btn btn-success btn-block"  data-toggle="modal" data-target=".chossen-candidate-pop-up">Book More</a>
+                  <a class="btn btn-success btn-block"  data-toggle="modal" data-target=".thank-you-popup-pdf-view">Book More</a>
+                  <a class="btn btn-success btn-danger btn-block" style="display: none;">Book Now to Proceed</a>
+                  <div class="candidate-sts" style="display: none;">
+                     <p>Candidate Status</p>
+                     <div class="select">
+                        <select>
+                           <option>Shortlisted</option>
+                        </select>
+                        <div class="select__arrow"></div>
+                     </div>
+                  </div> -->
+               </div>
+               <!--end-->
+               <!--candidate-grade-radting-->
+               <!-- <div class="candidate-rating">
+                  <p>Grade of consultant <i class="fas fa-info-circle"></i></p>
+                  <div class="star">
+                     <ul>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="candidate-rating">
+                  <p>Grade of candidate <i class="fas fa-info-circle"></i></p>
+                  <div class="star">
+                     <ul>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                     </ul>
+                  </div>
+               </div> -->
+               <!--end-->
+               <!--skype-interview-->
+               <!-- <div class="interview-schdul-detail" style="display: none;">
+                  <h2>Skype Interview on 2nd july,2018</h2>
+                  <a class="btn btn-success">Reschedule Interview</a>
+               </div> -->
+               <!--action-candidate-resume-->
+               <div class="resume-action-bar">
+                  <p>Action</p>
+                  <ul>
+                     <li *ngIf= "ShowButton"><a class="btn" (click)="onShortList()" >PI Shortlist</a></li>
+                     <li *ngIf= "!ShowButton"><a class="btn" (click)="onUndo()" >Undo</a></li>
+                    
+                     <!-- <li *ngIf= "!ShowButton"><a class="btn" (click)="onShortList()" >PI Shortlist</a></li> -->
+                    	<!--  <li><a class="btn" >Reject</a></li>
+                  		   <li><a class="btn" (click)="onShortList('2')">On Hold</a></li> -->
+<!--                      <li><a class="btn">Consider for another job</a></li>
+ -->                  </ul>
+               </div>
+               <!--end-->
+               <!--relevancy-score-->
+               <div class="candidate-rating relavancy-score" style="display: none;">
+                  <p>Relavancy Score <i class="fas fa-info-circle"></i></p>
+                  <div class="star">
+                     <ul>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star checked"></li>
+                        <li class="fas fa-star"></li>
+                        <li class="fas fa-star"></li>
+                     </ul>
+                  </div>
+               </div>
+               <!--end-->
+               <!--consultant-info-->
+               <div class="consultant-info-view" style="display: none;">
+                  <h2>Consultant's Info</h2>
+                  <div class="candidate-rating relavancy-score">
+                     <p>Relavancy Score <i class="fas fa-info-circle"></i></p>
+                     <div class="star">
+                        <ul>
+                           <li class="fas fa-star checked"></li>
+                           <li class="fas fa-star checked"></li>
+                           <li class="fas fa-star checked"></li>
+                           <li class="fas fa-star"></li>
+                           <li class="fas fa-star"></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="fee-conslt-wrapper">
+                     <p>Fee of consultant</p>
+                     <span>8% of CTC</span>
+                  </div>
+               </div>
+               <!--end-->
+               <!--mode-of-interview-->
+               <div class="resume-action-bar" style="display: none;">
+                  <p>Mode of Interview</p>
+                  <ul>
+                     <li><a class="btn">Skype</a></li>
+                     <li><a class="btn">In-person Interview</a></li>
+                  </ul>
+               </div>
+               <!--end-->
+               <!--move-next-cadidate-->
+               <div class="move-next-candiadte">
+                <!--   <a *ngIf =  "ShowButton" class="btn-block btn btn-danger"  [routerLink]="['/clientHeader/schedule', jobId, candidateId ]">Schedule Interview</a> -->
+<!--                   <a class="btn-block btn btn-danger">Mark Irrelevant</a>
+ -->                  <a class="btn-block btn btn-success" (click)="getUserDetails()">Next Candidate <i class="fas fa-angle-right"></i>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--pop-up-1-->
+<!-- <div class="modal fade thank-you-popup-pdf-view" tabindex="-1" role="dialog" aria-labelledby="export-file">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <div class="tick m-t-50">
+               <span><i class="fas fa-check-circle"></i></span>
+            </div>
+            <div class="m-t-20">
+               <h5>Awesome!!</h5>
+               <h6>Resume are submitted for preliminary evalution.</h6>
+               <h5>You will hear from us when we recive any update.</h5>
+            </div>
+            <a class="btn btn-purple m-t-20">Go to Dashboard</a>
+         </div>
+      </div>
+   </div>
+</div> -->
+<!--pop-up-2-chossen-candidate-->
+<!-- <div class="modal fade chossen-candidate-pop-up" tabindex="-1" role="dialog" aria-labelledby="export-file">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body">
+            <div class="modal-head-chossen-candidate">
+               <h5>You will hear from us when we recive any update.</h5>
+               <h6>Resume are submitted for preliminary evalution.</h6>
+            </div>
+            <div class="candiadte-chosen-list">
+               <ul>
+                  <li class="list-item">
+                     <div class="col-md-9">
+                        <div class="candidate-rating relavancy-score">
+                           <label class="check "><input type="checkbox" checked="checked" name="is_name">
+                           <span class="checkmark"></span>
+                           </label>
+                           <div class="candidate-rating-content">
+                              <p>Aman Gautam</p>
+                              <div class="star">
+                                 <ul>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="view-resume-list">
+                           <ul>
+                              <li><a class="view-resume">View resume</a></li>
+                              <li><a class="remove-cv">Remove</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="list-item">
+                     <div class="col-md-9">
+                        <div class="candidate-rating relavancy-score">
+                           <label class="check "><input type="checkbox" checked="checked" name="is_name">
+                           <span class="checkmark"></span>
+                           </label>
+                           <div class="candidate-rating-content">
+                              <p>Ankush Jassal</p>
+                              <div class="star">
+                                 <ul>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="view-resume-list">
+                           <ul>
+                              <li><a class="view-resume">View resume</a></li>
+                              <li><a class="remove-cv">Remove</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="list-item">
+                     <div class="col-md-9">
+                        <div class="candidate-rating relavancy-score">
+                           <label class="check "><input type="checkbox" checked="checked" name="is_name">
+                           <span class="checkmark"></span>
+                           </label>
+                           <div class="candidate-rating-content">
+                              <p>gaurav sehgal</p>
+                              <div class="star">
+                                 <ul>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star checked"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="view-resume-list">
+                           <ul>
+                              <li><a class="view-resume">View resume</a></li>
+                              <li><a class="remove-cv">Remove</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            <p class="text-right">
+               <a class="btn btn-purple m-t-20">Ask for interview</a>
+            </p>
+         </div>
+      </div>
+   </div>
+</div> -->

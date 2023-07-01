@@ -1,0 +1,78 @@
+
+<section>
+      <div class="back-to">
+            <p class="text-left"> <a class="back-btn" (click)="backClicked()"><img src="assets/img/left-arrow.svg" width="20px" height="auto"> &nbsp;
+   Back</a>
+            </p>
+      </div>
+  <div class="container-fluid">
+ <button (click)="clientModal.show()">
+    Create+ Issue
+  </button>
+<table class="candidate-list-view-table candidate-table">
+                     <thead>
+                      <tr>
+                        <th>Questions</th>
+                        <th>Action</th>
+                     </tr>
+                    </thead>
+                <tbody>
+                         <tr *ngFor = "let query of data | paginate: { itemsPerPage: 12, currentPage: page }">
+                           <td data-th="Candidate Name">{{query.question}}</td>
+                           <td data-th="Actions">
+                           <button *ngIf="query.status === 'active'" (click) = "changeStatus('deactive',query.question,query._id)" class="button btn-outline">Deactivate</button>
+                         <button *ngIf="query.status==='deactive'" (click) = "changeStatus('active',query.question,query._id)" class="button btn-outline">Activate</button>
+
+                        </td>
+                    </tr>
+                  </tbody>
+                   <thead *ngIf="noDataI">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently No interviewed Candidates Available</p></div>
+                </tr>
+          </thead>
+               </table>
+               <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+ </div>
+</section>   
+<div bsModal #clientModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog signup_popup_inner_wrapper  modal-lg">
+     <!-- Modal content-->
+     <div class="modal-content ">
+        <div class="modal-body">
+            <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+                    <a data-dismiss="modal" aria-hidden="true"><img (click)="clientModal.hide(); clearForm()" src="assets/img/cancel.png" ></a>
+                 </div>
+           <div class="signup_box">
+              <div class="box_header">
+                 <h3>Create an Issue</h3>
+              </div>
+              <div class="box_form">
+                 <div class="contact_form">
+                    <form [formGroup]="queryForm" (ngSubmit)="addIssue()" loginSubmitted novalidate>
+              <div class="form-group">
+                <div class="col-md-12 input-box">
+                    <div class="form_field">
+                        <label>Query</label>
+                               <!-- <img src="assets/img/icon/user.png"> -->
+                        <textarea name="query" aria-label="query" formControlName="query" placeholder="query"
+                             type="text" class="form-control"></textarea>
+                    </div>
+                    <div *ngIf="submitted && queryForm.controls.query.hasError('required')" class="alert alert-danger">Query Required</div>
+                    <div *ngIf="submitted && queryForm.controls.query.hasError('pattern')" class="alert alert-danger">Query Max length of 50</div>
+                </div>
+            </div>
+             
+                        <div class="text-center">
+                            <button type="submit"  aria-label="submit" class="btn btn-success" style="margin-top: 10px;">Add</button>
+                        <!-- <p class="note">NOT A COMPANY? <a (click)="clientModal.hide();consultModal.show() ; submittedF()">SIGN UP AS CONSULTANT</a></p> -->
+                        </div>
+     </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

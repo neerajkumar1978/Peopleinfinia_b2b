@@ -1,0 +1,296 @@
+<div class="candidate-wrapper">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="tittle">
+            <h5>Candidates</h5>
+         </div>
+         <div class="tabbable-panel">
+            <div class="tabbable-line">
+               <ul class="nav nav-tabs ">
+                  <li [ngClass]="{'active':activeTab == 1}">
+                     <a (click)="activeTab = 1" data-toggle="tab">
+                     Shortlisted</a>
+                  </li>
+                  <li [ngClass]="{'active':activeTab == 2}">
+                     <a (click)="activeTab = 2" data-toggle="tab">
+                     interviewed </a>
+                  </li>
+                  <li [ngClass]="{'active':activeTab == 3}">
+                     <a (click)="activeTab = 3" data-toggle="tab">
+                     on hold </a>
+                  </li>
+                  <li [ngClass]="{'active':activeTab == 4}">
+                     <a (click)="activeTab = 4" data-toggle="tab">
+                     Hired </a>
+                  </li>
+               </ul>
+               <div *ngIf= "!noData"  class="tab-content">
+                  <!--shortlisted-->
+                  <!--tab-1-->
+                  <div class="tab-pane" id="tab_default_1" [ngClass]="{'active':activeTab == 1}" *ngIf="activeTab == 1">
+                  <!--job-search-filters-->
+                 <!--  <div class="row">
+                     <div class="col-md-12">
+                        <div class="search-filter-shortlisted">
+                           <ul>
+                              <li>
+                                 <div class="icon-addon">
+                                    <div class="form-group">
+                                       <div class="icon-addon addon-lg">
+                                          <input type="text" placeholder="Search by name" class="form-control-cust input-with-icon" id="">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="icon-addon">
+                                    <div class="form-group">
+                                       <div class="icon-addon addon-lg">
+                                          <input type="text" placeholder="Search by job post" class="form-control-cust input-with-icon" id="">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="icon-addon">
+                                    <div class="form-group">
+                                       <div class="icon-addon addon-lg">
+                                          <input type="text" placeholder="Search by relevency score" class="form-control-cust input-with-icon-right" id="">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li>
+                                 <button class="btn btn-success btn-block">Download Resume</button>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div> -->
+                  <!--candidate-list-view-table-view-->
+                  <table class="candidate-list-view-table  candidate-table">
+                     <thead *ngIf="!noDataS" >
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th>
+                        <th>Consultant ID</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                      <tbody>
+                         <tr *ngFor = "let candi of shortListed | paginate: { itemsPerPage: 12, currentPage: page }">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td  data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td  data-th="Recruiter ID"> {{candi.recruiter_id.user_id}}</td>
+                           <td  data-th="Actions" align="center">
+                           <button (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</button>
+                           <button  (click)="changeStatus('1',candi.job_id._id,candi.candidates._id) " class="button btn-outline btn-block">Interviewed</button>
+
+                        </td>
+                          </tr>
+                  </tbody>
+                   <thead *ngIf="noDataS">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently No shortlisted Candidate(s) Available</p></div>
+                </tr>
+          </thead>
+               </table>
+               <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+               </div>
+
+               <!--tab-2-->
+         <div class="tab-pane" [ngClass]="{'active':activeTab == 2}" *ngIf="activeTab == 2">
+            <table class="candidate-list-view-table candidate-table">
+                     <thead *ngIf="!noDataI">
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th>
+                        <th>Recruiter ID</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                <tbody>
+                         <tr *ngFor = "let candi of interviewed | paginate: { itemsPerPage: 12, currentPage: page1 }">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td data-th="Recruiter ID">{{candi.recruiter_id.user_id}}</td>
+                           <td data-th="Actions" align="center">
+                           <button (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</button>
+                         <button (click) = "changeStatus('4',candi.job_id._id,candi.candidates._id)" class="button btn-outline btn-block">Hire</button>
+
+                        </td>
+                    </tr>
+                  </tbody>
+                   <thead *ngIf="noDataI">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently No interviewed Candidate(s) Available</p></div>
+                </tr>
+          </thead>
+               </table>
+               <pagination-controls *ngIf= "ShowPagination1" (pageChange)="page1 = $event"></pagination-controls>
+            </div> 
+            <!--tab-3-->
+            <div class="tab-pane active" [ngClass]="{'active':activeTab == 3}" *ngIf="activeTab == 3">
+               <table class="candidate-list-view-table candidate-table">
+                     <thead *ngIf="!noDataO">
+                      <tr>
+                        <th data-th="">Candidate Name</th>
+                        <th data-th="">Job Title</th>
+                        <th data-th="">Consultant ID</th>
+                        <th data-th="">Actions</th>
+                     </tr>
+                    </thead>
+                   <tbody>
+                         <tr *ngFor = "let candi of onHold | paginate: { itemsPerPage: 12, currentPage: page2 }">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td data-th="Recruiter ID">{{candi.recruiter_id.user_id}}</td>
+                           <td data-th="Actions" align="center">
+                           <button (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</button>
+                           
+                        <button routerLink="/clientHeader/schedule/{{candi.job_id._id}}/{{candi.candidates._id}} " class="button btn-outline btn-block">Schedule Interview</button>
+                        </td>
+                       </tr>
+                  </tbody>
+                   <thead *ngIf="noDataO">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently no onhold Candidate(s) Available</p></div>
+                </tr>
+          </thead>
+               </table>
+               <pagination-controls *ngIf= "ShowPagination2" (pageChange)="page2 = $event"></pagination-controls>
+            </div>
+            <!--job-search-filters-->
+          
+         <!--tab-4-->
+         <div class="tab-pane" [ngClass]="{'active':activeTab == 4}" *ngIf="activeTab == 4">
+             <table class="candidate-list-view-table candidate-table">
+                     <thead *ngIf="!noDataH">
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th> 
+                        <th>Consultant ID</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                 <tbody>
+                         <tr *ngFor = "let candi of hired | paginate: { itemsPerPage: 12, currentPage: page5 }">
+                           <td>{{candi.candidates.name}}</td>
+                           <td>{{candi.job_id.job_title}}</td>
+                           <td>{{candi.recruiter_id.user_id}}</td>
+                           <td align="center">
+                           <button (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</button>
+                           <button (click)="withdrawModalOpen(candi._id,candi.candidates._id)" class="button btn-outline btn-block">Withdraw Candidate</button>
+                        </td>
+                     </tr>
+                  </tbody>
+                   <thead *ngIf="noDataH">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently No Hired Candidate(s) Available</p></div>
+                </tr>
+          </thead>
+               </table>
+               <pagination-controls *ngIf= "ShowPagination3" (pageChange)="page3 = $event"></pagination-controls>
+         </div>
+         <!--job-search-filters-->
+     
+   </div>
+                <div *ngIf="noData" class="nofeeds">
+                   <p class="list-item-title">Currently Candidate(s) Not Available!!</p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<!-- <div class="modal fade" id="feedback-modal-box" role="dialog">
+   -->
+<div bsModal #feedModal="bs-modal" id="feedback-modal-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Hiring experience feedback</h5>
+            <p>Tell us how was your experience with us. we would like to make it better with your Insights.</p>
+         </div>
+         <div class="modal-body">
+            <!--1-->
+            <ul class="rating-candidate-content">
+               <li class="f-left">
+                  <h5 class="modal-title">Aman Gautam</h5>
+                  <p>Interview for HR Manager</p>
+               </li>
+               <li class="f-right"><span class="star">
+                  <span class="fas fa-star checked"></span>
+                  <span class="fas fa-star checked"></span>
+                  <span class="fas fa-star checked"></span>
+                  <span class="fas fa-star"></span>
+                  <span class="fas fa-star"></span>
+                  </span>
+               </li>
+            </ul>
+            <!--2-->
+            <div class="rating-question-list">
+               <ul>
+                  <li>
+                     <p>Was the CV relevantfor your needs?</p>
+                     <div class="btn-group">
+                        <button type="button" class="btn-outline" aria-label="Left Align">Yes</button>
+                        <button type="button" class="btn-outline" aria-label="Right Align">No</button>
+                     </div>
+                  </li>
+                  <li>
+                     <p>Did the candidate turn up pn time for interview?</p>
+                     <div class="btn-group">
+                        <button type="button" class="btn-outline" aria-label="Left Align">Yes</button>
+                        <button type="button" class="btn-outline" aria-label="Right Align">No</button>
+                     </div>
+                  </li>
+                  <li>
+                     <p>What is the current statusof candidate?</p>
+                     <div class="btn-group">
+                        <button type="button" class="btn-outline" aria-label="Left Align">Hired</button>
+                        <button type="button" class="btn-outline" aria-label="Center Align">Reject</button>
+                        <button type="button" class="btn-outline" aria-label="Right Align">Not Sure</button>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            <!--3-->
+            <div class="footer-btn text-right m-t-40">
+               <a class="btn btn-default">Raise an Issue</a>
+               <a class="btn btn-success">Submit Response</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div bsModal #withdrawModal="bs-modal" class="modal fade warning-modal" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <!-- <div class="modal fade warning-modal" tabindex="-1" role="dialog" aria-labelledby="warning-modal"> -->
+   <div class="modal-dialog">
+      <div class="modal-content modal-pad">
+         <div class="row">
+            <div class="modal-body text-center warning-msg">
+               <div class="close">
+                  <a><img (click)="withdrawModal.hide()" src="../../assets/img/cancel.png" ></a>
+               </div>
+               <h6>Are you sure you want to withdraw candidate.</h6>
+               <p>We don't appriciate this behaviour.</p>
+               <p class="note">caution: Doing this may get you blacklited from our portal.</p>
+               <div class="clear-both"></div>
+               <div class="text-center m-t-40">
+                  <ul class="list-inline">
+                     <li><a (click)="withdrawModal.hide()" class="btn btn-purple">Cancel</a></li>
+                     <li><a (click)="withdrawCandi()" class="btn btn-danger">Proceed</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

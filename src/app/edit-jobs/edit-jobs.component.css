@@ -1,0 +1,41 @@
+.post-edit-wrapper .panel-info>.panel-heading {
+    color: #ffff;
+    background-color: #761FB3;
+    border-color: #761FB3;
+}
+.post-edit-wrapper .panel-info>.panel-heading>.panel-title{
+    color: #fff;
+}
+.post-edit-wrapper .panel{
+       box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+.show-file{
+    position: relative;
+  color: #000;
+  margin-top: 7px;
+  font-size: 13px;
+      float: right;
+}
+.my-dismiss{
+position: absolute;
+  top: -3px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-purple{
+  color: #ffff;
+    background-color: #761FB3;
+    border-color: #761FB3;
+}
+.confrmation-notification.btnView div label {
+  border: 1px solid #000;
+  height: 35px;
+  margin-left: 17px;
+  padding: 4px 35px;
+}

@@ -1,0 +1,36 @@
+/*huge talent pool*/
+.huge-talent-out>img {
+    position: absolute;
+    right: 0;
+    top: 410px;
+    width: 58%;
+}
+.huge-talent-pool{
+    padding: 30px 0 60px;
+}
+.huge-talent-pool h2{
+    width: 80%;
+}
+.huge-talent-pool h3{
+    width: 60%;
+}
+.huge-talent-pool p{
+    width: 55%;
+}
+
+
+
+@media screen and (max-width:767px){
+    .huge-talent-out>img {
+    display: none;
+}
+.huge-talent-pool h2{
+    width: 100%!important;
+}
+.huge-talent-pool h3{
+    width: 100%!important;
+}
+.huge-talent-pool p{
+    width: 100%!important;
+}
+}

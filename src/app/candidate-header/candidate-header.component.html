@@ -1,0 +1,86 @@
+<header>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-10">
+        <a routerLink="/candidateHeader/dashboard" class="logo"
+          ><img src="assets/img/logo.png"
+        /></a>
+      </div>
+      <div class="col-md-6 right-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav" *ngIf="!isUserLoggedIn">
+              <li class="nav-item active">
+                <!-- <a class="nav-link" href="#">Already Registered?</a> -->
+                <p>Already Registered?</p>
+
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link main-btn register-btn"
+                  routerLink="/candidate/login">
+                  Click here to login
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="dropdown" *ngIf="isUserLoggedIn">
+        <button type="button" class="btn btn-primary dropdown-toggle avtar-btn" data-toggle="dropdown">
+        <img [src]="profilePicture" width="50px">
+        </button>
+        <div class="dropdown-menu rightSide">
+          <a routerLink="/clientHeader/profile"><i class="fas fa-user-circle"></i>Change Password</a>
+          <!--<a class="dropdown-item" id="hero" data-toggle="modal" data-target="#changePasswordModals">Change Password</a>-->
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Modal -->
+<!--
+<div class="modal fade opacity_show" id="changePasswordModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="loginForm text-center">
+         <h5 class="mb-3">Change Password</h5>
+          <form  #cp="ngForm" (ngSubmit)="onChangePassword($event)">
+          <input type="text" class="form-control" ngModel name="oPassword" placeholder="Old Password*" required>
+          <input type="password" class="form-control"  ngModel name="nPassword" placeholder="New Password* (min. 6 characters)" pattern=".{6,}" required>
+          <input type="password" class="form-control"  ngModel name ="nCPassword" placeholder="Confirm New Password*" pattern=".{6,}" required>
+         <div class="text-center">
+          <input type="submit" name="submit"  class="btn btn-success" [disabled]="!cp.valid" />
+        </div>
+      </form>
+           </div>
+    </div>
+  </div>
+</div>
+</div>
+-->
+
+<router-outlet></router-outlet>

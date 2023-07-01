@@ -1,0 +1,127 @@
+/* @import url('../../assets/css/externalStyle.css');
+@media (max-width: 550px) {
+    .Contact-footer--right-content{
+        display: none;
+    }
+} */
+
+
+/*faqs*/
+.nav-tabs {
+    border-bottom:none;
+}
+.faq img {
+    margin-top: 28px;
+}
+.nav-tabs .nav-item .nav-link {
+    padding: 15px 40px;
+    font-size: 16px;
+}
+.nav-tabs .nav-item.active .nav-link {
+    color: #fff!important;
+    background-color: #5db756!important;
+    border-color: #dee2e6 #dee2e6 #5db756!important;
+    padding: 15px 40px;
+}
+div#faq-tabs ul {
+    margin: 35px 0!important;
+}
+.faq-tabs .nav{
+    justify-content: center;
+    margin: 35px 0!important;
+
+}
+.faq-tabs .fade:not(.show) {
+    opacity: 1!important;
+}
+.faq-tabs .accordion{
+    width:100%;
+    margin: 0 auto;
+}
+.faq-tabs .accordion-toggle {
+    cursor: pointer;
+    margin: 0;
+    padding: 10px 0 10px 30px;
+    position: relative;
+    font-size: 20px;
+}
+.faq-tabs .accordion-toggle.active:after{
+    content:"\f068";
+    position:absolute;
+    font-family: FontAwesome;
+    left:0;
+    top:15px;
+    font-size: 15px;
+}
+.faq-tabs .accordion-toggle:before {
+    content: "\f067";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-family: FontAwesome;
+    font-size: 15px;
+}
+.faq-tabs .accordion-toggle.active:before{
+    display:none;
+}
+.faq-tabs .accordion-content>p {
+    font-size: 15px!important;
+}
+.faq-tabs .accordion-toggle.active {
+    color: #000;
+}
+.faq-content h2 {
+    font-size: 40px;
+    margin:25px 0!important;
+}
+
+
+
+@media screen and (max-width:1199px){
+    .faq img {
+        margin-top: 33px;
+    }
+}
+@media screen and (max-width:991px){
+    .faq-content h2 {
+    font-size: 30px!important;
+}
+}
+@media screen and (max-width:768px){
+    .faq-content h2 {
+    font-size: 25px!important;
+}
+.nav-tabs .nav-item .nav-link {
+    font-size: 14px;
+}
+.nav-tabs .nav-item .nav-link {
+    padding: 15px 20px!important;
+}
+.nav-tabs .nav-item.active .nav-link {
+    padding: 15px 20px!important;
+}
+}
+
+@media screen and (max-width:575px){
+.faq-content h2 {
+    font-size: 20px!important;
+}
+/* .nav-tabs .nav-item .nav-link {
+    padding: 4px 4px;
+} */
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    padding: 4px 4px;
+}
+.contact-out {
+    padding-top: 54px!important;
+}
+.faq img {
+    margin-top: 15px;
+}
+.nav-tabs .nav-item .nav-link {
+    padding: 11px 8px!important;
+}
+.nav-tabs .nav-item.active .nav-link {
+    padding: 11px 8px!important;
+}
+}

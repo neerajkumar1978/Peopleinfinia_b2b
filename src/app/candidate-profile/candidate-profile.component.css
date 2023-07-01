@@ -1,0 +1,20 @@
+@import url('../../assets/css/candidate.style.css');
+.back-to p a {
+  color: #000;
+}
+.back-to p a:hover {
+  color: #000;
+}
+
+.cvSaveClass {
+  margin-top: 10px;
+}
+.float-left {
+  float: left;
+}
+h6{
+  font-size:16px;
+}
+.marginTop{
+  margin-top: 150px;
+}

@@ -1,0 +1,169 @@
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 10px 20px !important;
+}
+.view-job-table-list ul{
+    display: block;
+    padding: 0;
+    color: #333;
+}
+.view-job-table-list ul li {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.nofeeds{
+    padding:25px;
+    background: #fff;
+    box-shadow: 0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 );
+    border-radius: 5px;
+    display: table;
+    position: static;
+    text-align: center;
+    width: 100%;
+}
+.nofeeds p{
+    font-weight: 600;
+    text-align: center;
+    color: #8E909F;
+}
+.manage-job-wrapper {
+        background-color: #fff;
+    }
+
+    .manage-job-wrapper p {
+        padding: 10px 20px 0px;
+    }
+
+    .manage-job-table-head {
+        background-color: #761FB3;
+    }
+
+    .manage-job-table-head ul {
+        display: block;
+        padding: 5px 40px;
+        color: #fff;
+    }
+
+    .manage-job-table-head ul li {
+        width: calc(100% / 7);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    .manage-job-table-head ul li:nth-child(1) {
+        width: calc(100% / 4);
+    }
+
+
+    table .manage-job-table-head{
+        color:#fff;
+    }
+    table .manage-job-table-head th{
+        padding: 20px 25px;
+    }
+    /*list*/
+
+    .manage-job-table-list {
+        background-color: #fff;
+    }
+
+    .manage-job-table-list ul {
+        display: block;
+        padding: 20px 40px;
+        color: #333;
+    }
+
+    .manage-job-table-list ul li {
+        width: calc(100% / 7);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        vertical-align: top;
+    }
+
+    .manage-job-table-list ul li:nth-child(1) {
+        width: calc(100% / 4);
+    }
+    .manage-job-table-list ul li ol.edit-post {
+        margin-left: 10px;
+        margin-top: 30px;
+    }
+    .manage-job-table-list ul li ol.edit-post a{
+        margin: 10px;
+        font-weight: 600;
+        font-size: 10px;
+    }
+    a.view-resp-btn {
+        padding: 5px 10px;
+        color: #333;
+        font-size: 12px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-top: 60px;
+        font-weight: 600;
+    }
+    .view-job-wrapper .title-head p{
+       font-size: 23px;
+    font-weight: 500;
+    letter-spacing: 0.2px; 
+    }
+    
+    .view-job-wrapper .title-head p span{
+           font-size: 16px;
+    font-weight: 600;
+    opacity: 0.5;
+    display: block;
+    }
+
+.signup_box {
+    padding: 50px;
+}
+
+.box_header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.signup_box button{
+    margin: 10px;
+}
+
+.mng-btn{
+    width: 140px !important;
+    height: 40px !important;
+    padding: 0px !important;
+    font-size: 13px !important;
+    text-align: center;
+}
+
+@media (max-width: 550px) {
+.view-job-table-list ul {
+    display: block;
+     padding: 0px; 
+    color: #333;
+}
+.view-job-table-list ul, .manage-job-table-list ul {
+    display: block;
+    padding: 0px; 
+    color: #333;
+}
+        .view-job-table-list ul {
+    display: block;
+    padding: 0;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+    .view-job-table-list ul li {
+    text-align: left;
+} 
+.mob-btn-delete, .mob-btn-edit, .mob-btn-view {
+    width: 225px !important;
+    display: inline-block !important;
+    }
+}

@@ -1,0 +1,56 @@
+	.prv-cont{
+  margin:20px 0;
+}
+
+.prv-cont h2{
+  margin:20px 0;
+  font-size: 20px;
+  font-weight:600;
+}
+.privaryPolicy{
+	margin-top:50px;
+}
+#breadcrum {
+	background: #f5f5f5;
+	padding: 25px
+}
+
+#breadcrum ul {
+	padding: 0;
+	margin: 0;
+	list-style: none
+}
+
+#breadcrum ul li {
+	display: inline-block;
+	color: #0db655;
+	padding-right: 30px;
+	position: relative;
+	font-size: 20px !important
+}
+
+#breadcrum ul li a:after {
+	content: ">";
+	position: absolute;
+	right: 9px;
+	top: 1px
+}
+
+#breadcrum ul li a {
+	display: block
+}
+ol.count {list-style-type: upper-roman;}
+ul.disc {list-style-type: disc;}
+
+@media (max-width: 768px){
+    .privacy-scrl {
+    overflow-x:auto;
+}
+    .prvcy-polcy{
+        overflow: hidden;
+        padding: 20px;
+	}
+	.privaryPolicy h2{
+		font-size: 25px;
+	}
+}

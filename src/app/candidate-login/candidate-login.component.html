@@ -1,0 +1,286 @@
+<section class="mt-0 abcde">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 login-left" style="padding: 0px">
+        <div class="how-to-use">
+          <h2 class="text-center">New to Peopleinfinia?</h2>
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a
+                class="nav-item nav-link "
+                (click)="employerData()"
+                [ngClass]="{ brdr1: empl, brdr2: !empl }"
+              >
+                Employer
+              </a>
+              <a
+                class="nav-item nav-link"
+                (click)="jobSeekerData()"
+                [ngClass]="{ brdr1: empl2, brdr2: !empl2 }"
+              >
+                Jobseeker
+              </a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0">
+            <!-- <div class="tab-pane fade show active"> -->
+            <ul *ngIf="Employer">
+              <li><span>Register entering required details.</span></li>
+              <li><span>Login using set ID and Password.</span></li>
+              <li>
+                <span
+                  >Post a new job uploading job description, job title,
+                  functional area, industry, grading, skills, number of
+                  vacancies, gender, location, CTC & perks and period &
+                  contracts.</span
+                >
+              </li>
+              <li>
+                <span
+                  >access dashboard where you can see the snapshot of total jobs
+                  posted, Interviews scheduled and shortlisted resumes. Check
+                  out the interviews and Reschedule Requests.</span
+                >
+              </li>
+              <li>
+                <span
+                  >Manage Jobs after editing, posting, deleting and viewing
+                  responses.</span
+                >
+              </li>
+              <li>
+                <span
+                  >Check out the candidates available sort as shortlisted,
+                  Inreviewed on hold and hired.</span
+                >
+              </li>
+              <li><span>Check out schedule for upcoming interviews.</span></li>
+              <li><span>Submit issues, if any.</span></li>
+            </ul>
+            <!-- </div> -->
+            <!-- <div  class="tab-pane fade show active" > -->
+            <ul *ngIf="!Employer">
+              <li>
+                <span
+                  >Manage Jobs after editing, posting, deleting and viewing
+                  responses.</span
+                >
+              </li>
+              <li>
+                <span
+                  >Check out the candidates available sort as shortlisted,
+                  Inreviewed on hold and hired.</span
+                >
+              </li>
+              <li><span>Check out schedule for upcoming interviews.</span></li>
+              <li><span>Submit issues, if any.</span></li>
+              <li><span>Register entering required details.</span></li>
+              <li><span>Login using set ID and Password.</span></li>
+              <li>
+                <span
+                  >Post a new job uploading job description, job title,
+                  functional area, industry, grading, skills, number of
+                  vacancies, gender, location, CTC & perks and period &
+                  contracts.</span
+                >
+              </li>
+              <li>
+                <span
+                  >access dashboard where you can see the snapshot of total jobs
+                  posted, Interviews scheduled and shortlisted resumes. Check
+                  out the interviews and Reschedule Requests.</span
+                >
+              </li>
+            </ul>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="!forgotpassword"
+        class="col-md-6 login-right"
+        style="padding: 0px"
+      >
+        <div class="row" style="width: 100%;">
+          <div class="col-md-8 offset-md-2 padingTop">
+            <h3 class="mb-4"><strong>Login</strong></h3>
+            <form [formGroup]="candidateLoginForm" (ngSubmit)="onFormSubmit()">
+              <div class="form-group">
+                <label>Email ID / Username</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  name="email"
+                  placeholder="Enter your active Email ID / Username"
+                />
+                <div
+                  *ngIf="
+                    submitted &&
+                    candidateLoginForm.controls.email.hasError('required')
+                  "
+                  class="alert alert-danger"
+                >
+                  Email Required
+                </div>
+                <div
+                  *ngIf="
+                    submitted &&
+                    candidateLoginForm.controls.email.hasError('pattern')
+                  "
+                  class="alert alert-danger"
+                >
+                  Invalid Email
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  name="password"
+                  placeholder="Enter your password"
+                />
+                <div
+                  *ngIf="
+                    submitted &&
+                    candidateLoginForm.controls.password.hasError('required')
+                  "
+                  class="alert alert-danger"
+                >
+                  Password Required
+                </div>
+              </div>
+              <a (click)="ForgotPassword()">Forgot Password?</a>
+
+              <input
+                type="submit"
+                class="form-control mt-4"
+                name=""
+                value="Login"
+              />
+            </form>
+
+<!-- <hr class="left-hr">
+<p class="or">or</p>
+<hr class="right-hr">
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-6">
+    <button (click)="signInWithGoogle()" class="google-btn mt-2 font-weight-bold text-white"><span><img src="img/google-plus-symbol.png"></span>Sign up with Google</button>
+  </div>
+  <div class="col-md-6">
+    <button (click)="signInWithFB() class="facebook-btn mt-2 font-weight-bold text-white"><span><img src="img/facebook.png"></span> Sign up with facebook</button>
+  </div>
+</div> -->
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-6">
+    <button (click)="signInWithGoogle()" class="google-btn mt-2 font-weight-bold text-white"><span><img src="assets/newimg/google-plus-symbol.png"></span>Login with Google</button>
+  </div>
+  <div class="col-md-6">
+    <button (click)="signInWithFB()" class="facebook-btn mt-2 font-weight-bold text-white"><span><img src="assets/newimg/facebook.png"></span>Login with facebook</button>
+  </div>
+</div>
+
+            <!-- <hr class="left-hr">
+            <p class="or">or</p>
+            <hr class="right-hr">
+            <button class="google-btn mt-2"><span><i class="fab fa-google"></i></span> Google</button> -->
+            <!-- <p>
+              Not a member yet?
+              <a routerLink="/candidate/signup/type" class="registerBtn">Register Now</a>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="forgotpassword"
+        class="col-md-6 login-right"
+        style="padding: 0px"
+      >
+        <div class="row" style="width: 100%;">
+          <div class="col-md-8 offset-md-2">
+            <h3 class="mb-4"><strong>Forgot Password</strong></h3>
+            <form [formGroup]="forgotPasswordForm" (ngSubmit)="resetpasswordForm()">
+              <div class="form-group">
+                <label>Registered Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  name="email"
+                  placeholder="Enter your Email ID"
+                />
+                <div
+                  *ngIf="
+                    submitted1 &&
+                    forgotPasswordForm.controls.email.hasError('required')
+                  "
+                  class="alert alert-danger"
+                >
+                  Email Required
+                </div>
+                <div
+                  *ngIf="
+                    submitted1 &&
+                    forgotPasswordForm.controls.email.hasError('pattern')
+                  "
+                  class="alert alert-danger"
+                >
+                  Invalid Email
+                </div>
+              </div>
+              <!-- <a (click)="ForgotPassword()">Forgot Password?</a> -->
+
+              <input
+                type="submit"
+                class="form-control mt-4"
+                name=""
+                (click)="ForgotPassword()"
+              
+              />
+            </form>
+            <!-- <hr class="left-hr">
+            <p class="or">or</p>
+            <hr class="right-hr">
+            <button class="google-btn mt-2"><span><i class="fab fa-google"></i></span> Google</button> -->
+            <!-- <p>Not a member yet? <a routerLink="/candidate/signup/type" >Register Now</a></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div bsModal #userType="bs-modal" data-backdrop="false" data-keyboard="false" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog signup_popup_inner_wrapper  modal-lg">
+     <div class="modal-content ">
+        <div class="modal-body userType" style="padding:0px;">
+
+            <div class="row">
+                 <div class=col-md>
+                    <div class="modal-image">
+                       <img src ="assets/img/backpack.svg" style="width:100%;">
+                    </div>
+                    <button (click)="signUpFresher()" class="button-userType">
+                       Freshers
+                    </button>
+                     </div>
+                     <div class="col-md">
+                       <div class="modal-image">
+                           <img src ="assets/img/suitcase.svg" style="width:100%;">
+                         </div>
+                         <button (click)="signUpProfessional()" class="button-userType" >
+                            Professional
+                         </button>
+                         </div>
+            </div>
+
+        </div>
+     </div>
+  </div>
+</div> -->
+
+

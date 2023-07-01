@@ -1,0 +1,204 @@
+
+
+<div class="candidate-rec-wrapper hidden-lg hidden-md">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+         <div class="row">
+            <div class="col col-xs-12">
+               <p class="panel-title">Candidates</p>
+            </div>
+         </div>
+      </div>
+      </div>
+</div>
+<div>
+    <div align="right">
+  <button (click) ='switchAArray()' class="btn btn-success btn-lg mng-btn">Active Jobs </button>
+  <button (click) ='switchSArray()' class="btn btn-success btn-lg mng-btn" style="margin-left: 5px;">Saved Jobs Drafts </button>
+    </div>
+</div>
+<div class="manage-job-wrapper">
+    <!--  <div class="title-head">
+        <p>Manage jobs
+            <span class="text-right">Showing 5/20 jobs</span>
+        </p>
+    </div>  -->
+           <div class="view-job-table-list m-t-20">
+       <table class="table table-responsive rwd-table">
+        <thead *ngIf="!noData" class="view-job-table-head white_color cst-table">
+       <!--<thead *ngIf="!noData" class="manage-job-table-head  list-inline">-->
+          <tr>
+            <th>Job-Title</th>
+            <th>Location</th>
+            <th>Date Posted</th>
+            <th>Status</th>
+            <th>Vacancy</th>
+            <th>Experience</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf = '!noData'>
+        <tr *ngFor ="let job of selectedJobsArray | paginate: { itemsPerPage: 12, currentPage: page }">
+          <td data-th="Job-Title">{{job.job_title}}</td>
+          <td data-th="Loaction"><span *ngFor="let loc of job.Location; let i=index"> <span *ngIf="i <  3">{{loc.value}},</span></span><span *ngIf="job.Location.length > 3">...</span></td>
+          <td data-th="Date Posted">{{job.created_at | date :'dd/MM/yyyy  HH:mm'}}</td>
+          <td data-th="Status">{{job.status}}</td>
+          <td data-th="Vacancy">{{job.vacancy}}</td>
+          <td data-th="Experiance">{{job.experience}}</td>
+          <td data-th="Actions">
+                <ul>
+                <li *ngIf="job.status !== 'delete'"><a (click)="CheckJob(job._id)"  class="mob-btn-edit">edit post</a></li>
+                <li *ngIf="job.status !== 'delete'" ><a (click)="setId(job._id); verify.show()" class="mob-btn-delete">Delete</a></li>
+                <li><a routerLink="/clientHeader/viewResponse/{{job._id}}" class="mob-btn-view">view response</a></li>
+              </ul>
+          </td>
+          </tr>
+       </tbody>
+
+          <thead *ngIf="noData">
+            <tr>
+                <div class="nofeeds">
+                   <p class="list-item-title">Currently No Jobs Available</p></div>
+                </tr>
+          </thead>
+      </table>
+      <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
+
+
+
+<!-- <div class="manage-job-wrapper">
+    <div class="title-head">
+        <p>Manage jobs
+            <span class="text-right">Showing 5/20 jobs</span>
+        </p>
+    </div>
+    <div class="manage-job-table-head">
+        <ul class="list-inline">
+            <li>job-position <i class="fas fa-sort"></i></li>
+            <li>Location <i class="fas fa-sort"></i></li>
+            <li>date Posted <i class="fas fa-sort"></i></li>
+            <li>Status <i class="fas fa-sort"></i></li>
+            <li>Vacancy <i class="fas fa-sort"></i></li>
+            <li>Experience <i class="fas fa-sort"></i></li>
+        </ul>
+    </div>
+</div>
+ -->
+
+ <!-- <div class="manage-job-list-content">
+
+    <div class="manage-job-table-list m-t-20" *ng-form name="string"="let job of jobs| paginate: { itemsPerPage: 10, currentPage: p }">
+        <ul class="list-inline">
+            <li>
+                <div class="job-position">
+                    <label class="check ">{{job.job_title}}
+                        </label>
+                </div>
+                <ol class="list-inline edit-post">
+                <a routerLink="/clientHeader/edit-jobs/{{job._id}}">edit post</a>
+                <a (click)="setId(job._id); verify.show()">Delete</a>
+                <a routerLink="/clientHeader/viewResponse/{{job._id}}">view response</a>
+            </ol>
+            </li>
+            <li>
+                <div class="city">
+                   {{job.Location}}
+                </div>
+            </li>
+            <li>
+                <div class="time">
+                    {{job.created_at | date :'dd/MM/yyyy  HH:mm'}}
+                </div>
+            </li>
+            <li>
+                <div class="stats">
+                    <span class="active-stats"><i class="fas fa-circle"></i>
+                        </span> {{job.status}}
+                </div>
+            </li>
+            <li>
+                <div class="cv-stats" routerLink="/viewResume">
+                    {{job.vacancy}}
+                </div>
+            </li>
+            <li>
+                <div class="cv-stats" routerLink="/viewResume">
+                    {{job.experience}}
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+</div> -->
+<!--<div class="footer-pagination m-t-20">
+    <span>Showing 1 to 5 of 15 entries</span>
+    <ul class="pagination pull-right">
+        <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+        <li><a href="#" class="active">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+    </ul>
+</div> -->
+
+
+<!--<div class="manage-job-wrapper">
+    <div class="title-head">
+        <p>Manage jobs
+            <span class="text-right">Showing 5/20 jobs</span>
+        </p>
+    </div>
+    <table class="table table-list-data">
+               <thead>
+                  <tr >
+                     <th>Job-Title</th>
+            <th>Loaction</th>
+            <th>Date Posted</th>
+            <th>Status</th>
+            <th>Vacancy</th>
+            <th>Experiance</th>
+            <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody *ngIf = '!noData'>
+                  <tr *ngFor ="let job of jobs">
+                     <td>{{job.job_title}}</td>
+          <td>{{job.Location}}</td>
+          <td>{{job.created_at | date :'dd/MM/yyyy  HH:mm'}}</td>
+          <td>{{job.status}}</td>
+          <td>{{job.vacancy}}</td>
+          <td>{{job.experience}}</td>
+                        <button (click)="uploadResume()">Upload CV</button>
+                     <td>
+                        <div> <a (click)="open(verify,job.job_id[0]._id)">Pause</a></div>
+                        <div> <a (click)="changeStatus('delete',job._id)">Delete</a></div>
+                        <div> <a class="view-resp-btn" routerLink="/clientHeader/viewResponse">View Response</a></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+
+</div>-->
+<div bsModal #verify="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog signup_popup_inner_wrapper  modal-md">
+         <!-- Modal content-->
+         <div class="modal-content ">
+            <div class="modal-body">
+                <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+                        <a data-dismiss="modal" aria-hidden="true"><img (click)="verify.hide(); submittedF()" src="assets/img/cancel.png" ></a>
+                     </div>
+               <div class="signup_box text-center">
+                  <div class="box_header">
+                     <h3>Do you want to DELETE this job ?</h3>
+                  </div>
+                  <button (click)= "changeStatus('delete')" class="btn btn-success">Yes</button>
+              <button (click)="verify.hide()" class="btn btn-danger">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+

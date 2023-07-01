@@ -1,0 +1,37 @@
+
+/*two step screening process*/
+.screening-process-out>img {
+    position: absolute;
+    right: 0;
+    top: 220px;
+    width: 54%;
+}
+.screening-process{
+    padding: 30px 0 60px;
+}
+.screening-process h2{
+    width: 100%;
+}
+.screening-process h3{
+    width: 80%;
+}
+.screening-process p{
+    width: 55%;
+}
+
+
+
+@media screen and (max-width:767px){
+    .screening-process-out>img {
+    display: none;
+}
+.screening-process h2{
+    width: 100%!important;
+}
+.screening-process h3{
+    width: 100%!important;
+}
+.screening-process p{
+    width: 100%!important;
+}
+}

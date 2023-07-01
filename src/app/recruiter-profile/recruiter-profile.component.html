@@ -1,0 +1,668 @@
+<section class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="logo w-100">
+          <img src="assets/img/logo.png" alt="">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="backBtn w-100 text-right">
+          <button (click)="logout()" class="btn btn-warning ">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-4 mb-5">
+        <div class="backBtn">
+          <button *ngIf="!dashBtn" (click)="gotoBack()" class="btn btn-success ">Back</button>
+          <button *ngIf="dashBtn" (click)="goToDashboard()" class="btn btn-success ml-2">Go To Dashboard</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 pb-4">
+            <div class="headingCont">
+              <h2>My Profile</h2>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="profile">
+              <div class="profileImg">
+                <img style="height: 100%; width: 100%"
+                     [src]="profilePicture ? profilePicture : 'assets/img/user-placeholder.png'" alt=""/>
+              </div>
+              <div class="user-info">
+                <h4>{{username}}</h4>
+                <h6>{{eLocation}}</h6>
+                <p>{{type}}</p>
+                <p>{{designation}}</p>
+                <p>{{user_idShow}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="editBtn">
+              <a (click)=" setForm()" class="edit-profile">
+                <i class="fas fa-pen"></i> Edit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-4">
+          <div class="headingCont">
+            <h2>Contact Information</h2>
+          </div>
+        </div>
+        <div class="profile-content">
+          <div class="user-contact-info">
+            <p><b>Phone:</b> {{userMobile}}</p>
+            <p><b>Email:</b> {{userEmail}}</p>
+          </div>
+          <div class="user-contact-info">
+            <p><b>Pan:</b>{{panNo}}</p>
+          </div>
+          <div *ngIf="isFirm" class="user-contact-info">
+            <p><b>GST No.:</b>{{GSTNo}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mt-5">
+        <div class="mb-4">
+          <div class="headingCont">
+            <h2>Job Status</h2>
+          </div>
+        </div>
+        <div class="jobStatus">
+          <div class="jobStatusInn">
+            <p>Total Candidates Posted</p>
+            <h2>0</h2>
+          </div>
+          <div class="jobStatusInn">
+            <p>People Infinia Qualified</p>
+            <h2>0</h2>
+          </div>
+          <div class="jobStatusInn">
+            <p>Candidates Shortlisted</p>
+            <h2>0</h2>
+          </div>
+          <div class="jobStatusInn">
+            <p>Candidates Placed</p>
+            <h2>0</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="mb-4">
+          <div class="headingCont">
+            <h2>Experience Information</h2>
+          </div>
+        </div>
+        <div class="user-contact-info">
+          <p><b>Experience: </b> {{userExperience}}</p>
+          <div *ngIf="isFirm"><p><b>What kind of Freelance Consultant you are?: </b>{{recruiterworkingtype}} </p></div>
+          <p><b>Upto which CTC they worked in past: </b>{{ctcWorked}} </p>
+          <p><b>Packages you want to work on? </b>{{ctcExpected}} </p>
+          <p><b>Do you have access to Naukri or Monster employer login?: </b>{{otherAccountProfile}} </p>
+          <p><b>Commission </b>{{commissionUser}} %</p>
+          <div *ngIf="isFirm"><p><b>Company Description </b>{{cmpanyDescrioption}} </p></div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="mb-4">
+          <div class="headingCont">
+            <h2>Professional Information</h2>
+          </div>
+        </div>
+        <div class="user-proffessional-info">
+          <p>Key Expertise:</p>
+          <ul *ngFor="let functional of selectFunctional">
+            <li>{{functional.value}}</li>
+          </ul>
+          <p>Industry</p>
+          <ul *ngFor="let indus of selectIndustry">
+            <li>{{indus.value}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12 mt-5">
+        <div class="mb-4">
+          <div class="headingCont">
+            <h2 class="text-left">Work History and Review
+              <span class="f-right">This Month <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+            </h2>
+          </div>
+        </div>
+        <div class="user-proffessional-info">
+          <p>Key Expertise:</p>
+          <ul *ngFor="let functional of selectFunctional">
+            <li>{{functional.value}}</li>
+          </ul>
+          <p>Industry</p>
+          <ul *ngFor="let indus of selectIndustry">
+            <li>{{indus.value}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div id="profile-edit">
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog signup_popup_inner_wrapper  modal-lg">
+      <div class="modal-content ">
+        <div class="modal-body">
+          <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+            <a data-dismiss="modal" aria-hidden="true"><img (click)="editModal.hide() ; submittedF()"
+                                                            src="assets/img/cancel.png"></a>
+          </div>
+          <div class="profile-pic-contnt" style="text-align: center">
+            <div class="update-profile-pic" style="text-align: center">
+              <img [src]="profilePicture ? profilePicture : 'assets/img/user-placeholder.png'"
+                   class="img-circle img-thumbnail" alt="" style="height:150px; width: 150px;">
+              <!-- <span><i class="far fa-edit" for="edit"></i></span>-->
+              <input
+                (change)="handleFileSelect($event)" id="edit"
+                style="display:none"
+                size="60" type="file">
+
+            </div>
+            <label style="cursor:pointer" for="edit">Edit</label>
+          </div>
+          <div class="signup_box">
+            <form class="update-profile-form" *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="updateProfile()"
+                  novalidate>
+
+              <div class="recruiter-info cst-edit-form">
+                <div class="title">Edit profile</div>
+                <div class="col-md-12">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input formControlName='name' type="text" placeholder="Enter your name" class="form-control-cust">
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.name.hasError('required')" class="alert alert-danger">
+                      Name Required
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-6">
+                    <div class="form-group">
+                      <label>institutionName</label>
+                      <input formControlName='institutionName' type="text" placeholder="Enter your name" class="form-control-cust">
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.institutionName.hasError('required')" class="alert alert-danger">
+                      institutionName Required
+                    </div>
+                  </div> -->
+                  <!-- <div class="col-md-6">
+                  <div class="form-group">
+                    <label>regType</label>
+                    <input formControlName='regType' type="text" placeholder="Enter your name" class="form-control-cust">
+                  </div>
+              
+                </div>
+                  regType institution -->
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Contact</label>
+                      <input formControlName='contact' type="text" placeholder="Enter your contact no"
+                             class="form-control-cust">
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.contact.hasError('required')" class="alert alert-danger">
+                      Phone Number Required
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input formControlName='email' type="text" placeholder="Enter your E-mail"
+                             class="form-control-cust"  readonly >
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.email.hasError('required')" class="alert alert-danger">
+                      Email Required
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pan number</label>
+                      <input formControlName='pan' type="text" placeholder="Enter your Pan Number"
+                             class="form-control-cust" onblur="ValidatePAN(this);">
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.pan.hasError('required')" class="alert alert-danger">Pan
+                      number Required
+                    </div>
+                    <div *ngIf="editForm.controls.pan.hasError('pattern')" class="alert alert-danger">Invalid Pan No.
+                    </div>
+
+                    <!-- <script>
+                         function ValidatePAN(){
+                          var regExp = /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/;
+                             var txtpan = $(this).val();
+                             if (txtpan.length == 10 ) {
+                              if( txtpan.match(regExp) ){
+                              alert('PAN match found');
+                             }
+                             else {
+                              alert(Not a valid PAN number);
+                             event.preventDefault();
+                             }
+                            }
+                             else {
+                                 alert('Please enter 10 digits for a valid PAN number');
+                                event.preventDefault();
+                            }
+                             }
+                     </script>-->
+                  </div>
+                  <div class="col-md-6">
+                    <div *ngIf="isFirm" class="form-group">
+                      <label>GST number</label>
+                      <input formControlName='GSTNo' type="text" placeholder="Enter your GST Number"
+                             class="form-control-cust">
+                    </div>
+                    <div *ngIf="editForm.controls.GSTNo.hasError('pattern')" class="alert alert-danger">Invalid GST
+                      No.
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Location</label>
+                      <input formControlName='currentLocation' type="text" placeholder="Enter your Location"
+                             class="form-control-cust">
+                    </div>
+                    <div *ngIf="submitted && editForm.controls.currentLocation.hasError('required')"
+                         class="alert alert-danger">Location Required
+                    </div>
+                  </div>
+                  <div *ngIf="isFirm" class="col-md-6">
+                    <div class="form-group">
+                      <label>Designation</label>
+                      <input formControlName="designation" type="text" placeholder="Enter your designation"
+                             class="form-control-cust">
+                    </div>
+                  </div>
+                  <div *ngIf="isFirm" class="col-md-12">
+                    <div class="form-group">
+                      <label>Company Description</label>
+                      <input formControlName='description' type="text" placeholder="About your company"
+                             class="form-control-cust">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="recruiter-info  cst-edit-form">
+                <div class="title">Edit Experience Information</div>
+                <div class="col-md-12">
+                  <div class="col-md-3">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">Experience
+                          <select class="form-control-selct" aria-label="experiance" formControlName='experiance'
+                                  placeholder='Experience'>
+                            <option value="0" disabled> -- Select --</option>
+                            <option *ngFor="let x of Experience" value="{{x}}">
+                              {{x}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.experiance.hasError('required')"
+                           class="alert alert-danger">Experience Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">Commission
+                          <select class="form-control-selct" aria-label="commission" formControlName='commission'
+                                  placeholder='commission'>
+                            <option value="0" disabled> -- Select --</option>
+                            <option *ngFor="let x of commission" value="{{x.value}}">
+                              {{x.display}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.commission.hasError('required')"
+                           class="alert alert-danger">Commission Required
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="isFirm" class="col-md-6">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">What kind of Freelance Consultant you are?
+                          <select class="form-control-selct" aria-label="recruiterType" formControlName='recruiterType'
+                                  placeholder='recruiterType'>
+                            <option *ngFor="let x of recruiterType" value="{{x}}">
+                              {{x}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.recruiterType.hasError('required')"
+                           class="alert alert-danger">Type Required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="col-md-12">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">Do you have access to Naukri or Other portal login?
+                          <select class="form-control-selct" aria-label="otherAccount" formControlName='otherAccount'
+                                  placeholder='otherAccount'>
+                            <option value="0" disabled>-- Select --</option>
+                            <option *ngFor="let x of naukriOrMonstor" value="{{x.value}}">
+                              {{x.display}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.otherAccount.hasError('required')"
+                           class="alert alert-danger">Answer Required
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Incorporation date</label>
+                    <input formControlName='Idate' type="date" placeholder="Enter your Date" class="form-control-cust">
+                  </div>
+                </div>
+                <div class="col-md-12">
+
+                  <div class="col-md-6" *ngIf="editForm">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">Upto which CTC they worked in past
+                          <select class="form-control-selct" aria-label="currentCtc" formControlName='currentCtc'>
+                            <option value="0" disabled>-- Select --</option>
+                            <option *ngFor="let x of ctc" value="{{x}}">
+                              {{x}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.currentCtc.hasError('required')"
+                           class="alert alert-danger">Current CTC Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="user-contact-info">
+                      <div class="form-group">
+                        <label class="control-label">Packages you want to work on?
+                          <select class="form-control-selct" aria-label="expectCtc" formControlName='expectCtc'
+                                  placeholder='expectCtc'>
+                            <option value="0" disabled>-- Select --</option>
+                            <option *ngFor="let x of wantedCtc" value="{{x}}">
+                              {{x}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                      <div *ngIf="submitted && editForm.controls.expectCtc.hasError('required')"
+                           class="alert alert-danger">Expected CTC Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="showType">
+                    <div class="user-contact-info">
+                      <div class="form-group" >
+                        <label class="control-label">Type of Company
+                          <select class="form-control-selct" aria-label="typeC" formControlName='typeC'
+                                  placeholder='typeC'>
+                            <option value="0" disabled>-- Select --</option>
+                            <option *ngFor="let x of typeCompany" value="{{x}}">
+                              {{x}}
+                            </option>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="recruiter-info  cst-edit-form">
+                <div class="title">Edit Professional Information</div>
+                <div class="col-md-12">
+                  <div class="col-md-6">
+                    <div class="user-contact-info m-t-10">
+                      <ng-multiselect-dropdown
+                        [placeholder]="'Select FunctionalArea'"
+                        [data]="functionalArea"
+                        formControlName="keys"
+                        [settings]="dropdownSettingsF"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelect)="OnItemDeSelect($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)"
+
+                      >
+                      </ng-multiselect-dropdown>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="user-contact-info m-t-10">
+                      <ng-multiselect-dropdown
+                        [placeholder]="'Select Industry'"
+                        [data]="industries"
+                        formControlName="industry"
+                        [settings]="dropdownSettingsI"
+                        (onSelect)="onItemSelectI($event)"
+                        (onSelectAll)="onSelectAllI($event)"
+                        (onDeSelect)="OnItemDeSelectI($event)"
+                        (onDeSelectAll)="onDeSelectAllI($event)"
+                      >
+                      </ng-multiselect-dropdown>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-form text-center ">
+                <button class="btn btn-success mt-5" type="submit" aria-label="submit">Update Profile</button>
+              </div>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--profile edit-->
+
+
+<!-- change-password-modal -->
+<!--
+         <div id="profile-edit">
+  <div class="modal fade" id="edit-profie-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    div class="modal-content">
+
+
+        <div class="edit-form">
+
+             <div class="profile-pic-contnt">
+                 <div class="update-profile-pic">
+        <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle img-thumbnail" alt="">
+                     <span><i class="far fa-edit"></i>
+                     <input type="file">
+                     </span>
+      </div>
+                 </div>
+         <div class="panel panel-default">
+
+  <div class="panel-body">
+      <form class="update-profile-form">
+          <div class="col-md-6">
+          <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Enter your name" class="form-control-cust">
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="form-group">
+          <label>Phone No.</label>
+          <input type="text" placeholder="Enter your name" class="form-control-cust">
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="form-group">
+          <label>E-mail</label>
+          <input type="text" placeholder="Enter your name" class="form-control-cust">
+          </div>
+          </div>
+      </form>
+
+             </div>
+</div>
+
+
+         <div class="panel panel-default">
+  <div class="panel-heading">Edit Professional Information</div>
+  <div class="panel-body">
+      <form class="update-profile-form">
+          <div class="col-md-6">
+                     <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">Experience
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">Fresher</option>
+                            <option value="">1 to 3</option>
+                            <option value="">3+</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+
+                      <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">What kind of Freelance Recruiter you are?
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">Full time</option>
+                            <option value="">Part time</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+
+
+
+                     <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">Do you have access to Naukri or Monster employer login?
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">Yes</option>
+                            <option value="">No</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+                  </div>
+
+          <div class="col-md-6">
+                       <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">Upto which CTC they worked in past
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">3-10</option>
+                            <option value="">10-20</option>
+                            <option value="">20-35</option>
+                            <option value="">35-50</option>
+                            <option value="">50+</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+
+                       <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">Packages you want to work on?
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">Up to 4 lacks</option>
+                            <option value="">4 to 10 lacks</option>
+                            <option value="">10 to 20 lacks</option>
+                            <option value="">20 to 25 lacks</option>
+                            <option value="">25 lacks & above</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+
+
+                       <div class="user-contact-info">
+                        <div class="form-group">
+                            <label class="control-label">commission
+                                <select aria-label="category" class="form-control-selct" placeholder="select">
+                            <option value="">25%</option>
+                            <option value="">30%</option>
+                            <option value="">40%</option>
+                            <option value="">50%</option>
+                                </select>
+                            </label>
+                         </div>
+                     </div>
+                  </div>
+      </form>
+
+             </div>
+</div>
+
+
+
+         <div class="panel panel-default">
+  <div class="panel-heading">Edit Professional Information</div>
+  <div class="panel-body">
+      <form class="update-profile-form">
+          <div class="col-md-12">
+          <div class="form-group">
+          <label>Key Expertise:</label>
+          <input type="text" placeholder="Enter your name" class="form-control-cust">
+          </div>
+          </div>
+
+          <div class="col-md-12">
+          <div class="form-group">
+          <label>Industry</label>
+          <input type="text" placeholder="Enter your name" class="form-control-cust">
+          </div>
+          </div>
+      </form>
+
+             </div>
+</div>
+
+          <div class="update-form text-center">
+          <a class="btn btn-success">Update Info</a>
+          </div>
+         </div>
+            </div>
+         </div>
+      </div>
+
+    </div> -->

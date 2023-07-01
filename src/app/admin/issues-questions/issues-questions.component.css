@@ -1,0 +1,11 @@
+.btn-outline {
+    width: 250px;
+}
+.candidate-table tr th:last-child{
+	width: 250px;
+	text-align: center;
+	float: right;
+}
+.candidate-table tr td:last-child{
+	float: right;
+}

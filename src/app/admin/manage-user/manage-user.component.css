@@ -1,0 +1,16 @@
+#menu3{
+    color: #24B050;
+    background-color: transparent;
+    border-bottom: 5px solid #24B050;
+    font-weight: 600;
+}
+.rwd-table tbody tr{
+    background: #fff !important;
+}
+.margin-0{
+    margin: 0px !important;
+}
+.nav-justified>li {
+    display: table-cell;
+    width: 49.3%;
+}

@@ -1,0 +1,33 @@
+.update-profile-pic{
+    width: 150px;
+    position: relative;
+}
+#my-edit{
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.82);
+    text-align: center;
+    width: 100%;
+    color: #000;
+}
+#my-edit input[type=file]{
+    display: none;
+}
+.my-multi .dropdown-btn{
+    position: relative;
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd !important;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-weight: normal;
+    font-size: 15px;
+    outline: 0;
+    color: #000;
+    border-radius: 2px !important;
+}
+.cmpny-val{
+    font-size: 14px;
+    color: #7d88a4;
+}

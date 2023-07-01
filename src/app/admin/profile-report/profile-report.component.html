@@ -1,0 +1,322 @@
+
+        
+<section id="view-status-leads">
+    
+   <!--back-btn-->
+   <div class="back-to">
+   <p class="text-left"> <a class="back-btn" routerLink="/admin-home/leads"><img src="assets/img/left-arrow.svg" width="20px" height="auto"> &nbsp;
+Back</a>
+   </p>
+</div>
+   <!--end-->
+       
+   
+   <!--lead-deatail-->
+   <div class="row m-t-50">
+       
+   <!--lead-deatail-container-->
+       <div class="col-md-3">
+           <div class="lead-deatail-container">
+               <div class="lead-info">
+               <h4>{{userName}}</h4>
+               <p>{{userType}}</p>
+               </div>
+               
+               <div class="lead-contact-info">
+               <p>{{userContact}}</p>
+               <p>{{userEmail}}</p>
+               </div>
+               
+              <!-- <h2 class="theme_color contrat-sts">Contarct Signed waiting for payment.</h2>
+               
+               
+               <button type="button" class="btn btn-danger">Mark span</button> -->
+           </div>
+       
+       </div>
+       
+       
+       <!--deatail status-timeline-->
+       <div class="col-md-9">
+           <div class="row">
+           <div class="col-md-12">
+           <div class="select-opt-wrapper">
+               <ul class="list-inline f-left">
+               <li><a>Detailed status</a></li>
+               </ul>
+               
+               
+               <ul class="list-inline f-right">
+                    <li><a class="btn btn-success" (click) ="activateAccount()">Activate Account</a></li>
+                 </ul>
+               </div>
+           </div>
+       </div>
+
+       <!-- <ng2-timeline [completeListener]="completeListener" [data]="timelineData"></ng2-timeline> -->
+       <!-- <mgl-timeline [toggle]="toggle" [alternate]="alternate" [side]="side">
+            <mgl-timeline-entry *ngFor="let entry of entries; let i = index;" (expand)="onExpandEntry($event, i)">
+                  <div *ngIf="Step1" class="checked">
+                        <img src="assets/img/checked.png" width="40px">
+                            </div><mgl-timeline-entry-header (click)="onHeaderClick($event)">
+                <div>{{entry.header}}</div>
+              </mgl-timeline-entry-header>
+              <mgl-timeline-entry-content>
+                <div>
+                  <div>{{entry.content}}</div>
+                  <div>{{entry.content}}</div>
+                  <div>{{entry.content}}</div>
+                </div>
+              </mgl-timeline-entry-content>
+              <mgl-timeline-entry-dot [class]="color ? 'primary' : 'accent'" 
+                                      [size]="size"
+                                      (click)="onDotClick($event)"></mgl-timeline-entry-dot>
+              <mgl-timeline-entry-side>2018</mgl-timeline-entry-side>
+            </mgl-timeline-entry>
+          </mgl-timeline> -->
+
+           <div class="lead-timeline">
+           <div class="issue-stats m-t-40">
+              <ul class="timeline">
+                 <li class="timeline-li">
+                    
+                    <p>Signed Up.</p>
+                    <span>{{Step1Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                 </li>
+                 <li *ngIf="Step2" class="timeline-li">
+                     
+                    <p>Email verification Complete</p>
+                    <span>{{Step2Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                 </li>
+                 <li *ngIf="Step3" class="timeline-li">
+                  
+                    <p>Verified on call.</p>
+                    <span>{{Step3Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                 </li>
+                  <li *ngIf="Step4" class="timeline-li">
+                   
+                    <p>Contract signed.</p>
+                    <span>{{Step4Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                 </li>
+                 <li *ngIf="Step5" class="timeline-li">
+              
+                 <p>Payment Status.</p>
+                 <span>{{Step5Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+              </li>
+              </ul>
+              <ul class="timeline">
+               <li *ngIf="!Step1" class="timeline2-li">
+                    
+                  <p>Signed Up.</p>
+                  <span>{{Step1Reason}}</span>
+               </li>
+               <li *ngIf="!Step2" class="timeline2-li">
+                   
+                  <p>Email verification Complete</p>
+                  <span>{{Step2Reason }}</span>
+               </li>
+               <li *ngIf="!Step3" class="timeline2-li">
+                  
+                  <p>Verified on call.</p>
+                  <span>{{Step3Reason}}</span>
+               </li>
+                <li *ngIf="!Step4" class="timeline2-li">
+                  
+                  <p>Contract signed.</p>
+                  <span>{{Step4Reason}}</span>
+               </li>
+               <li *ngIf="!Step5" class="timeline2-li">
+             
+               <p>Payment Status.</p>
+               <span>{{Step5Reason}}</span>
+            </li>
+            </ul>
+           </div>
+           </div>
+           <div class="main">
+            <ul class="mainnav">
+               <li class="hassubs">
+                    <a >Services</a>
+                    <ul class="dropdown">
+                        <li *ngIf="!Step3" class="subs hassubs">
+                            <button>Call Verification</button>
+                            <ul class="dropdown">
+                                <li class="subs"><a (click)="callVerification('verified')" >Verified</a></li>
+                                <li class="subs"><a (click)="callVerification('not-picked')">Not Picked</a></li>
+                                <li class="subs"><a (click)="callVerification('do-not-want-to-proceed')">Do Not Want To Proceed</a></li>
+                            </ul>
+                        </li>
+                        <li *ngIf="!Step4"  class="subs hassubs">
+                            <button>Contract Status</button>
+                            <ul class="dropdown">
+                                 <li class="subs"><a (click)="contractStatus('signed')" >Signed</a></li>
+                                <li class="subs"><a (click)="contractStatus('not-signed')" >Not Signed</a></li>
+                                <li class="subs"><a (click)="contractStatus('do-not-want-to-proceed')" >Do Not Want To Proceed</a></li>
+                                <!-- <li class="subs"><a >Any Other</a></li> -->
+                            </ul>
+                        </li>
+                        <li *ngIf="!Step5" class="subs hassubs">
+                            <button>Payment Status</button>
+                            <ul class="dropdown">
+                              <li class="subs"><a (click)="paymentStatus('paid')" >Paid</a></li>
+                                <li class="subs"><a (click)="paymentStatus('not-paid')" >Not Paid</a></li>
+                                <li class="subs"><a (click)="paymentStatus('do-not-want-to-proceed')" >Do Not Want To Proceed</a></li>
+                                <!-- <li class="subs"><a >Any Other</a></li> -->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+       </div>
+      </div>
+</section>
+   
+    
+    
+    
+        
+    <!--modal pop-up-->
+
+  <!-- Modal-sign-up-->
+    <div id="modal-overview-inquire">
+  <div class="modal fade" id="modal-inquire" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+     <div class="modal-content">
+            <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+                    <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png" ></a>
+                 </div>
+                <!--inquire-modal-->
+               <div id="manage-new-acc-sign-up">
+   <div class="signup-box">
+      <!--heading-text-->
+       <div class="row">
+       <div class="col-md-6">
+       <h1>Create a Account</h1>
+       </div>
+       <div class="col-md-6">
+       <div class="top-tabber-grp-btn">
+           <ul class="nav nav-pills nav-justified">
+    <li class="active"><a data-toggle="pill" href="#home">Company</a></li>
+    <li><a data-toggle="pill" href="#menu1">Consultant</a></li>
+           </ul>
+       </div>
+       </div>
+           </div>
+      <!--company-profile-->
+      <div class="sign-up-profile m-t-20">
+         <div class="row">
+            <div class="col-md-2">
+               <div class="icon-addon">
+                  <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+                  <span class="upadate-img"><i class="fas fa-pen"></i></span>
+               </div>
+            </div>
+            <div class="col-md-10">
+               <div class="user-info">
+                  <h4>Upload your company's Logo</h4>
+                  <h6>Best resolution 200*200,Size less than 10kb.</h6>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="sign-up-form m-t-20">
+         <form action="/">
+            <!--name-->
+            <div class="form-group">
+               <label class="control-label">Consultant Name</label>
+               <input name="" type="text" placeholder="Enter your name, for eg. rohan" class="form-control-cust">
+            </div>
+            <!--Individual or agancey-->
+            <div class="form-group">
+               <label class="control-label">Level of candidates recruiter deal with?</label>
+               <input name="" type="text" placeholder="Choose the level of candidate you deal with" class="form-control-cust">
+            </div>
+             
+             <!--Individual or agancey-->
+             <div class="form_field">
+                              <label class="check label-cust" routerLink="/viewResume">Does he excel in mass hiring?
+                              <input type="checkbox" checked="checked" name="is_name">
+                              <span class="checkmark"></span>
+                              </label>
+                                <span>(10<sup>+</sup> candidate it's a mass hiring)</span>
+                           </div>
+            
+            <!--Designation-->
+            <div class="form-group">
+               <label class="control-label">CTC for which recruiter have candidates?</label>
+               <input name="" type="text" placeholder="Select from the range " class="form-control-cust">
+            </div>
+            <!--Loaction-->
+            <div class="form-group">
+               <label class="control-label">Consultant Location</label>
+               <input name="" type="text" placeholder="Enter the area you work in. for eg.Gurgaon " class="form-control-cust">
+            </div>
+            <!--Description-->
+            <div class="form-group">
+               <label class="control-label">Recruuiter Description (optional)</label>
+               <textarea placeholder="Describe about the sector, culture, achivement, and more about your company."></textarea>
+            </div>
+         </form>
+         <p class="text-center">
+            <a class="btn btn-success">Create Account Now</a>
+         </p>
+      </div>
+   </div>
+</div>
+            </div>
+         </div>
+      </div>
+      
+    </div>
+    
+    
+  <!-- Modal-block-acc-->
+    <div id="modal-overview-inquire">
+  <div class="modal fade" id="modal-block-acc" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+        
+     <div class="modal-content modal-block-bg">
+         <div class="row">
+            <div class="modal-body">
+               <div class="close  cls-cstm">
+                  <a><img src="assets/img/cancel.png" ></a>
+               </div>
+                
+                <!--response-modal-->
+               <div class="inquire-modal-content modal-pad">
+                <div class="list-wrapper">
+                    <div class="posted-pic">
+                            <img src="https://via.placeholder.com/50x50" class="thumbnail">
+                            </div>
+                       <div class="list-description">
+                       <h4>Aman Gautam</h4>
+                        <p>UX Gorilla, Employer</p>
+                       </div>
+                       </div>
+                   <br>
+                <!--job-description-textbox-->
+                  <div class="description-text-box">
+                     <div class="form_field">
+                        <label>Reason for Blocking the Account</label>
+                        <textarea></textarea>
+                     </div>
+                  </div>
+                   
+                   <!--btn-->
+                   <ul class="list-inline f-right" style="margin-bottom: 30px;">
+                    <li><a class="btn btn-withdraw">Block Account temporarily</a></li>
+                     <li><a class="btn btn-danger" data-toggle="modal" data-target="#modal-inquire">Remove account</a></li>
+                  </ul>
+                </div>
+            </div>
+         </div>
+      </div>
+         </div>
+      </div>
+      
+    </div>

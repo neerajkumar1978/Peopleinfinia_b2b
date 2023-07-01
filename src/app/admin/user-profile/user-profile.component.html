@@ -1,0 +1,273 @@
+
+
+    <section id="view-status-leads" style="height: 100% !important;">
+
+        <!--back-btn-->
+        <div class="back-to">
+            <p class="text-left"> <a class="back-btn" (click)="backClicked()"><img src="assets/img/left-arrow.svg" width="20px" height="auto"> &nbsp;
+Back</a>
+            </p>
+        </div>
+        <!--end-->
+
+
+        <!--lead-deatail-->
+        <div class="row m-t-50">
+            <div class="col-md-12">
+                <div class="user-profile-acc">
+
+                    <div class="account-detail">
+                       <div *ngIf ="!isBlock"> <a class="reject-stats f-right"  (click)="blockPopup()">Block</a></div>
+                       <div *ngIf ="isBlock"> <a class="reject-stats f-right"  (click)="blockUser(false)">Unblock</a></div>
+                        <h4>Account Details</h4>
+                        <p>check details, contact, stats and all</p>
+                    </div>
+
+                    <div class="list-wrapper m-t-40">
+                        <div class="posted-pic">
+                            <img [src]="profileImg" width="100px" height="100px">
+                        </div>
+                        <div class="list-description">
+                            <h4>{{userName}}</h4>
+                            <p>{{userCompany}}</p>
+                            <!-- <ul class="list-inline">
+                                <li><span class="star"><span class="fas fa-star checked"></span><span class="fas fa-star checked"></span><span class="fas fa-star checked"></span><span class="fas fa-star"></span><span class="fas fa-star"></span></span>
+                                </li>
+                                <li><span class="edit theme_color">(<i class="fas fa-pencil-alt"></i> Edit)</span></li>
+                            </ul> -->
+                        </div>
+                    </div>
+
+                    <div class="user-profile-status m-t-40">
+                        <ul>
+                            <li>
+                                <p>Date of Expiration:</p>
+                                <span>{{expiryDate}}</span>
+                            </li>
+                            <!-- <li>
+                                <p>Managed By:</p>
+                                <span>Arun Bansal</span>
+                            </li> -->
+                            <li>
+                                <p>Contact Details:</p>
+                                <span>{{userContact}}</span><br>
+                                <span>{{userEmail}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+
+                <!--job-stst-tabber-->
+                  <div class="job-sts-tabber m-t-50">
+                    <h4>Profile Status</h4>
+                    <ul class="nav nav-tabs m-t-50">
+                        <!-- data-toggle="tab" href="#tab-1" -->
+                       <li class="active"> <a data-toggle="pill" href="#tab-1">
+                     <span class="value">{{numberOfJobs}}</span>
+                     <span class="text">Jobs<br>posted</span>
+                     </a></li>
+                                   <li> <a data-toggle="pill" href="#tab-2">
+                     <span class="value">{{shorlistCandidatesCount}}</span>
+                     <span class="text">candidate<br>shortlisted</span>
+                                       </a></li>
+                                   <li> <a data-toggle="pill" href="#tab-3">
+                     <span class="value">{{interViewedCandidatesCount}}</span>
+                     <span class="text">candidates<br>interviewed</span>
+                                       </a></li>
+                                   <li> <a data-toggle="pill" href="#tab-4">
+                     <span class="value">{{hiredCandiditasCount}}</span>
+                     <span class="text">candidates<br>hired</span>
+                                       </a></li>
+                    </ul>
+                </div>
+                <div class="tab-content m-t-50">
+                  <div id="tab-1" class="tab-pane fade in active">
+                    <table class="table table-responsive rwd-table">
+                     <thead *ngIf="!noDataJobs" class="view-job-table-head white_color cst-table ng-star-inserted">
+                      <tr>
+                        <th>Job Title</th>
+                        <th>Job Posting Date</th>
+                        <th>Job Deadline</th>
+                        <th>CTC</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                    </thead>
+                      <tbody>
+                         <tr *ngFor = "let job of userJobs">
+                           <td>{{job.job_title}}</td>
+                           <td>{{job.created_at}}</td>
+                           <td>{{job.deadline}}</td>
+                           <td>{{job.ctc_min}}-{{job.ctc_max}}</td>
+                           <td>{{job.status}}</td>
+                           <td>
+                           <a routerLink="/admin-home/viewJob/{{job._id}}" class="theme_color">View jobs</a>
+                        </td>
+                          </tr>
+                  </tbody>
+                   <thead *ngIf="noDataJobs">
+                        <tr>
+                            <div class="nofeeds">
+                               <p class="list-item-title">Currently No Jobs Available</p></div>
+                        </tr>
+                      </thead>
+                 </table>
+
+                    </div>
+
+                 <div id="tab-2" class="tab-pane fade in">
+                        
+                <table class="table table-responsive rwd-table">
+                     <thead *ngIf="!noDataS" class="view-job-table-head white_color cst-table ng-star-inserted">
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th>
+                        <th>Recruiter ID</th>
+                        <th>Email ID</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                      <tbody>
+                         <tr *ngFor = "let candi of shortListedCandidates">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td data-th="Recruiter ID"> {{candi.recruiter_id.user_id}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.email}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.phone_number}}</td>
+                           <td data-th="Actions" align="center">
+                           <a (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</a>
+                           
+                        </td>
+                          </tr>
+                  </tbody>
+                         <thead *ngIf="noDataS">
+                  <tr>
+                      <div class="nofeeds">
+                         <p class="list-item-title">Currently No shortlisted Candidates Available</p></div>
+                      </tr>
+                </thead>
+               </table>
+                    </div>
+                    <div id="tab-3" class="tab-pane fade in">
+               <table class="table table-responsive rwd-table">
+                     <thead *ngIf="!noDataI" class="view-job-table-head white_color cst-table ng-star-inserted">
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th>
+                        <th>Recruiter ID</th>
+                        <th>Email ID</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                      <tbody>
+                         <tr *ngFor = "let candi of interViewedCandidates">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td data-th="Recruiter ID"> {{candi.recruiter_id.user_id}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.email}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.phone_number}}</td>
+                           <td data-th="Actions" align="center">
+                           <a (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</a>
+                           
+                        </td>
+                          </tr>
+                  </tbody>
+                         <thead *ngIf="noDataI">
+                  <tr>
+                      <div class="nofeeds">
+                         <p class="list-item-title">Currently No Interviwed Candidates Available</p></div>
+                      </tr>
+                </thead>
+               </table>
+                        
+                       
+                    </div>
+                    <div id="tab-4" class="tab-pane fade in">
+                <table class="table table-responsive rwd-table">
+                     <thead *ngIf="!noDataH" class="view-job-table-head white_color cst-table ng-star-inserted">
+                      <tr>
+                        <th>Candidate Name</th>
+                        <th>Job Title</th>
+                        <th>Recruiter ID</th>
+                        <th>Email ID</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                     </tr>
+                    </thead>
+                      <tbody>
+                         <tr *ngFor = "let candi of hiredCandidates ">
+                           <td data-th="Candidate Name">{{candi.candidates.name}}</td>
+                           <td data-th="Job Title">{{candi.job_id.job_title}}</td>
+                           <td data-th="Recruiter ID"> {{candi.recruiter_id.user_id}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.email}}</td>
+                           <td data-th="Recruiter ID"> {{candi.candidates.phone_number}}</td>
+                           <td data-th="Actions" align="center">
+                           <a (click) = "setCV(candi.candidates.cv)" class="button btn-outline btn-block">View Resume</a>
+                           
+                        </td>
+                          </tr>
+                  </tbody>
+                         <thead *ngIf="noDataH">
+                  <tr>
+                      <div class="nofeeds">
+                         <p class="list-item-title">Currently No Hired Candidates Available</p></div>
+                      </tr>
+                </thead>
+               </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal-block-acc-->
+    <div bsModal #blockModal="bs-modal" class="modal fade" tabindex="-1"role="dialog" aria-labelledby="dialog-sizes-name1" style="overflow-x: hidden ; overflow-y: auto;">
+      <div class="modal-dialog signup_popup_inner_wrapper modal-lg">
+
+                <!-- Modal content-->
+
+                <div class="modal-content modal-block-bg">
+                    <div class="row">
+                        <div class="modal-body">
+                            <div class="close  cls-cstm">
+                                <a (click)="blockModal.hide()" aria-hidden="true"><img src="assets/img/cancel.png" ></a>
+                            </div>
+
+                            <!--response-modal-->
+                            <div class="inquire-modal-content modal-pad">
+                                <div class="list-wrapper">
+                                    <div class="posted-pic">
+                                     <img [src]="profileImg" width="100px" height="100px">
+                                    </div>
+                                    <div class="list-description">
+                                        <h4>{{userName}}</h4>
+                                        <p>{{userCompany}}</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <!--job-description-textbox-->
+                                <div class="description-text-box">
+                                    <div class="form_field">
+                                        <label>Reason for Blocking the Account</label>
+                                        <textarea></textarea>
+                                    </div>
+                                </div>
+
+                                <!--btn-->
+                                <ul class="list-inline f-right" style="margin-bottom: 30px;">
+                                    <li><a class="btn btn-withdraw" (click)="blockUser(true)" >Block Account temporarily</a></li>
+                                    <li><a class="btn btn-danger" (click)="blockModal.hide()">Remove account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    

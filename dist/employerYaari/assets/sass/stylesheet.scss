@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+/* Typographgy */
+$pri-color: #23b256;
+$sec-color: #808390;
+$pri-font: 'Montserrat', sans-serif;
+$sec-font: 'Roboto', sans-serif;
+$thr-font: 'fontawesome', sans-serif;
+$pri-size: 18px !important;
+
+/* Aligment */
+.center{text-align:center}.left{text-align:left}.right{text-align:right}
+
+/* spacing */
+@mixin center_pos {
+	position: absolute;
+	top:50%;
+	right:0;
+	left:0;
+	bottom:0;
+	@include translateY(-50%);
+}
+.mar-zero{margin:0 !important}.pad-zero{padding:0 !important}
+.height-ten{height:10px;}.height-twen{height:20px;}.height-thir{height:30px;}.height-four{height:40px;}.height-fift{height:50px;}
+
+/* Web Property */
+@mixin transition($value){
+	transition: ($value) ease-in all;
+	-moz-transition: ($value) ease-in all;
+	-webkit-transition: ($value) ease-in all;
+	-o-transition: ($value) ease-in all;
+}
+@mixin translateY($value){
+	transform: translateY($value);
+	-moz-transform: translateY($value);
+	-webkit-transform: translateY($value);
+	-o-transform: translateY($value);
+}
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/* Header */
+h1, h2, h3, h4, h5, h6 {
+	font-family: $pri-font !important;
+	margin: 8px 0 12px !important;
+	line-height: 1.2 !important;
+	color: $sec-color !important;
+	font-weight: 300;
+}
+h1 {
+	font-size: 45px !important;
+}
+h2 {
+	font-size: 40px !important;
+}
+h3 {
+	font-size: 35px !important;
+}
+h4 {
+	font-size: 30px !important;
+}
+h5 {
+	font-size: 20px !important;
+}
+h6 {
+	font-size: 16px !important;
+}
+/* Button */
+a {
+	color: $pri-color !important;
+	cursor: pointer;
+}
+a.btn, button.btn {
+	color: #fff;
+	background-color: $pri-color;
+    font-size: 15px;
+    margin: 15px 0 0;
+    padding: 8px 22px;
+    @include border-radius(5px);
+    color: #fff !important;
+    font-weight: 500;
+}
+a.btn.round, button.btn.round {
+	@include border-radius(60px);
+}
+a.btn:hover, button.btn:hover {
+	background-color: $sec-color;
+	color: #fff !important;
+}
+/* Color */
+.gray_bg {background-color: #7c7c7c !important;} .yellow_bg {background-color: #ffa61c !important;} 
+.purple_bg {background-color: #6812b2 !important;} .red_bg {background-color: red !important;}
+/* Block/Inline */
+@mixin inline_block {display: inline-block !important;width: auto !important;}
+@mixin block {display: block !important;width: 100% !important;}
+.inline-block {display: inline-block !important;width: auto !important;}
+.block {display: block !important;width: 100% !important;}
+/* List */
+@mixin no_list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+/* Playground */
+html body{
+	margin:0;
+	font-family: $pri-font;	
+	font-size:18px;
+	line-height: 1.8;
+	background-color: #f5f5f5;
+}
+
+a {
+	@include transition(0.3s) ;
+	color: $sec-color;
+	font-weight: 500;
+	text-decoration: none !important;
+}
+p {
+	font-size: $pri-size;
+}
+
+ul, ol {
+    padding: 0 0 0 40px ;
+}
+ol li {
+    
+}
+ul:not(.browser-default)>li {
+	list-style-type: numeric !important;
+}
+ul li, ol li {
+	font-size: $pri-size;
+	position: relative;
+}
+
+/* Header */
+header {
+	background-color: $sec-color;
+}
+
+/* Navigation-Wrapper */
+.navigation-wrapper {
+	ul {
+		@include no_list;
+			li {
+				display: block;
+			}
+				a{
+					display: block;
+					padding: 10px 15px 10px 18px;
+					border-left: 5px solid transparent;
+					color: $sec-color !important;
+					font-size: 18px;				
+					font-weight: normal;
+					@include transition(0.3s);
+				}
+				& > li.active a, a:hover {
+					border-left: 5px solid $pri-color;
+					color: $pri-color !important;
+					font-weight: 500;
+				}
+	}
+}
+
+/* section */
+section {
+	padding: 30px 0;
+}
+
+/* Form */
+.customize_form {
+    position: relative;
+}
+.customize_form .form_field input[type="text"], .customize_form .form_field input[type="email"], .customize_form .form_field input[type="number"] {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-weight: normal;
+    font-size: 15px;
+    outline: 0;
+    color: #000;
+    @include border-radius(6px);
+}
+
+.customize_form .form_field label {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #b6b6b6;
+    margin: 0;
+    font-weight: 500;
+}
+.checkbox_container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #eee;
+    @include border-radius(100%);
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox_container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox_container input:checked ~ .checkmark {
+    background-color: $pri-color;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_container .checkmark:after {
+    left: 8px;
+    top: 6px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.customize_form .form_field label.checkbox_container {
+    font-size: 15px;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+/* Filter Search */
+.filter_form .form_field label {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+form.filter_form input[type="text"], form.filter_form input[type="email"], form.filter_form input[type="number"], form.filter_form input[type="password"], form.filter_form select {
+    width: 100%;
+    display: block;
+    margin: 0 0 5px;
+    border: 1px solid #666;
+    font-size: 12px;
+    padding: 4px 10px;
+    outline: 0;
+    background: transparent;
+}
+/* Table */
+.table_overflow_wrapper {
+	overflow: auto;
+}
+.table_header {
+	background-color: $pri-color;
+	padding: 10px 15px;
+}
+.table_header p {
+	color: #fff;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.2px;
+}
+.table_body {
+    padding: 10px 15px;
+}
+.table_body .table_row {
+    margin: 0 -15px 15px;
+    background: #fff;
+    padding: 25px 15px;
+}
+.table_wrapper .link_wrapper_btn a {
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $sec-color !important;
+}
+.table_body .table_row p {
+    font-size: 15px !important;
+}
+.table_wrapper p {
+	font-size: 14px;
+	margin: 0;
+}
+.table_body .table_row p.status span.status {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: $pri-color;
+    margin-right: 6px;
+    border-radius: 100%;
+    vertical-align: middle;
+}

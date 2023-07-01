@@ -1,0 +1,43 @@
+<header>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-6 col-7 ">
+            <a routerLink="/candidate/login" class="logo"><img src="assets/img/logo.png"></a>
+         </div>
+         <div class="col-md-6 right-header ">
+
+            <nav class="navbar navbar-expand-md navbar-light">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav" *ngIf="!isUserLoggedIn">
+                     
+                     <li class="nav-item" *ngIf="registerLogin">
+                        <span>Not a member yet?</span><a  class="nav-link main-btn register-btn" routerLink="/candidate/signup/type"> Register Now</a>
+                     </li>
+                     <li class="nav-item" *ngIf="!registerLogin">
+                      <span>Already Registered?</span><a  class="nav-link main-btn register-btn" routerLink="/candidate/login">Login</a>
+                     </li>
+                    
+                     
+                  </ul>
+               </div>
+            </nav>
+
+            <!-- <div class="dropdown" *ngIf="isUserLoggedIn">
+               <button type="button" class="btn btn-primary" (click)="logout()"> Logout </button> -->
+               <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Account </button>
+               <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item" href="#">Link 3</a>
+               </div> -->
+            <!-- </div> -->
+         </div>
+      </div>
+   </div>
+</header>
+
+<!-- Header ends -->
+<router-outlet></router-outlet>

@@ -1,0 +1,115 @@
+.my-col{
+    min-height: 150px;
+    height: auto !mportant;
+}
+.btn-outline {
+    padding: 10px 50px;
+}
+@media (max-width: 550px) {
+  .modal-pad {
+     padding: 0px; 
+}
+
+.modal-pad {
+     padding: 0px; 
+}
+table td, th {
+    padding: 5px 5px !important;
+}
+.btn-outline{
+    padding: 5px 5px;
+    width: 100px;
+}
+.panel-title {
+    margin-top: 20px;
+    }
+    a.btn, button.btn{
+        padding: 5px 10px;
+    }
+}
+
+
+
+/*.raise_an_issue_wrapper {
+    padding: 18px 35px;
+    background: #fff;
+    margin-top: 15px;
+}
+.raise_an_button {
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+    display: inline-block;
+    background: #f8554e;
+    border-radius: 100%;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.raise_an_button a i {
+    color: #fff;
+}
+
+.raise_an_content {
+    width: calc(100% - 70px);
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+.raise_an_content h4 {
+    font-size: 20px !important;
+    margin: 0 !important;
+    color: #000 !important;
+    font-weight: 400;
+}
+.raise_an_content p {
+    font-size: 14px !important;
+    margin: 4px 0 0;
+    color: #7b7e84;
+}
+.support_query_box {
+    background: #fff;
+    margin-top: 25px;
+}
+.support_query_box .gapping_in_bw {
+    padding: 20px 20px;
+}
+.support_query_box .heading h5 {
+    margin: 5px 0 15px !important;
+    color: #000 !important;
+    font-weight: 500;
+    font-size: 18px !important;
+}
+
+.questing_listing {
+    margin: 0 -20px;
+    padding: 15px 20px;
+}
+.support_query_box .questing_listing:nth-child(even) {
+    background: rgba(221, 221, 221, 0.2);
+}
+
+.questing_listing p {
+    margin: 0;
+    width: calc(100% - 130px);
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px !important;
+    color: #7b7e84;
+    padding-right: 10px;
+}
+.questing_listing a {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 16px;
+}
+.questing_listing a i {
+    color: #666;
+}
+#previous_issues .questing_listing p {
+    width: calc(100% - 25px);
+}*/
+.ps-btn{
+    padding: 0px 30px !important;
+}

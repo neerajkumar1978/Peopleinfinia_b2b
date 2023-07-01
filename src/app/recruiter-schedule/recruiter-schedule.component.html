@@ -1,0 +1,202 @@
+<div class="container-fluid">
+   <div class="row">
+      <!--schedule-candidate-tabber-->
+      <div class="schedule-candidate-tabber">
+         <div class="tabbable-panel">
+            <div class="tabbable-line">
+               <ul class="nav nav-tabs ">
+                  <li class="active">
+                     <a href="#tab_default_1" data-toggle="tab">
+                     Company</a>
+                  </li>
+                  <!-- <li>
+                     <a href="#tab_default_2" data-toggle="tab">
+                     My calender</a>
+                  </li> -->
+               </ul>
+               <div class="tab-content m-t-20">
+                  <div class="tab-pane active" id="tab_default_1">
+                     <div class="container-fluid">
+                        <div class="col-md-2">
+                           <div class="search-compny-wrapper">
+                              <h5>Company</h5>
+                              <div class="icon-addon">
+                                 <div class="form-group">
+                                    <div class="icon-addon addon-lg">
+                                       <input type="text" placeholder="Search by name" class="form-control-cust input-with-icon" id="">
+                                    </div>
+                                 </div>
+                              </div>
+                              <ul *ngFor= "let companyName of companyNameList" class="search-compny-list">
+                                  <li><a (click)="getEventsUser(companyName.job_id._id,userId)" [class.highlighted]="companyName.job_id._id === currentCompany">{{companyName.job_id.company_name}}</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="col-md-10">
+                           <div class="calender-event">
+
+
+<div class="col-md-12">
+    <!-- <div class="client-schedule-wrapper"> -->
+    <ng-template #modalContent let-close="close">
+        <div class="modal-header">
+            <h5 class="modal-title">Event action occurred</h5>
+            <button style="cursor: pointer" type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                Action:
+                <pre>{{ modalData?.action }}</pre>
+            </div>
+            <div>
+                Event:
+                <pre>{{ modalData?.event | json }}</pre>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+        </div>
+    </ng-template>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    Previous
+                </div>
+                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                    Today
+                </div>
+                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    Next
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div class="btn btn-primary" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month">
+                    Month
+                </div>
+                <div class="btn btn-primary" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
+                    Week
+                </div>
+                <div class="btn btn-primary" (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day">
+                    Day
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)=" Interview.show() ; handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-day-view>
+    </div>
+
+</div>
+
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+</div>
+<div bsModal #Interview="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" id="subscribeModal">
+      <div class="modal-dialog signup_popup_inner_wrapper  modal-md">
+         <!-- Modal content-->
+         <div class="modal-content ">
+              <div class="modal-body text-center">
+                  <div class="close  cls-cstm" (click)="Interview.hide()" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);"><a ><img src="assets/img/cancel.png"></a></div>
+				<div class="top-strip"></div>
+                  <h3><b>Interview</b></h3>
+                <div class="contact_form">
+                    {{CandiName}} Position <br> on <br> <span class="status-call">{{jobTitle | date: 'dd/MM/yyyy'}}, {{jobTitle | date :'hh:mm a'}} </span>
+                      </div>
+                  <br>
+               <div> <p class="text-center"><button (click)="Reschedule.show(); Interview.hide()" class="btn btn-purple">Reschedule </button></p></div>
+               <div *ngIf = "conformButton"> <p class="text-center"><button (click)="conformInterview(); Interview.hide()" class="btn btn-purple">ConFirm </button></p></div>
+				<div class="bottom-strip"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<div bsModal #Reschedule="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" id="subscribeModal">
+      <div class="modal-dialog signup_popup_inner_wrapper  modal-md">
+         <!-- Modal content-->
+         <div class="modal-content ">
+              <div class="modal-body text-center">
+                  <div class="close  cls-cstm" (click)="Reschedule.hide()" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);"><a ><img src="assets/img/cancel.png"></a></div>
+                   <div class="top-strip"></div>
+                  <h3><b>ReSchedule</b></h3>
+                  <br>
+                    <form class="update-profile-form" [formGroup]="rescheduleForm" (ngSubmit)="rescheduleInterview()">
+                           <div class="col-md-12">
+                               <div align="left">
+                               <label>Reason</label>
+                               </div>
+                                <div class="form-group">
+
+                                       <input formControlName='reason' type="text" placeholder="Enter a valid Reason" class="form-control-cust">
+                                      </div>
+                                  <div *ngIf="submitted && rescheduleForm.controls.reason.hasError('required')" class="alert alert-danger">Reason Required</div>
+                             </div>
+                            <div class="col-md-12">
+                                <div align="left">
+                                <label>Availabilty Period</label>
+                                </div>
+                                <div class="form-group">
+
+                                  <div class = "col-md-5 padding-none">
+                                   <input formControlName='periodStart' type="date" placeholder="Enter a date" class="form-control-cust">
+                                    <div *ngIf="submitted && rescheduleForm.controls.periodStart.hasError('required')" class="alert alert-danger">Required</div>
+                                    </div><div class="col-md-1"><span class="line50">to</span></div>
+                                   <div class = "col-md-5 padding-none">
+                                   <input formControlName='periodEnd' type="date" placeholder="Enter a date" class="form-control-cust">
+                                    <div *ngIf="submitted && rescheduleForm.controls.periodEnd.hasError('required')" class="alert alert-danger">Required</div>
+                                  </div>
+                              </div>
+                          </div>
+                   <p class="text-center"><button type = "submit" class="btn btn-purple">Send Request</button></p>
+
+                    </form>
+        <div class="bottom-strip"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+<!-- <ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+
+    </div>
+    <div>
+      Event:
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+  </div>
+</ng-template> -->

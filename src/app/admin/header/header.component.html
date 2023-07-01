@@ -1,0 +1,132 @@
+  <!--header-->
+<header id="admin-haeder">
+  <nav class="navbar navbar-default navbar-static-top">
+     <div class="container-fluid">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
+           MENU
+           </button>
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           </button>
+          <a class="navbar-brand" routerLink = "/admin-home/overview">
+           <img src="assets/img/logo.png">
+           </a>
+        </div>
+        <!-- /.navbar-collapse -->
+         <!-- /.navbar-collapse -->
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <!-- <li><a><i class="fas fa-globe-asia globe"></i></a></li> -->
+               <li class="show-on-hover">
+                  <a  class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="assets/img/user-placeholder.png" class="img-circle" ><!--  {{user.user_name}} --></a>
+          <ul class="dropdown-menu" role="menu">
+            <!--<li><a routerLink="/recruiterHeader/recruiterProfile"><i class="fas fa-user-circle"></i> Profile</a></li>-->
+            <!-- <li><a href="#" data-toggle="modal" data-target="#change-password"><i class="fas fa-user-lock"></i> Change password</a></li> -->
+           <!-- <li class="divider"></li>-->
+            <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+          </ul>
+               </li>
+            </ul>
+         </div>
+        <!--navbar-collapse-end-->
+     </div>
+  </nav>
+  <div class="navbar-bottom">
+     <nav class="navbar navbar-default">
+        <div class="container-fluid">
+           <div class="collapse navbar-collapse" id="nav-cust">
+              <ul class="nav navbar-nav-custom">
+                 <li [ngClass]="{'active':activeHead == 1}" (click)="activeHead =1"><a routerLink="/admin-home/overview" id="menu1"><i class="fas fa-adjust"></i> Overview</a></li>
+                 <li [ngClass]="{'active':activeHead == 2}" (click)="activeHead =2"><a routerLink="/admin-home/leads" id="menu2"><i class="fas fa-braille"></i> Leads</a></li>
+                 <li [ngClass]="{'active':activeHead == 3}" (click)="activeHead =3"><a routerLink="/admin-home/manageUser" id="menu3"><i class="far fa-user"></i> Manage Users</a></li>
+                 <li [ngClass]="{'active':activeHead == 4}" (click)="activeHead =4"><a routerLink="/admin-home/manageJobs" id="menu4"><i class="far fa-calendar-alt"></i> Manage Jobs</a></li>
+                 <li [ngClass]="{'active':activeHead == 5}" (click)="activeHead =5"><a routerLink="/admin-home/issue" id="menu5"><i class="fas fa-adjust"></i>Issue</a></li>
+                  <li [ngClass]="{'active':activeHead == 6}" (click)="activeHead =6"><a routerLink="/admin-home/resdesk" id="menu6"><i class="fas fa-adjust"></i>Resdesk</a></li>
+              </ul>
+           </div>
+        </div>
+     </nav>
+  </div>
+</header>
+<!--header-end-->
+
+<router-outlet></router-outlet>
+
+
+
+
+<!-- change-password-modal -->
+
+         <div id="modal-overview-inquire">
+  <div class="modal fade" id="change-password" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+     <div class="modal-content">
+         <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+                        <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png" ></a>
+                     </div>
+                <!--inquire-modal-->
+               <div id="manage-new-acc-sign-up">
+   <div class="signup-box">
+      <!--heading-text-->
+       <div class="row">
+       <div class="col-md-12">
+       <h1>Change Password</h1>
+       </div>
+           </div>
+       <div class="row">
+      <div class="sign-up-form m-t-20">
+         <form [formGroup]="changePasswordForm" >
+        <div class="col-md-12 form-group">
+          <div class=" input-box">
+            <div class="input-group">
+                <label class="control-label">Old password</label>
+              <input  aria-label="password" type="password" name="oldPassword" formControlName="oldPassword"
+                id="oldPassword" placeholder="Old Password" class="form-control" autocomplete="nope">
+              <div *ngIf="changeSubmitted && changePasswordForm.controls.oldPassword.hasError('required')" class="alert alert-danger">Old Password Required</div>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-12 form-group">
+          <div class=" input-box">
+            <div class="input-group">
+                <label class="control-label">New password</label>
+              <input  aria-label="password" type="password" name="password" formControlName="password"
+                name="first_name" placeholder="Password" class="form-control" autocomplete="nope">
+              <div *ngIf="changeSubmitted && changePasswordForm.controls.password.hasError('required')" class="requried alert alert-danger">Password Required</div>
+          </div>
+        </div>
+      </div>
+     <div class="col-md-12 form-group">
+          <div class=" input-box">
+            <div class="input-group">
+                <label class="control-label">Confirm password</label>
+              <input aria-label="password" type="password" name="confirmPassword" formControlName="confirmPassword"
+                placeholder="Confirm Password" class="form-control" autocomplete="nope">
+              <div *ngIf="changeSubmitted && changePasswordForm.controls.confirmPassword.hasError('required')" class="alert alert-danger">Conform Password Required</div>
+              <div *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.value != changePasswordForm.controls.password.value"
+                class="alert alert-danger">Password Do not Match</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 form-group text-center cancelPass">
+          <div class="input-box text-center">
+            <button type="submit" aria-label="submit" (click)="onChangePassword()" class="btn green-button">Change Password</button>
+          </div>
+        </div>
+    </form>
+      </div>
+   </div>
+</div>
+         </div>
+            </div>
+         </div>
+      </div>
+
+    </div>

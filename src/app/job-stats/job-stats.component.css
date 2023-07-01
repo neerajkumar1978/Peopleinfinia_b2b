@@ -1,0 +1,136 @@
+table td, th {
+	padding: 20px 50px;
+}
+a.view-resume {
+    padding: 20px;
+}
+.view-job-rec-table-head {
+    background-color: #2EBF63;
+}   
+
+.view-job-wrapper {
+        background-color: #fff;
+    }
+
+    .view-job-wrapper p {
+        padding: 10px 20px 0px;
+    }
+
+    .view-job-table-head {
+        background-color: #27B95C;
+    }
+
+    .view-job-table-head ul {
+        display: block;
+        padding: 10px 40px;
+        color: #fff;
+    }
+
+    .view-job-table-head ul li {
+        width: calc(100% / 5);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    /*list*/
+
+    .view-job-table-list {
+        background-color: #fff;
+    }
+    .view-job-table-list ul {
+        display: block;
+        padding: 40px 20px;
+        color: #333;
+    }
+    .view-job-table-list ul li {
+        width: calc(100% / 5);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+    .view-job-table-list ul li a.btn-Withdrawl{
+	background-color: #727272;
+	color: #fff;
+}
+    .view-job-table-list ul li a.view-resume{
+	color: #27B95C;
+	font-weight: 600;
+}
+    
+    .view-job-list-content .view-job-table-list:nth-child(odd) {
+	background-color: #F6F6F6;
+}
+
+.warning-msg{
+    text-align: center;
+}
+.warning-msg h6{
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+    margin-top: 40px;
+}
+.warning-msg p.note{
+    font-weight: 500;
+    color: #FFB43C;
+    font-size: 14px;
+    padding: 30px 0;
+}
+.warning-msg ul li{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+@media (max-width: 550px) {
+    .rwd-table tr {
+    border-top: 10px solid #F8F8F8;
+    border-bottom: 10px solid #F8F8F8;
+    background-color: #fff;
+}
+    .rwd-table td:first-child {
+    padding-top: 1.5em;
+}
+    .rwd-table td:last-child {
+    padding-bottom: 1.5em;
+}
+    .job-status-wrapper {
+    border-radius: 0;
+    margin: 10px 0px;
+    padding: 0;
+}
+    .job-status-wrapper .back-btn {
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+}
+    .job-sts-profile {
+    margin-top: 0;
+}
+    p.upload-btn {
+    text-align: center;
+}
+    .description-detail p {
+    font-size: 15px;
+}
+    .job-sts-tabber ul {
+    display: block;
+}
+
+    .job-sts-tabber ul a {
+        width: 100%;
+    display: block;
+    padding: 15px 0;
+}
+    .job-sts-tabber ul a span.value {
+    font-size: 30px;
+    }
+    .job-sts-tabber ul a span.text {
+    font-size: 16px;
+    line-height: 1;
+    }
+}

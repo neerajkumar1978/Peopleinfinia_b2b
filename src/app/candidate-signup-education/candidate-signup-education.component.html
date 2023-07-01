@@ -1,0 +1,105 @@
+<section class="sign-up">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-12 page-name mb-5">
+            <p><span><i class="far fa-circle"></i></span>Personal</p>
+            <hr>
+            <div *ngIf="!fresher">
+              <p><span><i class="far fa-circle"></i></span>Employment</p>
+            </div>
+            <hr>
+            <p><span style="color: #00a859;"><i class="far fa-circle"></i></span>Education</p>
+          </div>
+        </div>
+        <form [formGroup]="signupEducationForm" (ngSubmit)="onFormSubmit()">
+          <div formArrayName="education">
+            <div *ngFor="let edu of educations.controls; let i = index" [formGroupName]="i">
+              <div *ngIf="i">
+                <hr>
+                <h1>Other Education </h1>
+                <button (click)="deletePhone(i)" class="removeButton">Clear</button>
+              </div>
+              <div class="form-group">
+                <label *ngIf="!i">Highest Qualification<span class="text-danger"></span></label>
+                <label *ngIf="i">Other Qualification<span class="text-danger"></span></label>
+                <select formControlName="qualification" (change)="qualificationChange($event, i)" class="form-control">
+                  <option selected>Select your highest qualification</option>
+                  <option *ngFor="let x of qualificationsArray[i]; let j = index" value="{{x.value}}">{{x.value}}
+                  </option>
+                </select>
+                <p class="field-note">Select the highest level of education that you have completed or are about to
+                  complete</p>
+              </div>
+
+
+              <div *ngIf="below10" class="form-group">
+                <label>Course / Board<span class="text-danger"></span></label>
+                <select class="form-control" formControlName="course">
+                  <option>Select your Course</option>
+                  <option *ngFor="let x of courses[educations.controls[i].value.qualification]" value="{{x.value}}">
+                    {{x.value}}</option>
+                </select>
+              </div>
+
+              <div *ngIf="below10" class="form-group">
+                <label>Specialization<span class="text-danger"></span></label>
+                <select class="form-control" formControlName="specialization">
+                  <option>Select your Specialization</option>
+
+                  <option *ngFor="let x of specializations[educations.controls[i].value.course]" value="{{x.value}}">
+                    {{x.value}}</option>
+                </select>
+              </div>
+
+              <div *ngIf="below10" class="form-group">
+                <label>University/College<span class="text-danger"></span></label>
+                <select class="form-control" formControlName="college">
+                  <option>Select your College</option>
+                  <option *ngFor="let x of colleges" value="{{x.value}}">{{x.value}}</option>
+                  <!-- <option value="others">Others</option> -->
+                </select>
+              </div>
+              <div *ngIf="below10" class="form-group">
+                <label>Course Type<span class="text-danger"></span></label>
+                <select class="form-control" formControlName="course_type">
+                  <option>Select your Course Type</option>
+
+                  <option *ngFor="let x of courseTypes" value="{{x.value}}">{{x.value}}</option>
+                </select>
+              </div>
+
+              <div *ngIf="below10" class="form-group">
+                <label>Passing Year<span class="text-danger"></span></label>
+                <select formControlName="passing_year" class="form-control">
+                  <option>Select year</option>
+
+                  <option *ngFor="let x of Years" value="{{x.value}}">{{x.value}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <a *ngIf="disableLink" (click)="addfieldsFormGroup()">+ Add more education</a>
+          <a *ngIf="!disableLink" class="disabled">+ Add more education</a>
+          <br>
+          <br>
+
+          <div class="form-group">
+            <label>Skills</label>
+            <tag-input [(ngModel)]='items' formControlName="skills" theme='bootstrap'></tag-input>
+
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8 offset-md-2">
+                <input type="submit" name="" class="form-control mt-3" value="Continue">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

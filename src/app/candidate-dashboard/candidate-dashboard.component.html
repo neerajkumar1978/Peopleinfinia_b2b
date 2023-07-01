@@ -1,0 +1,150 @@
+<section class="user-header">
+  <div class="container">
+    <div class="box">
+      <div class="row">
+        <div class="col-md-2">
+            <img class="profile-pic"  [src]="profilePicture ? profilePicture : 'assets/img/user-placeholder.png'" >
+            <!-- <img [src]="profilePicture" class="img-circle" width="100px" height="100px"> -->
+            <!-- <input id="edit" style="display:none"  type="file" size="60"> -->
+            <!-- <label style="cursor:pointer" for="edit">Edit</label> -->
+          <!-- <div class="profile-pic" style="background-image: url(/assets/img/candidate/avtar.jpg);"></div> -->
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="title">{{applicantName}}</h3>
+            </div>
+            <div class="col-md-6">
+                <p><span><img src="/assets/img/candidate/placeholder.png" width="18px"></span>&nbsp; {{currentLocation}}, INDIA</p>
+              </div>
+              <div class="col-md-6">
+                <p><span><img src="/assets/img/candidate/phone-call.png" width="20px"></span>&nbsp; {{applicantMobile}}</p>
+              </div>
+              <div class="col-md-6">
+                <p><span><img src="/assets/img/candidate/briefcase.png" width="20px"></span>&nbsp; {{applicantType}}</p>
+              </div>
+              <div class="col-md-6">
+                <p><span><img src="/assets/img/candidate/envelope.png" width="20px"></span>&nbsp; {{applicantEmail}}</p>
+              </div>
+            <div class="col-md-12">
+                <hr class="top-hr" [style.width.px]=" progress_bar * 5" />
+              <hr class="bottom-hr">
+              <span class="value">{{progress_bar}} %</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 al-box">
+          <a routerLink="/candidateHeader/profile"><button class="main-btn">Edit Profile</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="jobs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="heading-block">
+          <h3>Application Summery</h3>
+        </div>
+        <div class="summary-box">
+          <p>Applied Job : <span>30</span></p>
+          <p>Daily Limit of Application : <span>50</span></p>
+          <p>Monthly Limit of Application : <span>50</span></p>
+        </div>
+
+        <div class="heading-block">
+          <h3>Filters</h3>
+        </div>
+        <div class="summary-box">
+          <label>Location</label>
+          <select class="form-control">
+            <option>-- Select Loaction --</option>
+          </select>
+
+          <label>Experience</label>
+          <select class="form-control">
+            <option>-- Select Experience --</option>
+          </select>
+
+          <label>Salary</label>
+          <select class="form-control">
+            <option>-- Select Salary --</option>
+          </select>
+
+          <label>Industry</label>
+          <select class="form-control">
+            <option>-- Select Industry --</option>
+          </select>
+
+          <label>Job Type</label>
+          <select class="form-control">
+            <option>-- Select Job Type --</option>
+          </select>
+
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <div class="heading-block">
+          <h3>75 New Recommended Job(S)</h3>
+        </div>
+        <div class="job-des">
+          <h3 class="job-title"><span>Hiring for E-mail Marketing Executive</span></h3>
+          <p class="job-subtitle">Sharda Consultancy Services</p>
+
+          <p class="float-left"><img src="/assets/img/candidate/briefcase.png" width="25px"> 0-5 Years</p>
+          <p class="float-left" style="margin-left: 25px;"><img src="/assets/img/candidate/placeholder.png" width="16px"> Delhi NCR</p>
+          <div class="clearfix"></div>
+          <p class="job-support"><span>Marketing Campaigns. Sales, Lead Generation, Email Marketing, Email Support</span></p>
+          <p class="job-desc"><span>Identify target audience and grow our email list. Design and implement direct email marketing...</span></p>
+          <p class="job-salary"><span>100,000 - 375,000 PA</span></p>
+        </div>
+        <div class="job-des">
+          <h3 class="job-title"><span>Hiring for E-mail Marketing Executive</span></h3>
+          <p class="job-subtitle">Sharda Consultancy Services</p>
+
+          <p class="float-left"><img src="/assets/img/candidate/briefcase.png" width="25px"> 0-5 Years</p>
+          <p class="float-left" style="margin-left: 25px;"><img src="/assets/img/candidate/placeholder.png" width="16px"> Delhi NCR</p>
+          <div class="clearfix"></div>
+          <p class="job-support"><span>Marketing Campaigns. Sales, Lead Generation, Email Marketing, Email Support</span></p>
+          <p class="job-desc"><span>Identify target audience and grow our email list. Design and implement direct email marketing...</span></p>
+          <p class="job-salary"><span>100,000 - 375,000 PA</span></p>
+        </div>
+        <div class="job-des">
+          <h3 class="job-title"><span>Hiring for E-mail Marketing Executive</span></h3>
+          <p class="job-subtitle">Sharda Consultancy Services</p>
+
+          <p class="float-left"><img src="/assets/img/candidate/briefcase.png" width="25px"> 0-5 Years</p>
+          <p class="float-left" style="margin-left: 25px;"><img src="/assets/img/candidate/placeholder.png" width="16px"> Delhi NCR</p>
+          <div class="clearfix"></div>
+          <p class="job-support"><span>Marketing Campaigns. Sales, Lead Generation, Email Marketing, Email Support</span></p>
+          <p class="job-desc"><span>Identify target audience and grow our email list. Design and implement direct email marketing...</span></p>
+          <p class="job-salary"><span>100,000 - 375,000 PA</span></p>
+        </div>
+        <div class="job-des">
+          <h3 class="job-title"><span>Hiring for E-mail Marketing Executive</span></h3>
+          <p class="job-subtitle">Sharda Consultancy Services</p>
+
+          <p class="float-left"><img src="/assets/img/candidate/briefcase.png" width="25px"> 0-5 Years</p>
+          <p class="float-left" style="margin-left: 25px;"><img src="/assets/img/candidate/placeholder.png" width="16px"> Delhi NCR</p>
+          <div class="clearfix"></div>
+          <p class="job-support"><span>Marketing Campaigns. Sales, Lead Generation, Email Marketing, Email Support</span></p>
+          <p class="job-desc"><span>Identify target audience and grow our email list. Design and implement direct email marketing...</span></p>
+          <p class="job-salary"><span>100,000 - 375,000 PA</span></p>
+        </div>
+        <div class="job-des">
+          <h3 class="job-title"><span>Hiring for E-mail Marketing Executive</span></h3>
+          <p class="job-subtitle">Sharda Consultancy Services</p>
+
+          <p class="float-left"><img src="/assets/img/candidate/briefcase.png" width="25px"> 0-5 Years</p>
+          <p class="float-left" style="margin-left: 25px;"><img src="/assets/img/candidate/placeholder.png" width="16px"> Delhi NCR</p>
+          <div class="clearfix"></div>
+          <p class="job-support"><span>Marketing Campaigns. Sales, Lead Generation, Email Marketing, Email Support</span></p>
+          <p class="job-desc"><span>Identify target audience and grow our email list. Design and implement direct email marketing...</span></p>
+          <p class="job-salary"><span>100,000 - 375,000 PA</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

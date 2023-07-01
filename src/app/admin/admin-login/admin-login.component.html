@@ -1,0 +1,27 @@
+<div class="wrapper" style="background-image: url(assets/img/meeting.jpg);">
+<div class="login-wrapper">
+    <form  [formGroup]="loginForm" (ngSubmit)="login()" id="signup">
+        <div class="text-center logo" style="margin-top: 20px;">
+    <img src="assets/img/logo.png" width="80%" height="auto">
+    </div>
+        <div class="header">
+            <h3>Login</h3>
+        </div>
+           <!--Email-->
+           <div class="form-group inputs">
+              <label class="control-label">Enter Your E-mail</label>
+              <input name="email" type="email" formControlName="email"  placeholder="Enter your E-mail, abc@mail.com" class="form-control-cust" required>
+           <div *ngIf="submitted && loginForm.controls.email.hasError('required')" class="alert alert-danger">Email Required</div>
+           <div *ngIf="submitted && loginForm.controls.email.hasError('pattern')" class="alert alert-danger">Invalid Email</div>
+           </div>
+
+           <!--password-->
+           <div class="form-group">
+              <label class="control-label">Enter Your Password</label>
+              <input name="password" type="password" formControlName = "password" placeholder="Enter Your Password" class="form-control-cust" required>
+            <div *ngIf="submitted && loginForm.controls.password.hasError('required')" class="alert alert-danger">password Required</div>
+           </div>
+             <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+        </form>
+</div>  
+    </div>

@@ -1,0 +1,133 @@
+<section id="view-status-leads" style="height: 100% !important;">
+
+  <!--back-btn-->
+  <div class="back-to">
+    <p class="text-left"><a class="back-btn" (click)="backClicked()"><img src="assets/img/left-arrow.svg" width="20px"
+                                                                          height="auto"> &nbsp;
+      Back</a>
+    </p>
+  </div>
+  <!--end-->
+  <!-- routerLink="/admin-home/manageUser" -->
+
+  <!--lead-deatail-->
+  <div class="row m-t-50">
+    <div class="col-md-12">
+      <div class="user-profile-acc">
+
+        <div class="account-detail">
+          <!--  <a class="reject-stats f-right" data-toggle="modal" data-target="#modal-block-acc">Block / Delete</a> -->
+          <h4>Company's Requirement</h4>
+
+        </div>
+
+
+        <div class="list-wrapper m-t-40">
+          <div class="posted-pic">
+            <img src="https://via.placeholder.com/70x70" class="thumbnail">
+          </div>
+          <div class="list-description">
+            <h4>{{jobCompanyName}}</h4>
+            <p>{{jobTitle}}</p>
+            <p>{{jobVancy}} position avialable</p>
+          </div>
+        </div>
+        <div *ngIf="ShowJD">
+          <button (click)="viewJD()">View JD</button>
+        </div>
+        <div class="user-profile-status m-t-40" style="width: 100%">
+          <ul>
+            <li *ngIf="jobLocation && jobLocation.length">
+              <p><strong>Location:</strong></p>
+              <span
+                *ngFor="let location of jobLocation">{{jobLocation.length > 1 ? location.value + ', ' : location.value}}</span>
+            </li>
+            <li>
+              <p><strong>Deadline:</strong></p>
+              <span>{{jobDeadline}}</span>
+            </li>
+            <li>
+              <p><strong>CTC:</strong></p>
+              <span>{{jobctcMin}}-{{jobctcMax}} lacs p.a.</span>
+            </li>
+            <li>
+              <p><strong>Experience:</strong></p>
+              <span>{{jobExperiance}} yrs</span>
+            </li>
+
+          </ul>
+
+          <p style="margin-top: 10px;"><strong>Job Intro:</strong></p>
+          <p>{{jobDescription}}</p>
+          <p style="margin-top: 10px;"><strong>Qualification:</strong></p>
+          <ul class="qualification">
+            <li *ngIf="jobUG">
+              <p>Undergraduation Course - <span *ngFor="let job of jobUG">{{jobUG.length > 1 ? job.value + ', ' : job.value}}</span></p>
+            </li>
+            <li>
+              <p>Undergraduation College - {{jobUGC}}</p>
+            </li>
+            <li>
+              <p>Post Graduation Course - {{jobPG}}</p>
+            </li>
+            <li>
+              <p>Post Graduation College - {{jobPGC}}</p>
+            </li>
+
+          </ul>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<div id="modal-overview-inquire">
+  <div class="modal fade" id="modal-block-acc" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+
+      <div class="modal-content modal-block-bg">
+        <div class="row">
+          <div class="modal-body">
+            <div class="close  cls-cstm">
+              <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png"></a>
+            </div>
+
+            <!--response-modal-->
+            <div class="inquire-modal-content modal-pad">
+              <div class="list-wrapper">
+                <div class="posted-pic">
+                  <img src="https://via.placeholder.com/50x50" class="thumbnail">
+                </div>
+                <div class="list-description">
+                  <h4>Aman Gautam</h4>
+                  <p>UX Gorilla, Employer</p>
+                </div>
+              </div>
+              <br>
+              <!--job-description-textbox-->
+              <div class="description-text-box">
+                <div class="form_field">
+                  <label>Reason for Blocking the Account</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+
+              <!--btn-->
+              <ul class="list-inline f-right" style="margin-bottom: 30px;">
+                <li><a class="btn btn-withdraw">Block Account temporarily</a></li>
+                <li><a class="btn btn-danger" data-toggle="modal" data-target="#modal-inquire">Remove account</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

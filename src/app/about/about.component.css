@@ -1,0 +1,67 @@
+/* @import url('../../assets/css/externalStyle.css'); */
+
+/*about page*/
+section.about-main > img {
+  position: absolute;
+  right: 0;
+  width: 58%;
+  top: 237px;
+}
+.about-img img {
+  display: none;
+}
+.about-inn h2 {
+  font-size: 70px;
+  font-weight: 200;
+}
+.about-inn h3 {
+  font-size: 35px;
+}
+.about-inn p {
+  width: 75%;
+}
+.margint {
+  margin-top: 80px !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .about-inn h3 {
+    font-size: 26px;
+  }
+  .about-inn h2 {
+    font-size: 50px;
+    margin: 20px 0 !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .about-inn h3 {
+    font-size: 20px;
+  }
+  .about-inn h2 {
+    font-size: 45px;
+    margin: 17px 0 0px !important;
+  }
+  .about-inn h5 {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  section.about-main > img {
+    display: none;
+  }
+  .about-img img {
+    display: block;
+  }
+  .about-inn h2 {
+    font-size: 34px;
+  }
+  .about-inn h3 {
+    text-align: justify;
+  }
+  .about-inn p {
+    text-align: justify;
+    width: 100% !important;
+  }
+}

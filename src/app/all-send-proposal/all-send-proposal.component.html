@@ -1,0 +1,252 @@
+<!--all job-proposal-->
+<section>
+   <div class="col-md-3">
+      <div class="feeds-title">
+         <p class="text-left"> <a class="back-btn" routerLink="/recruiterHeader/recuiterDashboard"><img src="../../assets/img/left-arrow.svg" width="20px" height="auto"> &nbsp;
+Back</a>
+         </p>
+      </div>
+      <div class="filter-job-proposal m-t-40">
+         <h4><i _ngcontent-c3="" class="fas fa-plus"></i> Filter</h4>
+        
+            <div class="field-job-proposal">
+               <ul>
+                  <li>
+                     <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="" [(ngModel)]="title" class="form-control-cust" placeholder="Type the job position">
+                     </div>
+                  </li>
+                  <li>
+                     <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" name=""  [(ngModel)]='companyName' class="form-control-cust" placeholder="Type the company name">
+                     </div>
+                  </li>
+                 <!-- <li>
+                     <label>Location</label>
+                     <div class="select">
+                        <select>
+                           <option>USD</option>
+                           <option>Option</option>
+                           <option>Option</option>
+                        </select>
+                        <div class="select__arrow"></div>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="form_field">
+                        <label>CTC</label>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                     </div>
+                  </li>
+                  <li>
+                     <div class="form_field">
+                        <label>Fee %</label>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                     </div>
+                  </li>-->
+                  <li>
+                  </li>
+               </ul>
+               <p class="text-center">
+                  <a class="btn btn-success" (click)="applyFilter()">Apply Filters</a>
+               </p>
+            </div>
+         
+      </div>
+   </div>
+   <div class="col-md-9">
+      <h2>All Proposals</h2>
+      <div class="proposal-feed">
+         <!--feeds-->
+         <div class="dashboard-feeds ">
+            <!--feeds title-->
+          <!--   <div class="feeds-title">
+               <p class="text-left">Jobs Feeds
+                  <span class="f-right"><a class="btn btn-purple" >Saved Job Post</a></span>
+               </p>
+            </div> -->
+         </div>
+         <!--feeds-post-->
+         <div class="feed-event-post m-t-40">
+            <div class="feed-post">
+               <ul *ngFor="let job of showJobs  | paginate: { itemsPerPage: 10, currentPage: p }" routerLink="/recruiterHeader/ViewProposal/{{job._id}}">
+                  <li  class="list-item" >
+                     <div class="list-feed-icon color-voilet">
+                        <i class="far fa-file-alt"></i>
+                     </div>
+                     <div class="list-item-main-info">
+                        <p class="list-item-title">
+                           <span class="designation-post">{{job.job_title}}</span>
+                           <span class="rec-company">{{job.company_name}}</span>
+                        </p>
+                        <div class="list-item-posted">
+                           <ul class="list-inline">
+                              <li>
+                                 <p>Location: <span *ngFor="let loc of job.Location">
+                                    <strong>{{loc.value}}</strong>
+                                 </span></p>
+                              </li>
+                              <li>
+                                 <p>CTC: <strong>{{job.ctc_max}}</strong></p>
+                              </li>
+                              <!-- <li>
+                                 <p>Fee: <strong>{{job.commission}}% of ctc</strong></p>
+                              </li> -->
+                              <li>
+                                 <p>Deadline: <strong>{{job.deadline}}</strong></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="list-item-view">
+                        <div class="bookmark-wrapper">
+                         <!--   <a class="bookmark"><i class="fas fa-bookmark"></i></a> -->
+                           <a class="ellipsis"><i class="fas fa-ellipsis-h" routerLink="/recruiterHeader/ViewProposal/{{job._id}}"></i></a>
+                        </div>
+                     </div>
+                  </li>
+
+
+                  <!--<li class="list-item">
+                     <div class="list-feed-icon color-voilet">
+                        <i class="far fa-file-alt"></i>
+                     </div>
+                     <div class="list-item-main-info">
+                        <p class="list-item-title">
+                           <span class="designation-post">hr manager</span>
+                           <span class="rec-company">ux gorilla</span>
+                        </p>
+                        <div class="list-item-posted">
+                           <ul class="list-inline">
+                              <li>
+                                 <p>Location: <strong>Delhi</strong></p>
+                              </li>
+                              <li>
+                                 <p>CTC: <strong>12 lacs p.a.</strong></p>
+                              </li>
+                              <li>
+                                 <p>Fee: <strong>8% of ctc</strong></p>
+                              </li>
+                              <li>
+                                 <p>Deadline: <strong>26/06/2018</strong></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="list-item-view">
+                        <div class="bookmark-wrapper">
+                           <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+                           <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="list-item">
+                     <div class="list-feed-icon color-voilet">
+                        <i class="far fa-file-alt"></i>
+                     </div>
+                     <div class="list-item-main-info">
+                        <p class="list-item-title">
+                           <span class="designation-post">hr manager</span>
+                           <span class="rec-company">ux gorilla</span>
+                        </p>
+                        <div class="list-item-posted">
+                           <ul class="list-inline">
+                              <li>
+                                 <p>Location: <strong>Delhi</strong></p>
+                              </li>
+                              <li>
+                                 <p>CTC: <strong>12 lacs p.a.</strong></p>
+                              </li>
+                              <li>
+                                 <p>Fee: <strong>8% of ctc</strong></p>
+                              </li>
+                              <li>
+                                 <p>Deadline: <strong>26/06/2018</strong></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="list-item-view">
+                        <div class="bookmark-wrapper">
+                           <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+                           <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="list-item">
+                     <div class="list-feed-icon color-voilet">
+                        <i class="far fa-file-alt"></i>
+                     </div>
+                     <div class="list-item-main-info">
+                        <p class="list-item-title">
+                           <span class="designation-post">hr manager</span>
+                           <span class="rec-company">ux gorilla</span>
+                        </p>
+                        <div class="list-item-posted">
+                           <ul class="list-inline">
+                              <li>
+                                 <p>Location: <strong>Delhi</strong></p>
+                              </li>
+                              <li>
+                                 <p>CTC: <strong>12 lacs p.a.</strong></p>
+                              </li>
+                              <li>
+                                 <p>Fee: <strong>8% of ctc</strong></p>
+                              </li>
+                              <li>
+                                 <p>Deadline: <strong>26/06/2018</strong></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="list-item-view">
+                        <div class="bookmark-wrapper">
+                           <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+                           <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="list-item">
+                     <div class="list-feed-icon color-voilet">
+                        <i class="far fa-file-alt"></i>
+                     </div>
+                     <div class="list-item-main-info">
+                        <p class="list-item-title">
+                           <span class="designation-post">hr manager</span>
+                           <span class="rec-company">ux gorilla</span>
+                        </p>
+                        <div class="list-item-posted">
+                           <ul class="list-inline">
+                              <li>
+                                 <p>Location: <strong>Delhi</strong></p>
+                              </li>
+                              <li>
+                                 <p>CTC: <strong>12 lacs p.a.</strong></p>
+                              </li>
+                              <li>
+                                 <p>Fee: <strong>8% of ctc</strong></p>
+                              </li>
+                              <li>
+                                 <p>Deadline: <strong>26/06/2018</strong></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="list-item-view">
+                        <div class="bookmark-wrapper">
+                           <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+                           <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+                        </div>
+                     </div>
+                  </li> -->
+               </ul>
+            </div>
+            <pagination-controls *ngIf = "showPagination" (pageChange)="p = $event"></pagination-controls>
+
+         </div>
+      </div>
+      <!--feeds-end-->
+   </div>
+</section>

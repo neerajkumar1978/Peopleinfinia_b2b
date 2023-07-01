@@ -1,0 +1,163 @@
+.view-job-rec-wrapper {
+        background-color: #fff;
+    }
+
+    .view-job-rec-wrapper p {
+        padding: 10px 20px 0px;
+    }
+
+    .view-job-rec-table-head {
+        background-color: #2EBF63;
+    }
+
+    .view-job-rec-table-head ul {
+        display: block;
+        padding: 20px 40px;
+        color: #fff;
+    }
+
+    .view-job-rec-table-head ul li {
+        width: calc(100% / 8);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    /*list*/
+
+    .view-job-rec-table-list {
+        position: relative;
+        background-color: #fff;
+    }
+    .view-job-rec-table-list ul {
+        display: block;
+        padding: 40px 20px;
+        color: #333;
+    }
+    .view-job-rec-table-list ul li {
+        width: calc(100% / 8);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        vertical-align: top;
+    }
+    .view-resp-list-footer .btn{
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        border-radius: 0;
+    }
+
+    .view-job-rec-table-list label.check{
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+    }
+    .view-job-rec-wrapper .title-head p{
+       font-size: 23px;
+    font-weight: 500;
+    letter-spacing: 0.2px; 
+    }
+    
+    .view-job-rec-wrapper .title-head p span{
+           font-size: 16px;
+    font-weight: 600;
+    opacity: 0.5;
+    display: block;
+    }
+    
+    .status-bar{
+    position: absolute;
+    padding: 10px 20px;
+    z-index: 999;
+    top: -23px;
+    left: 17px;
+}
+    a.view-resp-btn {
+        color: #333;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-top: 60px;
+        font-weight: 600;
+    }
+    .view-job-rec-table-list-footer{
+        padding: 40px 0;
+    }
+    .view-job-rec-table-list-footer ol.edit-post{
+        margin-left: 20px;
+    }
+    
+    .view-job-rec-table-list-footer ol.edit-post a{
+        margin-right: 15px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .view-job-rec-wrapper .panel{
+        margin: 0;
+    }
+.field-job-proposal {
+    margin-left: 20px;
+}
+
+.panel-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.panel-table{
+    margin-top: 50px;
+    position: relative;
+}
+.panel-status-bar {
+    position: absolute;
+    padding: 10px 20px;
+    z-index: 999;
+    top: -23px;
+    left: 17px;
+}
+
+.job-deadline{
+    background-color: #F57070;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 12px;
+}.candidate-selected{
+    background-color: #709EF5;
+     text-transform: uppercase;
+    color: #fff;
+    font-size: 12px;
+}.closed-job{
+    background-color: #B7948C;
+     text-transform: uppercase;
+    color: #fff;
+    font-size: 12px;
+}
+
+@media (max-width: 550px) {
+.rwd-table tr {
+    border-top: 10px solid #F8F8F8;
+    border-bottom: 10px solid #F8F8F8;
+    background-color: #fff;
+}
+    .rwd-table td:first-child {
+    padding-top: 1.5em;
+}
+    .rwd-table td:last-child {
+    padding-bottom: 1.5em;
+}
+    .job-filter .field-job-proposal ul li {
+    width: 100%;
+    margin-right: 4%;
+}
+    .field-job-proposal ul li {
+	margin: 10px 0;
+}
+}
+@media (min-width: 480px){
+.rwd-table th:first-child, .rwd-table td:first-child {
+     padding: 1em 1em;
+}
+}

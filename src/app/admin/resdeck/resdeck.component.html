@@ -1,0 +1,248 @@
+
+<section>
+    <div class="col-md-3">
+       <div class="filter-job-proposal">
+           <!-- <h1>Resume (300/300)</h1> -->
+          <h4><i _ngcontent-c3=""></i> Filter</h4>
+        
+             <div class="field-job-proposal">
+                <ul>
+                   <li>
+                      <div class="form-group">
+                         <label>User Name</label>
+                         <input type="text" [(ngModel)]="userName" name="" class="form-control-cust" placeholder="User name">
+                      </div>
+                   </li>
+                   <li>
+                      <div class="form-group">
+                         <label>Location</label>
+                         <input type="text" [(ngModel)]="location" name="" class="form-control-cust" placeholder="Location">
+                      </div>
+                   </li>
+                    <li>
+                      <div class="form-group">
+                         <label>Current Organisation</label>
+                         <input type="text" [(ngModel)]="companyName" name="" class="form-control-cust" placeholder="Company name">
+                      </div>
+                   </li>
+                    <li>
+                     <div class="form-group">
+                      <label>Job Title</label>
+                         <input type="text" [(ngModel)]="jobTitle" name="" class="form-control-cust" placeholder="Job title">
+                     </div>
+                   </li>
+                    <li>
+                      <label>Candidate Status</label>
+                      <div class="select" >
+                         <select [(ngModel)]="status">
+                            <option value="">All</option>
+                            <option value="active">Active</option>
+                            <option value="0">Shortlisted</option>
+                            <option value="1">Interviewed</option>
+                            <option value="2">On Hold</option>
+                            <option value="4">Hired</option>
+                            <option value="6">Rejected</option>
+                         </select>
+                         <div class="select__arrow"></div>
+                      </div>
+                   </li>
+                   <!--  <li>
+                        <div class="form_field">
+                            <label>CTC</label>
+                            <input class="slider" id="myRange" max="100" min="1" type="range" value="50">
+                        </div>
+                    </li> -->
+                   <!--  <li>
+                      <div class="form-group">
+                         <label>Candidate's rating</label>
+                         <input type="text" name="" class="form-control-cust" placeholder="select no. of star">
+                      </div>
+                   </li> -->
+                </ul>
+                <!-- <p class="text-center">
+                   <a class="btn btn-success" routerLink="/recruiterHeader/sendProposal">Apply Filters</a>
+                </p> -->
+             </div>
+           </div>
+    </div>
+     
+     <div class="col-md-9">
+         <div class="row" id="select-opt-wrapper">
+             <div class="col-md-12">
+             <div class="select-opt-wrapper">
+                 <ul class="list-inline f-left">
+                 <li><a>2 selected</a></li>
+                 <li><a>Selected All</a></li>
+                 </ul>
+                 
+                 
+                 <ul class="list-inline f-right">
+                     <li><a class="btn btn-warning">Archieved Accounts</a></li>
+                      <li><a class="btn btn-success">Active Accounts</a></li>
+                   </ul>
+                 </div>
+             </div>
+         </div>
+           <table class="table table-responsive rwd-table">
+        <thead class="view-job-table-head white_color cst-table ng-star-inserted">
+                        <tr>
+                         <th>Name of candidate</th>
+                         <th>Applied for </th>
+                         <th>Consultant Name</th>
+                         <th>Company Name</th>
+                         <th>Job Location</th>
+                         <th>Current Company</th>
+                         <th>Status</th>
+                         <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let Cv of allCVS | restdeskSearch :userName : location : companyName : jobTitle : status | paginate: { itemsPerPage: 8, currentPage: page } ">
+                            <td>{{Cv.candidates.name}}</td>
+                            <td>{{Cv.job_id.job_title}}</td>
+                            <td>{{Cv.recruiter[0].user_name}}</td>
+                            <td>{{Cv.client[0].user_name}}</td>
+                            <td>{{Cv.job_id.Location}}</td>
+                            <td>{{Cv.candidates.current_organisation}}</td>
+                            <td>
+                                <a *ngIf = "(Cv.candidates.status === 'active')">Active</a>
+                                <a *ngIf = "(Cv.candidates.status === '0')">Shortlisted</a>
+                                <a *ngIf = "(Cv.candidates.status === '1')">Interviewed</a>
+                                <a *ngIf = "(Cv.candidates.status === '2')">On Hold</a>
+                                <a *ngIf = "(Cv.candidates.status === '4')">Hired</a>
+                                <a *ngIf = "(Cv.candidates.status === '6')">Rejected</a>
+                            </td>
+                            <td (click) = "setCV(Cv.candidates.cv)">
+                                 View Resume</td>
+
+                        </tr>
+                    </tbody>
+            </table>
+          <pagination-controls *ngIf= "showPagination" (pageChange)="page = $event"></pagination-controls>
+            
+            
+         
+                
+ <!-- <div class="view-job-list-content">
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle active-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle draft-stats"></i> pending</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle shortlst-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle reject-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle active-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle draft-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+     <div class="view-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span></li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">31st may,2018</span><br>
+             <span class="time">10:13 AM</span>
+             </li>
+             <li><span class="job-role">UX Designer</span>
+                         </li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle shortlst-stats"></i> active</span></li>
+                         
+                         <li><span class="send-mail theme_color"><a routerLink="/main/resumepdf" class="theme_color">View Resume</a></span></li>
+         </ul>
+     </div>
+     
+ </div> -->
+         
+         <!--footer-pagination-->
+    <!--      <div class="footer-pagination m-t-20">
+    <span>Showing 1 to 5 of 15 entries</span>
+    <ul class="pagination pull-right">
+       <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+       <li><a href="#" class="active">1</a></li>
+       <li><a href="#">2</a></li>
+       <li><a href="#">3</a></li>
+       <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+    </ul>
+ </div> -->
+     </div>
+     
+ </section>
+     

@@ -1,0 +1,229 @@
+.list-item-main-info{
+    width: 65%;
+}
+.list-item-main-info p{
+    float: left;
+}
+.list-item-main-info div {
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+button.back-btn {
+    background-color: transparent;
+    border: none;
+}
+.color-voilet {
+    background: #23B256;
+    background: linear-gradient(to right, #6867F9, #463DBB);
+    width: 100px;
+}
+.modal  {
+    /*   display: block;*/
+    padding-right: 0px;
+    background-color: rgba(4, 4, 4, 0.8);
+    }
+
+    .modal-dialog {
+                width: 100%;
+                max-width: 910px!important;
+        }
+        .modal-content {
+            width: 100%;
+                border-radius: 0px;
+                border: none;
+            margin: 0 auto;
+    top: 40%;
+            }
+            .modal-body {
+                    background-color: #fff;
+                padding:30px 0;
+             }
+.close{
+    margin-right: 40px;
+}
+.excel-importer-file{
+    text-align: center;
+}
+.excel-importer-file h6{
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+    margin-top: 40px;
+}
+.excel-importer-file p.note{
+    font-weight: 500;
+    color: #FFB43C;
+    font-size: 14px;
+    padding: 30px 0;
+}
+
+.uload-excel-resume{
+    background-color: #F0F0F0;
+    text-align: center;
+}
+.uload-excel-resume h6{
+    color: #A6ACB9;
+    font-weight: 500;
+    font-size: 14px;
+}
+.inputfile-box {
+  position: relative;
+}
+.excelFile button {
+    position: absolute;
+    padding: 0px 8px;
+    background: transparent;
+    border-radius: 50px;
+    top: 0;
+    right: 0;
+    color: red;
+}
+.inputfile-box label{
+    padding: 30px;
+    display: block;
+}
+.excelFile {
+    padding: 15px 0;
+    border: 1px solid #ccc;
+    position: relative;
+}
+.inputfile {
+  display: none;
+}
+
+.container {
+  display: inline-block;
+  width: 100%;
+}
+
+.file-box {
+  display: inline-block;
+      width: 300px;
+    height: 50px;
+  border: 1px solid #4B4B4B;
+  padding: 5px 0px 5px 5px;
+  box-sizing: border-box;
+}
+
+.file-button {
+  position: absolute;
+  text-align: center;
+  top: 10px;;
+    left: 0;
+    right:0;
+    font-weight: 400;
+}
+.error{
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.tick i{
+    color: #4cae4c;
+    font-size: 100px;
+    text-align: center;
+}
+/*modal-box-table-data*/
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+   padding: 10px 5px !important;
+    border-top: none;
+}
+
+.table-list-data thead tr th{
+    font-size: 14px;
+    text-align: left;
+}
+.table-list-data tbody tr td{
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+.cmpny-qualification p span{
+    display: block;
+    margin-left: 0px;
+}
+.cmpny-req-post-info h4{
+    line-height: 1 !important;
+}
+.cmpny-req-post-info {
+    margin: 20px 20px !important;
+    }
+.cmpny-req-post-info div{
+    float: left;
+    margin-right: 10px;
+}
+.list-feed-icon{
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    color: #fff;
+    font-size: 3vw;
+}
+.proposal-modal{
+    overflow-y: scroll !important;
+}
+.proposal-modal table tr{
+    border-bottom: 1px solid #ccc;
+}
+.alert-mine{
+    color: #e52727;
+}
+.pro-btn{
+    padding: 5px 10px !important;
+    float: left;
+}
+.my-replace{
+    width: 200px;
+    float: left;
+    margin-left: 5px;
+}
+@media (max-width: 550px) {
+    .feeds-title {
+    display: block;
+     text-align: left;
+    margin: 20px 0 0 0;
+}
+    #view-proposal {
+    padding: 0;
+}
+    .cmpny-req-post {
+    display: block;
+    }
+.cmpny-req-post>.cmpny-profile-img {
+    text-align: center;
+    display: block;
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+    .cmpny-req-post-info {
+    margin-left: 0 !important;
+    }
+    .cmpny-req-post-info h4 {
+    font-size: 12px;
+    }
+    .modal:before {
+        height: auto !important;
+    }
+    .modal-dialog{
+        margin: 10px 0px !important;
+    }
+    .modal-content{
+        margin: 0 0 0 5% !important;
+    }
+    .excel-importer-file{
+        overflow: scroll;
+    }
+}
+
+.btn-purple{
+  color: #ffff;
+    background-color: #761FB3;
+    border-color: #761FB3;
+}

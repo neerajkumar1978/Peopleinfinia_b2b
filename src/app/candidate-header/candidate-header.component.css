@@ -1,0 +1,38 @@
+@import url('../../assets/css/candidate.style.css');
+.rightSide {
+    right: 0px !important;
+    left: unset !important;
+    width:175px;
+}
+
+.avtar-btn{
+  padding: 0px;
+  width:66px!important;
+}
+
+.avtar-btn:hover{
+  background: transparent!important;
+}
+.avtar-btn img{
+  height:auto!important;
+}
+
+.opacity_show{
+    opacity: 1 !important;
+}
+.modal:before {
+    content: '';
+    display: block;
+    height: 0;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+.loginForm {
+    padding: 15px 30px 35px;
+}
+.right-header button:hover, .right-header button:active {
+    background-color: transparent !important;
+}
+a.dropdown-item {
+    font-size: 15px;
+}

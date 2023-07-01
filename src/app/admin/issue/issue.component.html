@@ -1,0 +1,302 @@
+<section>
+    <!--lead-deatail-->
+    <div class="row">
+        
+    <!--lead-deatail-container-->
+       
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <!--scheduled-interview-->
+   <div class="issue-view-wrapper">
+      <div class="heading-bar">
+          <span><a routerLink="/admin-home/admin_issues" class="f-right theme_color">+ my issues</a></span>
+         <h2>issue</h2>
+      </div>
+       <div class="top-tabber-grp-btn">
+           <ul class="nav nav-pills nav-justified">
+    <li class="active">
+    <a data-toggle="pill" href="#all"  (click)="CloseDetails()" class="new-user-show">New</a></li>
+    <li><a data-toggle="pill" href="#menu-1"  (click)="CloseDetails()" class="follow-up-show">Pending</a></li>
+    <li><a data-toggle="pill" href="#menu-2" (click)="CloseDetails()" class="follow-up-show">Resolved</a></li>
+    <li><a data-toggle="pill" href="#menu-3" (click)="CloseDetails()" class="follow-up-show">Closed</a></li>
+    <!-- <li><a data-toggle="pill" href="#menu1" class="follow-up-show"><i class="fas fa-search"></i></a></li> -->
+           </ul>
+       </div>
+      <div class="stepper">
+         <div class="tab-content">
+            <div id="all" class="tab-pane fade in active">
+               <!--job-fixed-wrapper-->
+               <ul class="pending-list-wrapper">
+                  <li *ngFor="let issue of newIssues | paginate: { itemsPerPage: 5, currentPage: page }">
+                      <div class="pending-list-content">
+                          <ol class="list-inline">
+                                <li><b>{{issue.issue.question}}</b></li>
+                               
+                                <li>{{issue.created_at | date: 'dd/MM/yyyy hh:mm a'}}</li>
+                                <li (click)=showPofile(issue.user,issue._id,issue.issue)><span class="my-action">view</span></li>
+                                <li class="issue">{{issue.user.user_name}}</li>
+                               </ol>
+                      </div>
+                  </li>
+                </ul>
+              <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+            </div>
+
+            <div id="menu-1" class="tab-pane fade">
+               <ul class="pending-list-wrapper">
+                  <li *ngFor="let issue of pendingIssues | paginate: { itemsPerPage: 5, currentPage: page1 }">
+                      <div class="pending-list-content">
+                          <ol class="list-inline">
+                                <li><b>{{issue.user.user_name}}</b></li>
+                                <li>{{issue.created_at | date: 'dd/MM/yyyy hh:mm a'}}</li>
+                                <li (click)=showPofile(issue.user,issue._id,issue.issue)><span class="my-action">view</span></li>
+
+                                <li class="issue">{{issue.issue.question}}</li>
+                               </ol>
+                      </div>
+                  </li>
+               </ul>
+               <pagination-controls *ngIf= "ShowPagination1" (pageChange)="page1 = $event"></pagination-controls>
+            </div>
+            <div id="menu-2" class="tab-pane fade">
+               <ul class="pending-list-wrapper">
+                  <li *ngFor="let issue of resolvedIssues | paginate: { itemsPerPage: 5, currentPage: page2 }">
+                      <div class="pending-list-content">
+                          <ol class="list-inline">
+                                <li><b>{{issue.user.user_name}}</b></li>
+                                <li>{{issue.created_at | date: 'dd/MM/yyyy hh:mm a'}}</li>
+
+                                <li (click)=showPofile(issue.user,issue._id,issue.issue) ><span class="my-action">view</span></li>
+                                <li class="issue">{{issue.issue.question}}</li>
+                               </ol>
+                      </div>
+                  </li>
+               </ul>
+               <pagination-controls *ngIf= "ShowPagination2" (pageChange)="page2 = $event"></pagination-controls>
+
+            </div>
+            <div id="menu-3" class="tab-pane fade">
+                    <ul class="pending-list-wrapper">
+                       <li *ngFor="let issue of closedIssues| paginate: { itemsPerPage: 5, currentPage: page3 } ">
+                           <div class="pending-list-content">
+                               <ol class="list-inline">
+                                <li><b>{{issue.user.user_name}}</b></li>
+                               <li>{{issue.created_at | date: 'dd/MM/yyyy hh:mm a'}}</li>
+                               <li (click)=showPofile(issue.user,issue._id,issue.issue)><span class="my-action">view</span></li>
+
+                               <li class="issue">{{issue.issue.question}}</li>
+                              </ol>
+                             
+                           </div>
+                       </li>
+                    </ul>
+                <pagination-controls *ngIf= "ShowPagination3" (pageChange)="page3 = $event"></pagination-controls>
+                 </div>
+         </div>
+      </div>
+   </div>
+</div>
+        
+        
+        <!--deatail status-timeline-->
+        <div *ngIf="ShowUser"  class="col-md-4">
+            <div class="row">
+            <div class="col-md-12">
+            <div class="select-opt-wrapper">
+                <ul class="list-inline f-left">
+                <li><a>Issue status</a></li>
+                </ul>
+                <!-- <ul class="list-inline f-right">
+                    <li><button type="button" class="btn btn-danger">Mark span</button></li>
+                  </ul> -->
+                </div>
+            </div>
+        </div>
+        <div class="lead-timeline">
+            <div class="issue-stats m-t-40">
+               <ul class="timeline">
+                  <li class="timeline-li">
+                     <p>Created.</p>
+                     <span>{{step1Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+                  <li *ngIf="Step2" class="timeline-li">
+                      
+                     <p>Reviewed</p>
+                     <span>{{step2Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+                  <li *ngIf="Step3" class="timeline-li">
+                   
+                     <p>Resolved.</p>
+                     <span>{{step3Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+                   <li *ngIf="Step4" class="timeline-li">
+                    
+                     <p>Closed.</p>
+                     <span>{{step4Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+               </ul>
+               <ul class="timeline">
+                <li *ngIf="!Step2" class="timeline2-li">
+                   <p>Reviewed</p>
+                   <span>{{step2Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                </li>
+                <li *ngIf="!Step3" class="timeline2-li">
+                   <p>Resolved.</p>
+                   <span>{{step3Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                </li>
+                 <li *ngIf="!Step4" class="timeline2-li">
+                   <p>Closed.</p>
+                   <span>{{step4Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+                </li>
+             </ul>
+            </div>
+            </div>
+            <div *ngIf="!Step4" class="main">
+                    <div *ngIf="!Step2">
+                            <button (click)="updateStatus('reviewed')">Reviewed</button>
+                         </div> 
+                <div *ngIf = "Step2">
+                    <div *ngIf= "Step3">
+                            <button (click)="updateStatus('closed')">Close</button>
+                    </div>
+                </div>
+                        <div *ngIf= "!Step4">
+                            <div *ngIf = "!Step3">
+                                <div *ngIf="Step2">
+                                   <button (click)="updateStatus('resolved')">Resolved</button>
+                                </div>
+                         </div>
+                    </div>
+              <!-- <ul class="mainnav">
+                   <li class="hassubs">
+                        <a >Actions</a>
+                        <ul class="dropdown">
+                            <li *ngIf="!Step2" class="subs hassubs">
+                               <div *ngIf="!Step2">
+                                   <button (click)="updateStatus('reviewed')">Reviewed</button>
+                                </div> 
+                            </li>
+                            <li *ngIf="!Step3"  class="subs hassubs">
+                                <button (click)="updateStatus('resolved')">Resolved</button>
+                            </li>
+                            <li *ngIf="!Step4"  class="subs hassubs">
+                                <button (click)="updateStatus('closed')">Close</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+            <!-- <div class="lead-timeline">
+            <div class="issue-stats m-t-40">
+               <ul class="timeline-issue">
+                  <li class="timeline-li">
+                      <div class="timeline-msg active">
+                      <p>{{userQuestion}}</p>
+                     <span class="f-right created-by">
+                          <ol class="list-inline">
+                         <li><b>Issue Created</b></li>
+                         <li>23 June</li>
+                         <li>3.50 PM</li>
+                         </ol>
+                          </span>
+                      </div>
+                  </li>
+                  <li class="timeline-li">
+                      <div class="timeline-msg">
+                     <p>Talked to the client regarding the issue.</p>
+                      <span class="f-right created-by">
+                          <ol class="list-inline">
+                         <li><b>You</b></li>
+                         <li>24 June</li>
+                         <li>11.00 AM</li>
+                         </ol>
+                          </span>
+                      </div>
+                  </li>
+                  <li class="timeline-li">
+                      <div class="timeline-msg">
+                     <p>resolvingthe Issue.</p>
+                     <span class="f-right created-by">
+                          <ol class="list-inline">
+                         <li><b>You</b></li>
+                         <li>24 June</li>
+                         <li>11.00 AM</li>
+                         </ol>
+                          </span>
+                      </div>
+                  </li>
+                   <li class="timeline-li">
+                       <div class="timeline-msg">
+                     <p>Reviewed the technical issue.</p>
+                     <span class="f-right created-by">
+                          <ol class="list-inline">
+                         <li><b>Admin</b></li>
+                         <li>24 June</li>
+                         <li>11.00 AM</li>
+                         </ol>
+                          </span>
+                       </div>
+                  </li>
+                  <li class="timeline-li">
+                      <div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="fas fa-plus"></i> Add Current status
+ </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Call Verification</a></li>
+    <li><a href="#">Contract Status</a></li>
+    <li><a href="#">Payment Status</a></li>
+  </ul>
+</div>
+                  </li>
+               </ul>
+            </div>
+            </div> -->
+            
+        </div>
+        
+        <!--client-details-->
+        
+        <div *ngIf="ShowUser" class="col-md-4">
+        
+            <div class="client-deatail-wrapper">
+            
+                <h2>User Deatails</h2>
+                
+                <!--1-->
+                <div class="info-block-client m-t-40">
+                    
+                <!-- <span><a routerlink="/main/userprofile/" class="f-right theme_color">View Profile</a></span> -->
+                <h4>{{username}}</h4>
+                <p>{{userID}}</p>
+                </div>
+                <!--2-->
+                <div class="info-block-client m-t-40">
+                <h4>Issue Created on</h4>
+                <p>23rd June,2018</p>
+                </div>
+                
+                <!--3-->
+                
+                <!--4-->
+                <div class="info-block-client m-t-40">
+                <h4>Contact details </h4>
+                <p>{{userContact}}</p>
+                <p>{{userEmail}}</p>
+                </div>
+                
+                <!--5-->
+                <!-- <div class="info-block-client m-t-40">
+                <h4>Comments by Alok Tiwari</h4>
+                    <div class="comment-box">
+                        <span class="f-right">23 June</span>
+                    <p>We have talked to the company for the staus on candidate.</p>
+                    </div>
+                </div>
+                 -->
+                <!--6-->
+                
+                <button class="btn btn-withdraw m-t-40" (click)="showProfile()" type="button">View Profile</button>
+            </div>
+            
+        </div>
+        </div>
+</section>

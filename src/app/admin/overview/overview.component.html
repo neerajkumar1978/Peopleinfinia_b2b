@@ -1,0 +1,369 @@
+<!--dashboard-->
+<section>
+  <div class="container-fuild">
+
+    <!--status-om-board-->
+    <div class="col-md-4">
+      <div class="status-on-board">
+        <ul>
+          <li>
+            <span class="value">{{totalConsultant}}</span>
+            <span class="text">Employer<br>On Board</span>
+          </li>
+          <li>
+            <span class="value">{{totolEmployer}}</span>
+            <span class="text">consultant<br>On Board</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--status-om-board-end-->
+
+    <!--acc-expire-soon-->
+    <div class="col-md-5">
+      <!-- <div class="wrapper-container">
+        <div class="title">
+           <p>Accounts Expiring Soon</p>
+        </div>
+        <div class="acc-expire-list">
+                 <ul>
+                    <li>
+                      <p><strong>Aman gautam</strong> <span class="f-right">23,june 2018</span></p>
+                    </li>
+                     <li>
+                      <p><strong>Aman gautam</strong> <span class="f-right">23,june 2018</span></p>
+                    </li>
+                     <li>
+                      <p><strong>Aman gautam</strong> <span class="f-right">23,june 2018</span></p>
+                    </li>
+                     <li>
+                      <p><strong>Aman gautam</strong> <span class="f-right">23,june 2018</span></p>
+                    </li>
+                 </ul>
+            <p class="more-list">
+            <a href="">+10 More</a>
+            </p>
+        </div>
+     </div> -->
+    </div>
+
+
+    <!--new-acc-graph-->
+    <div class="col-md-3">
+      <div class="wrapper-container" style="padding-bottom: 23px;">
+        <div class="title">
+          <p>New Accounts</p>
+        </div>
+        <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels2" [options]="barChartOptions"
+                [legend]="doughnutChartLabels2" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+
+        <!--
+       <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical> -->
+        <!--  <img src="assets/img/linegraph.png" width="298px" class="m-t-20 center-block"> -->
+      </div>
+    </div>
+
+    <!--new-acc-graph-end-->
+
+    <!--section-2-->
+
+    <!--active-acc-graph-->
+    <div class="col-md-4">
+      <div class="wrapper-container traslt-41" style="background-color:#FCFCFC;">
+        <div class="active-acc-status">
+          <div class="active-acc-head-bar">
+            <p>Active Accounts</p>
+            <!-- <div class="btn-group pull-right mt10" role="group" aria-label="...">
+             <a href="/ajax/subscribe.php?keyword=chillizone, pakistan" rel="nofollow" class="btn btn-success pad-0 subscribe cboxElement" title="Subscribe to email">Employer</a>
+           <button type="button" class="btn btn-default pad-0 toggle-visibility" id="btnfilter" data-target="#filterbox" title="Search Filter">Consultant</button>
+         </div> -->
+          </div>
+
+          <div class="status-content">
+            <div class="row">
+              <div class="col-md-6">
+                <div style="display: block">
+                  <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                          [chartType]="doughnutChartType" [colors]="doughnutChartColors"
+                          (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                  </canvas>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="active-acc-board">
+                  <span class="value">{{totalCount}}</span>
+                  <span class="text">Total Users<br>On Board</span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="list-inline p-20">
+              <!-- <li><span class="bg-theme"><i class="fas fa-square-full"></i></span> <small>Active Employer</small></li>
+             <li><span class="bg-theme-light"><i class="fas fa-square-full"></i></span> <small>Inactive Employer</small></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--active-acc-graph-end-->
+
+
+    <!--job-req-resume-->
+    <div class="col-md-3 m-t-20">
+      <div class="wrapper-container" style="padding-bottom: 35px;">
+        <div class="title">
+          <p>Job Requested/Resumes</p>
+        </div>
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                    [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--job-req-resume-end-->
+
+
+    <!--issue-->
+    <div class="col-md-5 m-t-20">
+      <div class="wrapper-container">
+        <div class="issue-wrapper">
+          <div class="active-acc-head-bar">
+            <p>Issue</p>
+            <div class="btn-group pull-right mt10" role="group" aria-label="...">
+              <button type="button" class="btn btn-success pad-0" (click)="changeArray('1')">Pending</button>
+              <button type="button" class="btn btn-success pad-0" (click)="changeArray('2')">New</button>
+              <button type="button" class="btn btn-success pad-0" (click)="changeArray('3')">Resolved</button>
+            </div>
+          </div>
+
+          <!--issue-list-->
+          <div class="issue-list">
+            <ul>
+              <li *ngFor="let issue of showingArray| slice:0:5; let i=index">
+                <div class="issue-description">
+                  <p>{{issue.issue.question}}</p>
+                  <span class="date">{{issue.created_at | date: 'dd/MM/yyyy'}}</span>
+                </div>
+                <div class="inquire-bell">
+                  <p><a data-toggle="modal" routerLink="/admin-home/issue"><i class="far fa-bell"></i> Action</a></p>
+                  <!-- <a data-toggle="modal" data-target="#modal-response"><span class="response bg-theme">1 Response</span></a> -->
+                </div>
+              </li>
+            </ul>
+            <p class="more-list">
+              <a routerLink="/admin-home/issue" class="more-list">See All</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--issue-end-->
+
+
+    <!--section-3-->
+
+    <!--new-posted-jobs-->
+    <div class="clearfix"></div>
+    <div class="col-md-4">
+      <div class="wrapper-container">
+        <div class="title">
+          <p>New Posted Jobs</p>
+        </div>
+        <div class="new-posted-jobs-list">
+          <ul class="feed-post">
+            <li *ngFor="let feed of dashboardJobs| slice:0:2; let i=index" class="list-item"
+                routerLink="/admin-home/viewJob/{{feed._id}}">
+              <div class="list-feed-icon color-voilet">
+                <i class="far fa-file-alt"></i>
+              </div>
+              <div class="list-item-main-info">
+                <div class="list-item-title">
+                  <p class="designation-post">{{feed.job_title}}
+                    <!-- <span class="rec-company">{{}}</span> -->
+                  </p>
+                </div>
+                <!-- <div *ngFor="let item of feed.industry | slice:0:2; let i=index">{{item.value}} </div> -->
+
+                <div class="list-item-posted">
+                  <ul class="list-inline">
+                    <li *ngIf="feed.Location">
+                      <p>Location: <strong *ngFor="let location of feed.Location">{{feed.Location.length > 1 ? location.value + ', ' : location.value }}</strong></p>
+                    </li>
+                    <li>
+                      <p>CTC: <strong>{{feed.ctc_min}}-{{feed.ctc_max}}</strong></p>
+                    </li>
+                    <!-- <li>
+                          <p>Fee: <strong>{{feed.commission}}% of ctc</strong></p>
+                       </li> -->
+                    <li>
+                      <p>Deadline: <strong>{{feed.deadline}}</strong></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="list-item-view">
+                <div class="bookmark-wrapper">
+                  <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p class="more-list">
+            <a routerLink="/admin-home/manageJobs" class="more-list"> More</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--new-posted-jobs-end-->
+
+
+    <!--new-approval-list-->
+    <div class="col-md-3">
+      <div class="wrapper-container">
+        <div class="title">
+          <p>New Approval Requests</p>
+        </div>
+        <div class="new-approval-list">
+          <ul>
+            <!-- routerLink="/admin-home/viewJobs/{{feed._id}}" -->
+            <li *ngFor="let user of pendingUser |   orderBy: key:!reverse:'case-insensitive' | slice:0:2; let i=index"
+                class="list-item">
+              <div class="list-wrapper">
+                <div class="list-description">
+                  <h4>{{user.user_name}}</h4>
+                  <p>{{user.type}} {{user.user_id}}</p>
+                  <span>Signup on {{user.created_at | date: 'dd/MM/yyyy'}}</span>
+                </div>
+
+                <div routerLink="/admin-home/profilereport/{{user._id}}" class="list-stats">
+                  <p class="sts">view</p>
+                </div>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--modal pop-up-->
+
+<!-- Modal-inquire-->
+<div id="modal-overview-inquire">
+  <div class="modal fade" id="modal-inquire" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="row">
+          <div class="modal-body">
+            <div class="close  cls-cstm">
+              <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png"></a>
+            </div>
+
+            <!--inquire-modal-->
+            <div class="inquire-modal-content modal-pad">
+              <div class="list-wrapper">
+                <div class="posted-pic">
+                  <img src="https://via.placeholder.com/70x70" class="thumbnail">
+                </div>
+                <div class="list-description">
+                  <h4>Aman Gautam</h4>
+                  <p>UX Gorilla, Employer</p>
+                  <span>signed uo on 16 july</span>
+
+                  <div class="list-stats">
+                    <p class="sts">Pending</p>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <p class="note">Account is pending due to Incomplete of Document and the Fee.</p>
+              <div class="clear-both"></div>
+              <div class="text-center m-t-40">
+                <ul class="list-inline">
+                  <li><a class="btn btn-success">Change Status <i class="fas fa-angle-down"></i></a></li>
+                  <li><a class="btn btn-purple"><i class="far fa-bell"></i> Inquire status for Manager</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal-response -->
+<div id="modal-overview-inquire">
+  <div class="modal fade" id="modal-response" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="row">
+          <div class="modal-body">
+            <div class="close  cls-cstm">
+              <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png"></a>
+            </div>
+
+            <!--response-modal-->
+            <div class="inquire-modal-content modal-pad">
+              <div class="list-wrapper">
+                <div class="posted-pic">
+                  <img src="https://via.placeholder.com/70x70" class="thumbnail">
+                </div>
+                <div class="list-description">
+                  <h4>Aman Gautam</h4>
+                  <p>UX Gorilla, Employer</p>
+                  <span>signed uo on 16 july</span>
+
+                  <div class="list-stats">
+                    <p class="sts">Pending</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="msg-response">
+              <div class="msg-resp-1">
+                <p>My candidate has completed the contract period but my payment is not released yet.</p>
+                <span>23 June</span>
+              </div>
+              <div class="msg-resp-2">
+                <div class="user-prf">
+                  <img src="https://via.placeholder.com/70x70">
+                  <p>Sumit</p>
+                </div>
+                <p>Failed to reach client for more information regarding the issue</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

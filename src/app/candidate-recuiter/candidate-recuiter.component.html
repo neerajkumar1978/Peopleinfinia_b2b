@@ -1,0 +1,398 @@
+
+<div class="candidate-rec-wrapper">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+         <div class="row">
+            <div class="col col-xs-6">
+               <p class="panel-title">Candidates</p>
+            </div>
+            <div class="col col-xs-6 text-right">
+               <!-- <span class="m-t-10"><a class="export_data">Export Data</a></span> -->
+            </div>
+         </div>
+      </div>
+      </div>
+</div>
+
+
+<!--candidate-rec-list-content-->
+
+<div class="candidate-rec-list-content">
+      <table class="candidate-list-view-table rwd-table">
+              <thead class="view-job-rec-table-head white_color cst-table">
+                       <tr>
+                          <th>Name</th>
+                          <th>Location</th>
+                          <th>Phone No.</th>
+                          <th>Current Application </th>
+                          <th>Status</th>
+                          <th>Action</th>
+
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor = "let manage of showCandidates | paginate: { itemsPerPage: 12, currentPage: page }" >
+                           <td data-th="Name">{{manage.candidates.name}}</td>
+                          <!-- <td data-th="Location">{{manage.job_id[0].Location}}</td>-->
+                          <td data-th="Loaction" *ngIf="manage.job_id && manage.job_id[0] && manage.job_id[0].Location"><span *ngFor="let loc of manage.job_id[0].Location; let i=index"> <span *ngIf="i <  3">{{loc.value}},</span></span><span *ngIf="manage.job_id[0].Location.length > 3">...</span></td>
+                           <td data-th="Phone No.">{{manage.candidates.phone_number}}</td>
+                           <td data-th="Current Application">{{manage.job_id[0].job_title}}</td>
+                           <td data-th="Status">
+                              <a *ngIf = "manage.candidates.status === '0'">Shortlisted</a>
+                              <a *ngIf = "manage.candidates.status === '1'">Interviewed</a>
+                              <a *ngIf ="manage.candidates.status === '2'">On Hold</a>
+                              <a *ngIf = "manage.candidates.status === '5'">Rejected</a>
+                              <a *ngIf = "manage.candidates.status === '4'">Hired</a>
+                             </td>
+                           <td data-th="Action">
+                            <a class="btn btn-withdraw" (click)="withdrawModalOpen(manage._id,manage.candidates._id)">Withdraw Candidate</a>
+                            </td>
+                        </tr>
+                     </tbody>
+                   </table>
+                   <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+                 </div>
+    <!--candidate-rec-list-->
+   <!--  <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline" *ngFor="let manageCandidate of manageCandidates">
+
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>{{manageCandidate.candidates.name}}</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>{{manageCandidate.Location}}</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>{{manageCandidate.candidates.email}}</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>{{manageCandidate.job_title}} at   {{manageCandidate.industry}}
+                           </p>
+
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p *ngIf="manageCandidate.candidates.status == 1">interviewed</p>
+                           <p *ngIf="manageCandidate.candidates.status == 0">Shortlisted for interview</p>
+                           <p *ngIf="manageCandidate.candidates.status == 4">Hired</p>
+                           <p *ngIf="manageCandidate.candidates.status == 2">onhold</p>
+
+
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div> -->
+
+    <!--
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+
+    <div class="candidate-rec-table-list m-t-50">
+        <ul class="list-inline">
+              <li class="row-1 row-name">
+                     <div class="candidate-name">
+                        <p>Aman Gautam</p>
+                        <a class="view-resume"><b>View Resume</b></a>
+                     </div>
+                  </li>
+                  <li class="row-2 row-laocation">
+                     <div class="city">
+                         <p>Delhi, Gurugram,Mumbai</p>
+                     </div>
+                  </li>
+                  <li class="row-3 row-phone">
+                     <div class="contact">
+                        <p>+91-123456789</p>
+                     </div>
+                  </li>
+                  <li class="row-4 row-application">
+                     <div class="aplication-for">
+                           <p>UX Designer at UX Gorilla</p>
+                           <p>Senior Design manger at Indigo</p>
+                           <p>Design lead at Samsung</p>
+                     </div>
+                  </li>
+                  <li class="row-5 row-status">
+                     <div class="aplication-status">
+                           <p>Under Review by EY</p>
+                           <p>Ey Qualified</p>
+                           <p>Shortlisted for interview</p>
+                     </div>
+                  </li>
+        </ul>
+
+        <div class="candidate-rec-table-list-footer">
+            <ol class="list-inline edit-post">
+            <li><a class="btn btn-withdraw" (click)="withdrawModal.show()">Withdraw Candidate</a></li>
+                <li><a class="btn btn-success">Schedule Interview</a></li>
+            </ol>
+      </div>
+    </div>
+
+  -->
+
+<!-- <div class="footer-pagination m-t-20">
+   <span>Showing 1 to 5 of 15 entries</span>
+   <ul class="pagination pull-right">
+      <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+      <li><a href="#" class="active">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+   </ul>
+</div> -->
+
+
+<!--modal pop-up-->
+<div bsModal #withdrawModal="bs-modal" class="modal fade warning-modal" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <!-- <div class="modal fade warning-modal" tabindex="-1" role="dialog" aria-labelledby="warning-modal"> -->
+   <div class="modal-dialog">
+      <div class="modal-content modal-pad">
+         <div class="row">
+            <div class="modal-body text-center warning-msg">
+               <div class="close">
+                  <a><img (click)="withdrawModal.hide()" src="../../assets/img/cancel.png" ></a>
+               </div>
+               <h6>Are you sure you want to withdraw candidate.</h6>
+               <p>We don't appriciate this behaviour.</p>
+               <p class="note">caution: Doing this may get you blacklited from our portal.</p>
+               <div class="clear-both"></div>
+               <div class="text-center m-t-40">
+                  <ul class="list-inline">
+                     <li><a (click)="withdrawModal.hide()" class="btn btn-purple">Cancel</a></li>
+                     <li><a (click)="withdrawCandi()" class="btn btn-danger">Proceed</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

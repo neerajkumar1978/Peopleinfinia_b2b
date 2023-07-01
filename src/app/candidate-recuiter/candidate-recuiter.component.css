@@ -1,0 +1,206 @@
+.close{
+     margin-right: 40px; 
+}
+.view-job-rec-table-head {
+    background-color: #2EBF63;
+}    
+.candidate-rec-wrapper {
+        background-color: #fff;
+    }
+
+    .candidate-rec-wrapper p {
+        padding: 10px 20px 0px;
+    }
+
+    .candidate-rec-table-head {
+        background-color: #2EBF63;
+    }
+
+    .candidate-rec-table-head ul {
+        display: block;
+        padding: 20px 40px;
+        color: #fff;
+    }
+
+    .candidate-rec-table-head ul li {
+        width: calc(100% / 5);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    /*list*/
+
+    .candidate-rec-table-list {
+        position: relative;
+        background-color: #fff;
+    }
+    .candidate-rec-table-list ul {
+        display: block;
+        padding: 40px 20px;
+        color: #333;
+    }
+    .candidate-rec-table-list ul li {
+        width: calc(100% / 5);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        vertical-align: top;
+    }
+    .view-resp-list-footer .btn{
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        border-radius: 0;
+    }
+
+    .candidate-rec-table-list label.check{
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+    }
+    .candidate-rec-wrapper .title-head p{
+       font-size: 23px;
+    font-weight: 500;
+    letter-spacing: 0.2px; 
+    }
+    
+    .candidate-rec-wrapper .title-head p span{
+           font-size: 16px;
+    font-weight: 600;
+    opacity: 0.5;
+    display: block;
+    }
+    
+    .status-bar{
+    position: absolute;
+    padding: 10px 20px;
+    z-index: 999;
+    top: -23px;
+    left: 17px;
+}
+    a.view-resp-btn {
+        padding: 10px 30px;
+        color: #333;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-top: 60px;
+        font-weight: 600;
+    }
+    .candidate-rec-table-list-footer{
+        padding: 40px 0;
+    }
+    .candidate-rec-table-list-footer ol.edit-post{
+        margin-left: 20px;
+    }
+    
+    .candidate-rec-table-list-footer ol.edit-post a{
+        margin-right: 15px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .candidate-rec-wrapper .panel{
+        margin: 0;
+    }
+
+
+.close{
+    margin-right: 40px;
+}
+.warning-msg{
+    text-align: center;
+}
+.warning-msg h6{
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+    margin-top: 40px;
+}
+.warning-msg p.note{
+    font-weight: 500;
+    color: #FFB43C;
+    font-size: 14px;
+    padding: 30px 0;
+}
+               
+.uload-excel-resume{
+    background-color: #F0F0F0;
+    padding: 20px;
+    text-align: center;
+}
+.uload-excel-resume h6{
+    color: #A6ACB9;
+    font-weight: 500;
+    font-size: 14px;
+}
+.inputfile-box {
+  position: relative;
+}
+
+.inputfile {
+  display: none;
+}
+
+.container {
+  display: inline-block;
+  width: 100%;
+}
+
+.file-box {
+  display: inline-block;
+      width: 300px;
+    height: 50px;
+  border: 1px solid #4B4B4B;
+  padding: 5px 0px 5px 5px;
+  box-sizing: border-box;
+}
+
+.file-button {
+  position: absolute;
+  text-align: center;
+  top: 10px;;
+    left: 0;
+    right:0;
+    font-weight: 400;
+}
+.error{
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.tick i{
+    color: #4cae4c;
+    font-size: 100px;
+    text-align: center;
+}
+
+.warning-msg ul li{
+    display: inline-block;
+    vertical-align: middle;
+}
+@media (max-width: 550px) {
+.rwd-table tr {
+    border-top: 10px solid #F8F8F8;
+    border-bottom: 10px solid #F8F8F8;
+    background-color: #fff;
+}
+    .rwd-table td:first-child {
+    padding-top: 1.5em;
+}
+    .rwd-table td:last-child {
+    padding-bottom: 1.5em;
+}
+    .close{
+    margin-right: 0px;
+}
+}
+
+@media (min-width: 480px){
+.rwd-table th:first-child, .rwd-table td:first-child {
+     padding: 1em 1em;
+}
+}

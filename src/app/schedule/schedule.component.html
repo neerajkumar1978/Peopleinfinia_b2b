@@ -1,0 +1,205 @@
+<div class="col-md-8 col-sm-8 col-xs-12">
+    <!-- <div class="client-schedule-wrapper"> -->
+    <ng-template #modalContent let-close="close">
+        <div class="modal-header">
+            <h5 class="modal-title">Event action occurred</h5>
+            <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                Action:
+                <pre>{{ modalData?.action }}</pre>
+            </div>
+            <div>
+                Event:
+                <pre>{{ modalData?.event | json }}</pre>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+        </div>
+    </ng-template>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div class="btn btn-purple" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    Previous
+                </div>
+                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                    Today
+                </div>
+                <div class="btn btn-purple" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    Next
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group">
+                <div class="btn btn-purple" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month">
+                    Month
+                </div>
+                <div class="btn btn-purple" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
+                    Week
+                </div>
+                <div class="btn btn-purple" (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day">
+                    Day
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="Interview.show(); handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-day-view>
+    </div>
+
+</div>
+
+<div *ngIf="editMode" class="col-md-4 col-sm-8 col-xs-12">
+    <div class="calender-event-side-view">
+        <div class="candidate-resume-action">
+            <div class="resume-action-head">
+                <h4>Schedule Interview</h4>
+            </div>
+
+            <div  class="schedule-interview-slot m-t-40">
+             <form [formGroup]="userDetailsForm"  submitted novalidate>
+
+                    <div class="form-group">
+                        <label class="control-label">Title</label>
+                    <input formControlName="title" placeholder="Job Title" aria-label="title" class="form-control-cust" type="text" [readonly] = "editMode">
+                       <div *ngIf="submitted && userDetailsForm.controls.title.hasError('required')" class="alert alert-danger">
+                           Title Required
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mode Of Interview
+                         <select aria-label="category" formControlName = 'mode' placeholder = 'Category' class="form-control-selct" >
+
+                                     <option value="{{mod.value}}" *ngFor = 'let mod of modes' >{{mod.value}}</option>
+
+                                 </select>
+                                 <div *ngIf="submitted && userDetailsForm.controls.mode.hasError('required')" class="alert alert-danger">Mode of Interview Required</div>
+                             </label>
+                       </div>
+                    <div class="form-group">
+                        <label class="control-label">Shortlist Candidate Name</label>
+                        <input formControlName="name" placeholder="Candidate Name" aria-label="name" class="form-control-cust" type="text" [readonly] = "editMode">
+                       <div *ngIf="submitted && userDetailsForm.controls.name.hasError('required')" class="alert alert-danger">
+                           Name Required
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Location</label>
+                         <input formControlName="location" placeholder="Location" aria-label="location" class="form-control-cust" type="text">
+                       <div *ngIf="submitted && userDetailsForm.controls.location.hasError('required')" class="alert alert-danger">
+                           Location Required
+                          </div>
+                    </div>
+                    <div *ngIf = "rescheduleForm">
+                     <div class="form-group" *ngIf = "hideReason" >
+                        <label class="control-label">Availability Period</label>
+                         <input formControlName="period" placeholder="period" aria-label="location" class="form-control-cust" type="text">
+                        </div>
+                    </div>
+                    <div *ngIf = "rescheduleForm">
+                        <div class="form-group"  *ngIf = "hideReason">
+                        <label class="control-label">Reason for reschedule</label>
+                         <input formControlName="reason" placeholder="Reason" aria-label="location" class="form-control-cust" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Date and Time</label>
+                        <!-- <p-calendar formControlName="date" [minDate] = "min" showTime="true" hourFormat="24" class="form-control-cust"></p-calendar> -->
+                        <!-- <angular2-date-picker formControlName="date"
+                                                [settings]="dobSettings"
+                                               (onDateSelect)="onDateSelect($event)" name="skills" class="form-control-cust">
+                        </angular2-date-picker> -->
+                      <!-- <input formControlName="date" [owlDateTime]="dt1" [min]="min" [owlDateTimeTrigger]="dt1" placeholder="Date Time" class="form-control-cust"> -->
+                      <input formControlName="date" type="datetime-local"  placeholder="Date Time" class="form-control-cust">
+                        <owl-date-time #dt1></owl-date-time>
+                       <div *ngIf="submitted && userDetailsForm.controls.date.hasError('required')" class="alert alert-danger">
+                           Date & Time Required
+                          </div>
+                    </div>
+                     <!-- <div class="form-group">
+                        <label class="control-label">Time</label>
+                       <input formControlName="time" placeholder="Time" aria-label="time" class="form-control" type="time">
+                       <div *ngIf="submitted && userDetailsForm.controls.time.hasError('required')" class="alert alert-danger">
+                           Time Required
+                          </div>
+                    </div> -->
+                    <!-- <div class="form-group">
+                        <label class="control-label">Notes</label>
+                        <input name="" type="text" placeholder="" class="form-control-cust">
+                    </div> -->
+                    <div *ngIf = "rescheduleForm" >
+                      <button  (click) = "rescheduleRequest()" class="btn-block btn btn-purple">Reschedule</button>
+                    </div>
+                    <div *ngIf = "!rescheduleForm" >
+                      <button  (click)="onSubmit()"  aria-label="submit" class="btn-block btn btn-purple">Save Slot</button>
+                    </div>
+                </form>
+             </div>
+           <!--  <div class="move-next-candiadte">
+                <a class="btn-block btn btn-purple">save Slot</a>
+                <a class="btn-block btn btn-outline">Discard</a>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<div bsModal #Interview="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" id="subscribeModal">
+      <div class="modal-dialog signup_popup_inner_wrapper  modal-md">
+         <!-- Modal content-->
+         <div class="modal-content ">
+              <div class="modal-body text-center">
+                  <div class="close  cls-cstm" (click)="Interview.hide()" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);"><a ><img src="assets/img/cancel.png"></a></div>
+				<div class="top-strip"></div>
+                  <h3><b>Interview</b></h3>
+                <div class="contact_form">
+                      {{CandiName}} Position <br> on <br> <span class="status-call">{{jobTitle | date: 'dd/MM/yyyy'}}, {{jobTitle | date :'hh:mm a'}} </span>
+                      </div>
+                  <br>
+                <p class="text-center"><button (click)="Interview.hide()" class="btn btn-purple"> Okay </button></p>
+                <p class="text-center"><button (click)="reschedule() ; Interview.hide()" class="btn btn-purple"> Reschedule </button></p>
+				<div class="bottom-strip"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+
+    </div>
+    <div>
+      Event:
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+  </div>
+</ng-template>

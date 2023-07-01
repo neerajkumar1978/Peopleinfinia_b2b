@@ -1,0 +1,283 @@
+<section class="padd-section">
+   <div class="main_head">
+      <h3>Support Issues</h3>
+   </div>
+   <!-- raise_an_issue -->
+   <!-- <div class="raise_an_issue_wrapper">
+      <div class="raise_an_button hidden-xs">
+         <a class="btn_round" data-toggle="modal" data-target=".raise-issue" (click)="modal.show()"><i class="fas fa-plus"></i></a>
+      </div>
+      <div class="raise_an_content">
+         <h4 class="theme_color hidden-lg hidden-md hidden-sm btn btn-success"data-toggle="modal" data-target=".raise-issue" (click)="modal.show()"><i class="fas fa-plus"></i> Raise an Issues</h4>
+         <div class="hidden-xs">Raise an Issues</div>
+         <p>Facing problem with candidate, jobs and the dashboard we will be happy to assist you.</p>
+      </div>
+   </div> -->
+   <!-- raise_an_issue_end -->
+   <div class="support_query_box">
+      <div class="gapping_in_bw">
+         <table class="candidate-list-view-table candidate-table">
+            <thead>
+             <tr>
+               <th>Issues</th>
+               <th style="text-align: center">Action</th>
+            </tr>
+           </thead>
+       <tbody>
+                <tr *ngFor = "let query of issues ">
+                  <td *ngIf="query.status === 'active' && query.question.trim().length" data-th="Candidate Name" >{{query.question}}</td>
+                  <td data-th="Actions" align="center">
+                  <button *ngIf="query.status === 'active' && query.question.trim().length" (click) = "submitQuery(query._id, query.question)" class="button btn-outline">Submit Query</button>
+               </td>
+           </tr>
+         </tbody>
+
+      </table>
+
+         <!-- <div class="heading">
+            <h5>Issues</h5>
+         </div>
+         <div class="questing_listing">
+            <p>Candidate did not trun up for intrerview.</p>
+            <a href="javascipt:void(0);">Submit Query</a>
+         </div>
+
+         <div class="questing_listing">
+            <p>Candidate accepted job offer but did not join.</p>
+            <a href="javascipt:void(0);">Submit Query</a>
+         </div>
+         <div class="questing_listing">
+            <p>Candidate joined but left before the contract period.</p>
+            <a href="javascipt:void(0);">Submit Query</a>
+         </div>
+         <div class="questing_listing">
+            <p>I am unhappy with the performance.</p>
+            <a href="javascipt:void(0);">Submit Query</a>
+         </div> -->
+      </div>
+   </div>
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <h4 class="panel-title">Previous Issues</h4>
+      <div *ngFor = "let issue of userIssues | paginate: { itemsPerPage: 5, currentPage: page2 }">
+         <span class="prv-issue">{{issue.issue.question}}</span>
+         <button (click)="viewStatus(issue)" class="btn btn-success ps-btn" style="float: right;">View</button>
+      </div>
+
+   </div>
+   <pagination-controls *ngIf= "ShowPagination" (pageChange)="page2 = $event"></pagination-controls>
+   <div *ngIf="ShowStatus"  class="col-md-4">
+      <div class="row">
+      <div class="col-md-12">
+      <div class="select-opt-wrapper">
+          <ul class="list-inline f-left">
+          <li><a>Issue status</a></li>
+          </ul>
+          <!-- <ul class="list-inline f-right">
+              <li><button type="button" class="btn btn-danger">Mark span</button></li>
+            </ul> -->
+          </div>
+      </div>
+  </div><div class="lead-timeline">
+   <div class="issue-stats m-t-40">
+      <ul class="timeline">
+         <li class="timeline-li">
+            <p>Created.</p>
+            <span>{{step1Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+         </li>
+         <li *ngIf="Step2" class="timeline-li">
+
+            <p>Reviewed</p>
+            <span>{{step2Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+         </li>
+         <li *ngIf="Step3" class="timeline-li">
+
+            <p>Resolved.</p>
+            <span>{{step3Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+         </li>
+          <li *ngIf="Step4" class="timeline-li">
+
+            <p>Closed.</p>
+            <span>{{step4Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+         </li>
+      </ul>
+      <ul class="timeline">
+       <li *ngIf="!Step2" class="timeline2-li">
+          <p>Reviewed</p>
+          <span>{{step2Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+       </li>
+       <li *ngIf="!Step3" class="timeline2-li">
+          <p>Resolved.</p>
+          <span>{{step3Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+       </li>
+        <li *ngIf="!Step4" class="timeline2-li">
+          <p>Closed.</p>
+          <span>{{step4Time |  date: 'dd/MM/yyyy hh:mm a'}}</span>
+       </li>
+    </ul>
+   </div>
+   </div>
+   </div>
+   <!-- Previus Issues -->
+   <!-- <div *ngFor = "let issue of userIssues" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+               {{issue.issue.question}}
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+               <div class="questing_listing">
+                     <p>Candidate did not trun up for intrerview.</p>
+                     <a href="javascipt:void(0);"><i class="fas fa-chevron-down"></i></a>
+                     <div></div>
+                     <div class="issue-stats m-t-40">
+                        <ul class="timeline">
+                           <li>
+                              issue created
+                              <span>15 june 2018, 06:50 PM</span>
+                           </li>
+                           <li>
+                              Reviewed
+                              <span>16 june 2018, 11:00 AM</span>
+                           </li>
+                           <li>
+                              Resolved
+                              <span>17 june 2018, 10:00 AM</span>
+                           </li>
+                           <li>
+                              Closed
+                              <span>17 june 2018, 08:50 PM</span>
+                           </li>
+                        </ul>
+                        <ul class="timeline">
+                           <li>
+                              issue created
+                              <span>15 june 2018, 06:50 PM</span>
+                           </li>
+                           <li>
+                              Reviewed
+                              <span>16 june 2018, 11:00 AM</span>
+                           </li>
+                           <li>
+                              Resolved
+                              <span>17 june 2018, 10:00 AM</span>
+                           </li>
+                           <li>
+                              Closed
+                              <span>17 june 2018, 08:50 PM</span>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+   <!-- <div class="support_query_box" id="previous_issues">
+      <div class="gapping_in_bw">
+         <div class="heading">
+            <h5>Previus Issues</h5>
+         </div>
+         <div class="questing_listing">
+            <p>Candidate did not trun up for intrerview.</p>
+            <a href="javascipt:void(0);"><i class="fas fa-chevron-down"></i></a>
+            <div></div>
+            <div class="issue-stats m-t-40">
+               <ul class="timeline">
+                  <li>
+                     issue createdcvbcbcvbcv
+                     <span>15 june 2018, 06:50 PM</span>
+                  </li>
+                  <li>
+                     Reviewed
+                     <span>16 june 2018, 11:00 AM</span>
+                  </li>
+                  <li>
+                     Resolved
+                     <span>17 june 2018, 10:00 AM</span>
+                  </li>
+                  <li>
+                     Closed
+                     <span>17 june 2018, 08:50 PM</span>
+                  </li>
+               </ul>
+               <ul class="timeline">
+                  <li>
+                     issue createdcvbcbcvbcv
+                     <span>15 june 2018, 06:50 PM</span>
+                  </li>
+                  <li>
+                     Reviewed
+                     <span>16 june 2018, 11:00 AM</span>
+                  </li>
+                  <li>
+                     Resolved
+                     <span>17 june 2018, 10:00 AM</span>
+                  </li>
+                  <li>
+                     Closed
+                     <span>17 june 2018, 08:50 PM</span>
+                  </li>
+               </ul>
+            </div>
+         </div>
+
+         <div class="questing_listing">
+            <p>Candidate accepted job offer but did not join.</p>
+            <a href="javascipt:void(0);"><i class="fas fa-chevron-down"></i></a>
+         </div>
+
+         <div class="questing_listing">
+            <p>Candidate joined but left before the contract period.</p>
+            <a href="javascipt:void(0);"><i class="fas fa-chevron-down"></i></a>
+         </div>
+
+         <div class="questing_listing">
+            <p>I am unhappy with the performance.</p>
+            <a href="javascipt:void(0);"><i class="fas fa-chevron-down"></i></a>
+         </div>
+
+      </div>
+   </div> -->
+</section>
+<!--roter-->
+<!--POPUP-->
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog">
+      <div class="modal-content modal-pad">
+          <div  class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);"><a  aria-hidden="true" data-dismiss="modal"><img  src="assets/img/cancel.png"></a></div>
+         <div class="modal-body">
+            <div class="raise-an-issue-head">
+               <p>Raise an issue</p>
+               <span>Facing problem with candidate, jobs and the dashboard we will be happy to assist you.</span>
+            </div>
+            <div class="raise-an-issue-msg m-t-20">
+               <form>
+                  <div class="form-group">
+                     <label class="control-label">Title</label>
+                     <input name="" type="text" placeholder="" class="form-control-cust">
+                  </div>
+                  <!--job-description-textbox-->
+                  <div class="description-text-box">
+                     <div class="form_field">
+                        <label>Description</label>
+                        <textarea></textarea>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="clear-both"></div>
+            <div class="m-t-20">
+               <span class="text-left add-screenshot"><a><img src="https://png.icons8.com/small/100/666666/plus-math.png" width="10px" height="auto"></a>Share relevant screenshot</span>
+               <a class="btn btn-purple pull-right">Plan Now</a>
+               <div class="clear-both"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,73 @@
+<style>
+    .toast{
+        opacity:1 !important;
+    }
+</style>
+<div id="recruiter-sign-up">
+  <div class="signup-box">
+     <!--heading-text-->
+     <h1>{{LoginAccount}}</h1>
+     <div class="sign-up-form m-t-20" >
+        <form *ngIf="loginShow" [formGroup]="loginForm" (ngSubmit)="login()">
+           <!--Email-->
+           <div class="form-group">
+              <label class="control-label">Enter Your E-mail</label>
+              <input name="email" type="email" formControlName="email"  placeholder="Enter your E-mail, abc@mail.com" class="form-control-cust" required>
+           <div *ngIf="submitted && loginForm.controls.email.hasError('required')" class="alert alert-danger">Email Required</div>
+           <div *ngIf="submitted && loginForm.controls.email.hasError('pattern')" class="alert alert-danger">Invalid Email</div>
+           </div>
+
+           <!--password-->
+           <div class="form-group">
+              <label class="control-label">Enter Your Password</label>
+              <input name="password" type="password" formControlName = "password" placeholder="Enter Your Password" class="form-control-cust" required>
+            <div *ngIf="submitted && loginForm.controls.password.hasError('required')" class="alert alert-danger">Password Required</div>
+           </div>
+              <div class="checkbox">
+                  <label>
+                      <input type="checkbox"> Remember me
+                  </label>
+                  <div class="login-footer">
+                      <div>
+                          <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                      </div>
+            <div>
+                          <button id="login_lost_btn" type="button" class="btn btn-link" (click)="passForm()">Forgot Password?</button>
+                          <!-- <button id="login_register_btn" type="button" routerLink = "/main/home" class="btn btn-link">Register</button> -->
+                      </div>
+          </div>
+           </div>
+        </form>
+     </div>
+
+
+
+
+
+
+
+       <div class="sign-up-form m-t-20" >
+        <form  *ngIf="!loginShow"   [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
+           <!--Email-->
+           <div class="form-group">
+              <label class="control-label">Enter Your E-mail</label>
+          <input name="email" type="email" formControlName="email"  placeholder="Enter your E-mail, abc@mail.com" class="form-control-cust" required>
+           <div *ngIf="submitted && resetPasswordForm.controls.email.hasError('required')" class="alert alert-danger">Email Required</div>
+           <div *ngIf="submitted && resetPasswordForm.controls.email.hasError('pattern')" class="alert alert-danger">Invalid Email</div>
+           </div>
+
+                  <div class="login-footer">
+                      <div>
+                          <button type="submit" class="btn btn-success btn-lg btn-block" >Submit</button>
+                      </div>
+
+          </div>
+        </form>
+     </div>
+
+  </div>
+</div>
+
+
+
+

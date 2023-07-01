@@ -1,0 +1,187 @@
+.mt-10{
+    margin-top: 10px;
+}
+.mb-5{
+    margin-bottom: 5px !important;
+}
+.form-control-select{
+     display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-weight: normal;
+    font-size: 15px;
+    outline: 0;
+    color: #000;
+    border-radius: 2px;
+}
+.confrmation-notifications {
+    background-color: #fff;
+    padding: 30px;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 300px !important;
+    height: 7px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    margin: 10px 0;
+}
+.custom-button {
+  display: inline-block;
+  width: 200px;
+  height: 46px;
+  line-height: 46px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #FFF;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  margin: 10px auto 30px;
+  outline: 0;
+  background-color: #6812B2;
+}
+.custom-import {
+  position: relative;
+  cursor: pointer;
+        float: right;
+    margin-top: -10px;
+}
+.custom-import .label-file {
+  width: 200px;
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  padding: 0 3%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.custom-import input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.br-horizontal{display:flex;justify-content:center;align-items:center}.br-horizontal .br-unit{display:block;width:12px;height:32px;float:left;background-color:#fbedd9;margin:1px;text-align:center}.br-horizontal .br-unit.br-active,.br-horizontal .br-unit.br-selected{background-color:#EDB867}.br-horizontal.br-readonly .br-unit{cursor:default}.br-horizontal.br-readonly .br-unit.br-active,.br-horizontal.br-readonly .br-unit.br-selected{background-color:#f2cd95}.br-horizontal .br-text{width:20px;margin-left:20px;font-size:18px;color:#EDB867}
+
+.ctc-select .select {
+    width: 250px !important;
+}
+.ctc-select li:first-child{
+    width: 100%;
+    display: block;
+}
+.pny-slt li:first-child{
+    width: auto !important;
+    display: inline-block !important;
+}
+.min-sel{
+    width: 200px !important;
+    min-height: 45px;
+    border-color: #eee;
+    color: #7b7b7b;
+}
+.my-ctc .form-group{
+    width: 100% !important;
+}
+.my-span{
+    font-size: 16px;
+    font-weight: 300;
+}
+.gender{
+    display: block;
+}
+.sample-cv{
+    padding: 0px !important;
+    margin-top: 40px;
+}
+@media (max-width: 550px) {
+
+.custom-import{
+    position: relative;
+    cursor: pointer;
+    float: none;
+    margin-top: 0;
+}
+.post-job-form-wrapper {
+    padding: 30px 20px 20px;
+}
+.form-control-cust{
+    width: inherit;
+    margin-bottom: 5px !important;
+}
+.customize_form a.btn {
+    margin-bottom: 10px;
+}
+.confrmation-notifications a.btn.btn-success, .confrmation-notifications a.btn.btn-warning, .confrmation-notifications a.btn.btn-danger {
+    margin-top: 0px;
+}
+.confrmation-notifications {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.confrmation-notifications .pull-right {
+    float: none!important;
+}
+    select.form-control-selct {
+    width: 100%;
+}
+    .ctc-select .select {
+    width: 100%;
+}
+    .post-job-form-wrapper .form-group {
+    width: 100%;
+}
+    .stepper .tab-pane{
+        margin-top: 30px;
+    }
+}
+
+/*dismiss button*/
+.show-file{
+      position: relative;
+    color: #000;
+    margin-top: 7px;
+    font-size: 13px;
+        float: right;
+}
+.my-dismiss{
+position: absolute;
+    top: -3px;
+    left: -45px;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.opacity_show{
+    opacity: 1;
+}
+
+.stepper .nav-tabs>li:after {
+  left: 4%;
+}
+.stepper .active .round-tab {
+  width: 20px;
+  height: 20px;
+}
+.stepper .round-tab {
+margin-top: -10px;
+}

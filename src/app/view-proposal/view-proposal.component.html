@@ -1,0 +1,290 @@
+<section id="view-proposal">
+   <div class="container">
+      <div class="feeds-title">
+         <p class="text-left">
+            <button class="back-btn" routerLink="/recruiterHeader/sendProposal"><img src="../../assets/img/left-arrow.svg"
+                  width="20px" height="auto">
+               Back</button>
+         </p>
+      </div>
+      <div class="col-md-7 col-sm-7 col-xs-12">
+        <!-- remove because of scroll  -->
+         <div class="cmpny-req-title">
+            <h4>Company's Requirement</h4>
+            <p>{{dashboardJobs.descirption}}</p>
+         </div>
+         <div class="cmpny-req-post m-t-40">
+            <div class="list-feed-icon color-voilet">
+               <i class="far fa-file-alt"></i>
+               <!--  <img src="http://via.placeholder.com/100x100"> -->
+            </div>
+            <div class="cmpny-req-post-info">
+               <!--<h4>{{dashboardJobs.functional_area}}</h4>-->
+               <h4>{{dashboardJobs.company_name}}</h4>
+               <h6>{{dashboardJobs.job_title}} </h6>
+               <p>{{dashboardJobs.vacancy}} position avialable</p>
+               <div *ngFor="let item of dashboardJobs.functional_area | slice:0:2; let i=index">{{item.value}}</div>
+            </div>
+         </div>
+
+         <div class="cmpny-location">
+            <p>Location: <span *ngFor="let loc of dashboardJobs.Location">{{loc.value}}, </span></p>
+         </div>
+         <div class="cmpny-deadline">
+            <p>Job Deadline:<span>{{dashboardJobs.deadline}}</span></p>
+         </div>
+         <div class="cmpny-job-intro">
+            <h5>Company Overview</h5>
+            <p>{{dashboardJobs.description}}</p>
+         </div>
+         <div class="cmpny-ctc">
+            <p>CTC:<span>{{dashboardJobs.ctc_min}}-{{dashboardJobs.ctc_max}} lacs p.a.</span></p>
+         </div>
+         <div class="cmpny-experience">
+            <p>Experience:<span>{{dashboardJobs.experience}} yrs</span></p>
+         </div>
+         <div class="cmpny-qualification">
+            <p>Qualification:
+               <span>Undergraduation Course - </span><span *ngFor="let cor of dashboardJobs.ug_course"> {{cor.value}}, </span>
+               <span>Undergraduation College - {{dashboardJobs.ug_college}}</span>
+               <span>Post Graduation Course - {{dashboardJobs.pg_course}}</span>
+               <span>Post Graduation College - {{dashboardJobs.pg_college}}</span>
+            </p>
+         </div>
+         <!-- <div class="meal-info">
+            <h5>Perks</h5>
+            <ul class="lis-inline">
+               <li>{{dashboardJobs.perks}}</li>
+               <li>Free snacks</li>
+
+            </ul>
+         </div> -->
+      </div>
+      <div class="col-md-5 col-md-5 col-xs-12">
+         <div class="import-resume">
+            <p>Make sure you have our excel template to import resumes.</p>
+            <div class="text-left">
+               <!-- <a class="btn btn-purple" (click)="getDataAndDownlaodEXCEL()"><i class="fas fa-upload"></i> Download -->
+               <a class="btn btn-purple" href="../../assets/candidateList.xlsx"><i class="fas fa-upload"></i> Download
+                  Excel template</a>
+               <br>
+               <a class="btn btn-success m-t-40" (click)="frstModal.show()"><i class="fas fa-download"></i> Start
+                  Importing Resume</a>
+            </div>
+         </div>
+         <div class="skils-req m-t-40">
+            <h5>Skills</h5>
+            <ul *ngFor="let skill of dashboardJobs.skills " class="list-inline">
+               <li>
+                  <p>{{skill}}</p>
+               </li>
+
+            </ul>
+            <h5>Attachments</h5>
+
+            <div *ngIf="showJd">
+               <a class="view-resume" (click)="viewJD()">View Attached JD file</a>
+            </div>
+            <div *ngIf="showcv">
+               <a class="view-resume" (click)="viewCV()">View sample CV file</a>
+            </div>
+            <div *ngIf="!showJd">
+               <div *ngIf="!showcv">
+                     <a>No Attachments</a>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--export-file-->
+<!--Consultant SignUp Popup End -->
+<div bsModal #frstModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file">
+            <div class="close">
+               <a (click)="frstModal.hide()"><img src="../../assets/img/cancel.png"></a>
+            </div>
+            <h6>Upload filled excel file of candidate</h6>
+            <!-- <p>Upload a resume of candidate, Preferby .pdf (less then 1 Mb)</p> -->
+            <!--   <a class="btn btn-purple m-t-20"><i class="fas fa-upload"></i> Download Excel template</a> -->
+            <p class="note">Note: Please block the candidate contact details on the resume to be upload in the next
+               step</p>
+            <div class="uload-excel-resume">
+               <form method="post" action="#" id="#">
+                  <div class="form-group files color">
+                     <!--   <h6><i class="fas fa-hand-rock"></i> Drag a file here</h6>
+                     <p>OR</p> -->
+                     <div class="inputfile-box">
+                        <input  #xlsxInput type="file" id="file" class="inputfile" (change)='onChange($event)'>
+                        <label for="file">
+                           <!-- <span id="file-name" class="file-box"></span>
+                        <span class="file-button"> -->
+                           Select a file from computer
+                           <!-- </span> -->
+                        </label>
+                     </div>
+                     <div class="excelFile" *ngIf = "showName">
+                     {{fileNameXlsx}}
+                      <button (click)="removeXlsx()" class="btn btn-danger my-dismiss">x</button>
+                     </div>
+                     <!-- <p class="error">Error occured! We have detected you haven't blocked Email ID / Phone No. on the resume.</p> -->
+                  </div>
+               </form>
+            </div>
+            <p class="text-center m-t-40">
+               <a class="btn btn-success" (click)="onSubmit()">Upload</a>
+            </p>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- SignUp Popup End -->
+<!--table-data-->
+<div bsModal #secondModal="bs-modal" class="modal fade proposal-modal" tabindex="-1" role="dialog"  [config]="{backdrop: 'static',  keyboard: false}" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file" style="padding: 20px;">
+            <table class="table table-list-data">
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Age</th>
+                     <th>Sex</th>
+                     <th>Experience</th>
+                     <th>Qualification</th>
+                     <th>Current Organisation</th>
+                     <th>CTC</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let candidate of candidates| paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
+                     <td>{{candidate.NAME}}</td>
+                     <td>{{candidate.EMAIL}}</td>
+                     <td>{{candidate.AGE}}</td>
+                     <td>{{candidate.SEX}}</td>
+                     <td>{{candidate.EXPERIENCE}}</td>
+                     <td>{{candidate.QUALIFICATION}}</td>
+                     <td>{{candidate.CURRENT_ORGANISATION}}</td>
+                     <td>{{candidate.CTC}}</td>
+                     <td>
+                        <!--   <button (click)="uploadResume()">Upload CV</button> -->
+                        <div *ngIf = "showButton">
+                           <div *ngIf=" candidate.cv === null" class="file-upload">
+                              <label for="uploadCv">
+                                  Choose file
+                              </label>
+                              <input aria-label="file" id="uploadCv" type="file" (change)="handleFileSelect($event, i)"
+                                 multiple style="display:none">
+                              <!-- <p>  </p> -->
+                           </div>
+                           <div *ngIf="candidate.cv === 'duplicate'" class = "text-danger"> Candidate Already Exist  </div>
+                           <div *ngIf = "candidate.cv != null">
+                              <div *ngIf = " candidate.cv != 'duplicate'">
+                                    <button class="btn btn-primary pro-btn" (click)="showCV(candidate.cv)" style="margin-bottom:5px; width: 100%;">View CV</button>
+                                 <div class="my-replace" >
+                                          <input id="replaceCv12" aria-label="file" type="file" (change)="handleFileSelect1($event,i)"
+                                             multiple style="display: none;">
+                                          <label for="replaceCv12" style="width: 100%; margin-top:10px"> Replace CV </label>
+                                       </div>
+                              </div>
+                           </div>
+                            <div *ngIf ="candidate.cv === 'uploaded'" class="text-success">Uploaded</div>
+                           <!-- <div *ngIf=" candidate.cv != null" class="file-upload">
+                              <button class="btn btn-primary pro-btn" (click)="showCV(candidate.cv)">View CV</button>
+                              <div class="my-replace">
+                                 <input class="" aria-label="file" type="file" (change)="handleFileSelect($event,candidate._id)"
+                                    multiple>
+                                 <p> Replace CV </p>
+                              </div>
+
+                           </div> -->
+                        </div>
+                        <!-- <div *ngIf="candidate.is_candidate_duplicate">
+                           <div class="file-upload">
+                              <p class="alert-mine">Candidate already exists for this profile</p>
+                           </div>
+                        </div> -->
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <div *ngIf="duplicacy">
+               <p class="text-right m-t-20">
+                  <a class="btn btn-success" (click)="close()">Submit</a>
+               </p>
+            </div>
+            <div *ngIf="!duplicacy">
+               <p class="text-right m-t-20">
+                  <a class="btn btn-success" (click)="submitXlsx()">Submit Resume</a>
+               </p>
+            </div>
+
+
+         </div>
+
+      </div>
+   </div>
+</div>
+<!--Consultant SignUp Popup End -->
+<!-- <div bsModal #thrdModal="bs-modal" class="modal fade" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file">
+            <div class="close">
+               <a><img src="../../assets/img/cancel.png" ></a>
+            </div>
+            <h6>Upload filled excel file of candidates</h6>
+            <p>Upload a resume of candidate, Preferby .pdf (less then 1 Mb)</p>
+            <a class="btn btn-purple m-t-20"><i class="fas fa-upload"></i> Download Excel template</a>
+            <p class="note">Note: Please block the candidate contact deatails on the resume to be upload in the next step</p>
+            <div class="uload-excel-resume">
+               <form method="post" action="#" id="#">
+                  <div class="form-group files color">
+                     <h6><i class="fas fa-hand-rock"></i> Drag a file here</h6>
+                     <p>OR</p>
+                     <div class="inputfile-box">
+                        <input type="file" id="file" name="file" class="inputfile" (change)='onChange($event)'>
+                        <label for="file">
+                        <span id="file-name" class="file-box"></span>
+                        <span class="file-button">
+                        Select a file from computer
+                        </span>
+                        </label>
+                     </div>
+                      <p class="error">Error occured! We have detected you haven't blocked Email ID / Phone No. on the resume.</p>
+                  </div>
+               </form>
+            </div>
+            <p class="text-center m-t-40">
+               <a  class="btn btn-success" (click)="forthModal.show();thrdModal.hide();secondModal.hide();frstModal.hide()">Upload</a>
+            </p>
+         </div>
+      </div>
+   </div>
+</div> -->
+<!-- SignUp Popup End -->
+<!--export-file-->
+<div bsModal #forthModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file">
+            <div class="close">
+               <a><img src="../../assets/img/cancel.png"></a>
+            </div>
+            <div class="tick m-t-50">
+               <span><i class="fas fa-check-circle"></i></span>
+            </div>
+            <h6>Resume are submitted for preliminary evalution.</h6>
+            <p>You will hear from us when we recive any update.</p>
+            <a class="btn btn-purple m-t-40" routerLink="/recruiterHeader/recuiterDashboard">Go to Dashboard</a>
+         </div>
+      </div>
+   </div>
+</div>

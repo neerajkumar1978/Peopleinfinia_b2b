@@ -1,0 +1,189 @@
+<div class="job-status-wrapper">
+<a class="back-btn" routerLink="/recruiterHeader/recuiterManageJobs"> <img src="../../assets/img/left-arrow.svg" width="20px" height="auto">
+Back</a>
+<!--user-profile-->
+<div class="job-sts-profile">
+   <div class="job-sts-profile-content">
+      <div class="row">
+         <div class="profile-content-recuriter">
+            <div class="col-md-9 col-sm-10">
+               <div class="user-info">
+                
+                  <h4>{{job_title}}</h4>
+                  <!-- <h6>Javascript Developer</h6> -->
+                  <p>{{vacancy}} Position available</p>
+               </div>
+               <p class="deadline-date">Deadline: <span>{{deadline}}</span></p>
+            </div>
+            <div class="col-md-3 col-sm-2">
+               <p class="upload-btn">
+                  <a class="btn btn-success m-t-20" routerLink="/recruiterHeader/ViewProposal/{{id}}" >Upload More Resume</a>
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="clear-both"></div>
+      <div class="description-detail">
+         <!-- <p>Check job description and details <span class="f-right"><img src="../../assets/img/down-arrow.png"> </span></p> -->
+      </div>
+   </div>
+   <!--job-stst-tabber-->
+   <div class="job-sts-tabber">
+      <h4>Jobs Status</h4>
+      <ul class="nav nav-tabs">
+         <!-- data-toggle="tab" href="#tab-1" -->
+         <a  (click)="activeMenu =1" [ngClass]="{'active':activeMenu == 1}">
+         <span class="value">{{StatsCandidates.length}}</span>
+         <span class="text">Submitted<br>Resume</span>
+         </a>
+         <!-- data-toggle="tab" href="#tab-2" -->
+         <!-- <a  (click)="activeMenu =2" [ngClass]="{'active':activeMenu == 2}">
+         <span class="value">{{interviewed.length}}</span>
+         <span class="text">EY Qualified<br>Resume</span>
+         </a> -->
+         <!-- data-toggle="tab" href="#tab-3" -->
+         <a  (click)="activeMenu =3" [ngClass]="{'active':activeMenu == 3}">
+         <span class="value">{{shortedListed.length}}</span>
+         <span class="text">Shortlisted<br>Resume</span>
+         </a>
+         <!-- data-toggle="tab" href="#tab-4" -->
+         <a  (click)="activeMenu =4" [ngClass]="{'active':activeMenu == 4}">
+         <span class="value">{{Selected.length}}</span>
+         <span class="text">Select<br>Candidate</span>
+         </a>
+      </ul>
+   </div>
+   <div class="tab-content">
+      <div id="tab-1" *ngIf="activeMenu == 1" [ngClass]="{'active':activeMenu == 1}">
+
+<!-- 
+        <div class="view-job-table-head">
+        <ul class="list-inline"> -->
+           <!--  <li>candidate name <i class="fas fa-sort"></i></li>
+                  <li>Contact <i class="fas fa-sort"></i></li>
+                  <li>Submitted Date <i class="fas fa-sort"></i></li>
+        </ul>
+ -->
+
+        <table class="candidate-list-view-table rwd-table">
+        <thead class="view-job-rec-table-head white_color cst-table"> 
+          <tr>
+            <th>Candidate Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf = '!noData'>
+        <tr *ngFor ="let Candidates of StatsCandidates ">
+          <td data-th="Candidate Name">{{Candidates.name}}</td>
+          <td data-th="Contact">{{Candidates.phone_number}}</td>
+          <td data-th="Email">{{Candidates.email}}</td>
+          <td data-th="Actions">
+          	<a class="view-resume" (click) = "setCV(Candidates.cv)" >View Resume</a>
+          	<!-- <a class="btn btn-withdraw" >Withdraw Candidate</a> -->
+          </td>
+       </tbody>
+      </table>
+    </div>
+      </div>
+       
+      <!-- <div id="tab-2" *ngIf="activeMenu == 2" [ngClass]="{'active':activeMenu == 2}">
+      </div> -->
+      <div id="tab-3" *ngIf="activeMenu == 3" [ngClass]="{'active':activeMenu == 3}">
+      <table class="candidate-list-view-table rwd-table">
+        <thead class="view-job-rec-table-head white_color cst-table"> 
+          <tr>
+            <th>Candidate Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf = '!noData'>
+        <tr *ngFor ="let Candidates of shortedListed ">
+          <td data-th="Candidate Name">{{Candidates.name}}</td>
+          <td data-th="Contact">{{Candidates.phone_number}}</td>
+          <td data-th="Email">{{Candidates.email}}</td>
+          <td data-th="Actions">
+            <a class="view-resume " (click) = "setCV(Candidates.cv)" >View Resume</a>
+
+            <!-- <a class="btn btn-withdraw" >Withdraw Candidate</a> -->
+          </td>
+       </tbody>
+      </table>
+          
+      </div>
+      <div id="tab-4" *ngIf="activeMenu == 4" [ngClass]="{'active':activeMenu == 4}">
+        <table class="candidate-list-view-table rwd-table">
+        <thead class="view-job-rec-table-head white_color cst-table"> 
+          <tr>
+            <th>Candidate Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Joining Date</th>
+        </tr>
+      </thead>
+      <tbody *ngIf = '!noData'>
+        <tr *ngFor ="let Candidates of Selected ">
+          <td data-th="Candidate Name">{{Candidates.name}}</td>
+          <td data-th="Contact">{{Candidates.phone_number}}</td>
+          <td data-th="Email">{{Candidates.email}}</td>
+          <td data-th="Joining Date">31/12/2018
+          </td>
+       </tbody>
+      </table>
+      </div> 
+   </div>
+    </div>
+    
+    
+<!--modal pop-up-->
+<div bsModal #withdrawModal="bs-modal" class="modal fade warning-modal" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <!-- <div class="modal fade warning-modal" tabindex="-1" role="dialog" aria-labelledby="warning-modal"> -->
+   <div class="modal-dialog">
+      <div class="modal-content modal-pad">
+         <div class="row">
+            <div class="modal-body text-center warning-msg">
+               <div class="close" (click)="withdrawModal.hide()">
+                  <a><img src="../../assets/img/cancel.png" ></a>
+               </div>
+               <h6>Are you sure you want to withdraw candidate.</h6>
+               <p>We don't appriciate this behaviour.</p>
+               <p class="note">caution: Doing this may get you blacklited from our portal.</p>
+               <div class="clear-both"></div>
+               <div class="text-center m-t-40">
+                  <ul class="list-inline">
+                     <li><a class="btn btn-purple" (click)="withdrawModal.hide()">Cancel</a></li>
+                     <li><a class="btn btn-danger" routerLink = "/recruiterHeader/candidateRecuiter">Proceed</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- <div bsModal #CV="bs-modal" class="modal fade warning-modal" tabindex="-1"
+   role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog">
+      <div class="modal-content modal-pad">
+         <div class="row">
+            <div class="modal-body text-center warning-msg">
+               <div class="close">
+                  <a><img (click)="CV.hide()" src="../../assets/img/cancel.png" ></a>
+               </div>
+
+               <div class="responsive-wrapper 
+                   responsive-wrapper-padding-bottom-90pct"
+                   style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                         <pdf-viewer [src]="CV" 
+                              [render-text]="true"
+                               style="display: block;"
+                               ></pdf-viewer>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div> -->

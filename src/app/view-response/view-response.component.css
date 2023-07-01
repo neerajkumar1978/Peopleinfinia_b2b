@@ -1,0 +1,261 @@
+thead.cst-table th span {
+    padding: 5px 20px;
+    display: block;
+}
+
+tbody.cst-body td span {
+    padding: 20px;
+    display: block;
+}
+.view-job-table-list ul li{
+    font-size: 16px !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+tbody.cst-body tr {
+    margin-bottom: 20px;
+}
+.view-job-wrapper {
+        background-color: #fff;
+    }
+
+    .view-job-wrapper p {
+        padding: 10px 20px 0px;
+    }
+
+    .view-job-table-head {
+        background-color: #761FB3;
+    }
+
+    .view-job-table-head ul {
+        display: block;
+        padding: 5px 40px;
+        color: #fff;
+    }
+
+    .view-job-table-head ul li {
+        width: calc(100% / 8);
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    /*list*/
+
+    .view-job-table-list {
+        background-color: #fff;
+    }
+    .view-job-table-list ul {
+        display: block;
+        padding: 20px 20px;
+        color: #333;
+    }
+    .view-job-table-list ul li {
+        width: calc(100% / 8);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        vertical-align: top;
+    }
+    .view-resp-list-footer .btn{
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        border-radius: 0;
+    }
+
+    .view-job-table-list label.check{
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+    }
+    .view-job-wrapper .title-head p{
+       font-size: 23px;
+    font-weight: 500;
+    letter-spacing: 0.2px; 
+    }
+    
+    .view-job-wrapper .title-head p span{
+           font-size: 16px;
+    font-weight: 600;
+    opacity: 0.5;
+    display: block;
+    }
+
+.slider {
+    -webkit-appearance: none;
+    width: 150px;
+    height: 7px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 7px;
+    background: #23b256;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 50px;
+    height: 7px;
+    background: #23b256;
+    cursor: pointer;
+}
+
+
+.showCls{
+    display:block!important;
+}
+
+/*pop-up*/
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(112,124,143);
+    background-color: rgba(112,124,143,0.5); 
+}
+
+/* Modal Content */
+.modal-content-cust {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: none;
+    width: 25%;
+    position:absolute;
+    bottom:10px;
+    right:10%;
+    border-radius: 0;
+    max-height: 700px;
+    overflow-y: scroll;
+}
+/* width */
+.modal-content-cust::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+.modal-content-cust::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+.modal-content-cust::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+}
+
+/* Handle on hover */
+.modal-content-cust::-webkit-scrollbar-thumb:hover {
+    background: transparent; 
+}
+.shortlisted-candiadte-head{
+    background-color: #1FB355;
+    padding: 20px;
+}
+.shortlisted-candiadte-head h4{
+    font-size: 22px;
+    color: #fff;
+    font-weight: 500;
+}
+.shorted-candiadte-list ul li:nth-child(odd){
+    background-color: #F9F9F9;
+}
+.candiadte-shorted-warpper{
+    display: flex;
+    vertical-align: middle;
+    padding: 20px;
+}
+.candiadte-shorted-title h5{
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+.candiadte-shorted-title a{
+    color: #1FB355;
+    font-size: 14px;
+    font-weight: 400;
+}
+.schedule-intw a.btn.btn-purple{
+    display: block;
+    border-radius: 0;
+    padding: 7px 15px;
+}
+.schedule-intw a.remove-btn{
+    display: block;
+    font-weight: 400;
+    color: #000;
+    opacity: 0.5;
+    margin-top: 10px;
+}
+.shortlisted-candiadte-head .close{
+    position: absolute;
+    top: 4%;
+    right: 10%;
+    color: #fff;
+    opacity: 1;
+}
+.shortlisted-candiadte-head .close i{
+    font-size: 30px;
+}
+
+/*Media Queries*/
+
+@media (max-width: 1500px) {
+    .shortlisted-candiadte-head h4{
+    font-size: 16px;
+        text-align: left;
+}
+    .candiadte-shorted-title h5{
+    font-size: 14px;
+}
+    .schedule-intw a.btn.btn-purple{
+        font-size: 9px;
+    }
+    .schedule-intw a.remove-btn{
+        font-size: 12px;
+        text-align: left;
+    }
+    .table>thead>tr>td, .table>thead>tr>th{
+   padding: 20px 15px; 
+}
+}
+@media (max-width: 550px) {
+tbody.cst-body tr {
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+    .view-job-table-list ul {
+    display: block;
+     padding: 0px; 
+    color: #333;
+}
+
+<style>…</style>
+.view-job-table-list ul, .manage-job-table-list ul {
+    display: block;
+     padding: 0px; 
+    color: #333;
+}
+}

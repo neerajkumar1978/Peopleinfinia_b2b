@@ -1,0 +1,103 @@
+<div class="view-job-rec-wrapper">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+         <div class="row">
+            <div class="col-xs-12">
+               <p class="panel-title">Manage your jobs</p>
+            </div>
+           <!--  <div class="col col-xs-3 text-right">
+               <span class="m-t-10">Showing 5/20 jobs</span>
+            </div> -->
+            <!-- <div class="col col-xs-3 text-right">
+               <a class="btn btn-purple">Saved Jobs Post</a>
+            </div> -->
+         </div>
+        </div>
+      </div>
+
+    <!--filter-->
+
+         <div class="filter" (click)="showFilter = !showFilter">
+            <p style="cursor: pointer"><span *ngIf="!showFilter">+ </span><span>filter </span> <span *ngIf="showFilter">X</span></p>
+         </div>
+         <div class="job-filter" *ngIf="showFilter">
+             <div class="row">
+            <div class="col-md-12">
+               <div class="field-job-proposal">
+                  <ul class="list-inline">
+                     <li>
+                        <div class="form-group"><label>Job Position</label><input class="form-control-cust" name="" [(ngModel)]='jobPostion' placeholder="" type="text"></div>
+                     </li>
+                     <li>
+                        <div class="form-group"><label>Location</label><input class="form-control-cust" name="" [(ngModel)]='location'  placeholder="" type="text"></div>
+                     </li>
+                     <li>
+                        <div class="form-group"><label>Date By</label><input class="form-control-cust" name="" [(ngModel)]='createdAt' placeholder="" type="text"></div>
+                     </li>
+                     <li>
+                        <div class="form-group"><label>Posted By</label><input class="form-control-cust" name="" [(ngModel)]= 'postedBy' placeholder="" type="text"></div>
+                     </li>
+                     <li>
+                        <div class="form-group"><label>Job Status</label><input class="form-control-cust" name="" [(ngModel)]='jobStatus' placeholder="" type="text"></div>
+                     </li>
+                     <!-- <li>
+                        <div class="form-group"><label>Application</label><input class="form-control-cust" name="" [(ngModel)] placeholder="" type="text"></div>
+                     </li> -->
+                     <li>
+                        <div class="form-group"><label>Applications</label><input class="form-control-cust" name="" [(ngModel)]='shortlisted' placeholder="" type="text"></div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+                 </div>
+         </div>
+</div>
+
+
+<div class="view-job-rec-list-content">
+   <table class="candidate-list-view-table rwd-table">
+               <thead class="view-job-rec-table-head white_color cst-table">
+                       <tr>
+                          <th>Job Position </th>
+                          <th>Posted By </th>
+                          <th>Location </th>
+                          <th>Date Posted</th>
+                          <th>Job Status </th>
+                          <th>Application </th>
+                          <th>Shortlisted</th>
+                          <th>Actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor = "let manage of manageJobs  | personSearch : jobPostion : postedBy : location : createdAt : jobStatus : shortlisted | paginate: { itemsPerPage: 12, currentPage: page }"   >
+                           <td data-th="Job Position">{{manage.job_id.job_title}}</td>
+                           <td data-th="Posted By">{{manage.client_id.user_name}}</td>
+                          <!-- <td data-th="Location">  {{manage.job_id.Location}}</td>-->
+                          <td data-th="Loaction" *ngIf="manage && manage.job_id && manage.job_id.Location"><span *ngFor="let loc of manage.job_id.Location; let i=index"> <span *ngIf="i <  3">{{loc.value}},</span></span><span *ngIf="manage.job_id.Location.length > 3">...</span></td>
+                           <td data-th="Date Posted">  {{manage.client_id.created_at | date: 'y, MMM dd, h:mm:ss a'}}</td>
+                           <td data-th="Job Status">  {{manage.job_id.status}}</td>
+                           <td data-th="Application">  {{manage.totalcandidates}}</td>
+                           <td data-th="Shortlisted">  0</td>
+                            <td data-th="Actions">
+                                <a routerLink="/recruiterHeader/ViewProposal/{{manage.job_id._id}}">View Jobs</a><br>
+                                         <a class="view-resp-btn" routerLink="/recruiterHeader/jobStats/{{manage.job_id._id}}">View Status</a>
+                               </td>
+
+                        </tr>
+                     </tbody>
+
+                     <!-- <tbody *ngIf= "noData"> No Data Available!</tbody> -->
+                  </table>
+                  <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+</div>
+
+<!-- <div class="footer-pagination m-t-20">
+   <span>Showing 1 to 5 of 15 entries</span>
+   <ul class="pagination pull-right">
+      <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+      <li><a href="#" class="active">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+   </ul>
+</div> -->

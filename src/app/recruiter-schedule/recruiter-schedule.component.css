@@ -1,0 +1,216 @@
+.highlighted {
+  color: #23b256;
+}
+
+#subscribeModal .modal-content {
+  overflow: hidden;
+}
+
+#subscribeModal .form-control {
+  height: 56px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding-left: 30px;
+}
+
+#subscribeModal .btn {
+  border-radius: 30px;
+  padding-right: 20px;
+
+  background: #4caf50;
+  margin-bottom: 9px;
+}
+
+#subscribeModal .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #007b5e;
+  outline: 0;
+  box-shadow: none;
+}
+
+#subscribeModal .top-strip {
+  height: 155px;
+  background: #007b5e;
+  transform: rotate(141deg);
+  margin-top: -94px;
+  margin-right: 190px;
+  margin-left: -243px;
+  border-bottom: 65px solid #4CAF50;
+  border-top: 10px solid #4caf50;
+}
+
+#subscribeModal .bottom-strip {
+  height: 155px;
+  background: #007b5e;
+  transform: rotate(112deg);
+  margin-top: -110px;
+  margin-right: -215px;
+  margin-left: 400px;
+  border-bottom: 65px solid #4CAF50;
+  border-top: 10px solid #4caf50;
+}
+
+/**************************/
+/****** modal-lg stips *********/
+/**************************/
+#subscribeModal .modal-lg .top-strip {
+  height: 155px;
+  background: #007b5e;
+  transform: rotate(141deg);
+  margin-top: -106px;
+  margin-right: 457px;
+  margin-left: -130px;
+  border-bottom: 65px solid #4CAF50;
+  border-top: 10px solid #4caf50;
+}
+
+#subscribeModal .modal-lg .bottom-strip {
+  height: 155px;
+  background: #007b5e;
+  transform: rotate(135deg);
+  margin-top: -115px;
+  margin-right: -339px;
+  margin-left: 421px;
+  border-bottom: 65px solid #4CAF50;
+  border-top: 10px solid #4caf50;
+}
+
+/* Tabs panel */
+.tabbable-panel {
+  padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  /* border: none;*/
+  margin: 0px;
+  width: 17%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+
+  border-bottom: 1px solid #ffffff !important;
+}
+
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+  font-size: 21.5px;
+  font-weight: 600;
+}
+
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #24B050;
+}
+
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #24B050;
+  position: relative;
+}
+
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #24B050;
+  background-color: transparent;
+}
+
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+
+/*calender-event*/
+.calender-event {
+  background-color: #fff;
+  height: 100vh;
+  padding: 30px;
+}
+
+.calender-event .calender-head {
+  padding: 10px 30px;
+  background-color: #24B050;
+}
+
+.calender-event .calender-head h4 {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 0.5;
+  color: #fff;
+}
+
+.padding-none {
+  padding: 0px;
+}
+
+.line50 {
+  line-height: 50px;
+}
+
+/*Media Queries*/
+
+@media (max-width: 1500px) {
+  .tabbable-line > .nav-tabs {
+    width: 25%;
+  }
+
+}
+
+@media (max-width: 550px) {
+  .tab-content > .tab-pane .container-fluid {
+    padding: 0;
+  }
+
+  .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 10px;
+  }
+
+  .cal-month-view .cal-day-number {
+    font-size: 1.2em;
+    font-weight: 400;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  .calender-event {
+    padding: 0px !important;
+  }
+
+  .cal-month-view .cal-day-cell {
+    min-height: 25px !important;
+  }
+
+  .cal-month-view .cal-day-number {
+    margin: 0px !important;
+  }
+
+  .form-control-cust {
+    width: 100% !important;
+  }
+
+  .tabbable-line > .nav-tabs {
+    width: 100% !important;
+  }
+}

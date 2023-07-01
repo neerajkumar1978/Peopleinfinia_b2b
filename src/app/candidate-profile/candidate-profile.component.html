@@ -1,0 +1,2421 @@
+<section class="user-header">
+  <div class="container">
+    <div class="back-to">
+      <p class="text-left">
+        <a class="back-btn" routerLink="/candidateHeader/dashboard"
+          ><img src="assets/img/left-arrow.svg" width="20px" height="auto" />
+          &nbsp; Back</a
+        >
+      </p>
+    </div>
+    <div class="box">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="row">
+            <img class="profile-pic" [src]="profilePicture" />
+          </div>
+          <!-- <img [src]="profilePicture" class="img-circle" width="100px" height="100px"> -->
+          <input
+            (change)="onProfilePicChange($event)"
+            id="edit"
+            style="display:none"
+            type="file"
+            size="60"
+          />
+          <label style="cursor:pointer" for="edit">Edit</label>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="title">{{ applicantName }}</h3>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <span
+                  ><img
+                    src="/assets/img/candidate/placeholder.png"
+                    width="18px"/></span
+                >&nbsp; {{ currentLocation }}, INDIA
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <span
+                  ><img
+                    src="/assets/img/candidate/phone-call.png"
+                    width="20px"/></span
+                >&nbsp; {{ applicantMobile }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <span
+                  ><img
+                    src="/assets/img/candidate/briefcase.png"
+                    width="20px"/></span
+                >&nbsp; {{ applicantType }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <span
+                  ><img
+                    src="/assets/img/candidate/envelope.png"
+                    width="20px"/></span
+                >&nbsp; {{ applicantEmail }}
+              </p>
+            </div>
+            <div class="col-md-12">
+              <hr class="top-hr"  [style.width.px]="progress_bar*5" />
+              <hr class="bottom-hr" />
+              <span class="value">{{ progress_bar }} %</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 al-box">
+          <button class="main-btn">Pending Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="jobs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="heading-block">
+          <h3>Quick Links</h3>
+        </div>
+        <div class="summary-box">
+          <ul>
+            <li><a  (click)="todoAttachResume()">Attach Resume</a></li>
+            <li><a  (click)="todoResumeHeadline()">Resume Headline</a></li>
+            <li><a (click)="todokeySkills()">Key Skills</a></li>
+            <li><a  (click)="todoEmployment()">Employment</a></li>
+            <li><a (click)="todoEducation()">Education</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-block" id="attach-resume">
+          <h4 class="d-inline-block float-left">Attach Resume</h4>
+          <a *ngIf="!editCV" (click)="editResume()" class="float-right edit-btn"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a *ngIf="editCV" (click)="editResume()" class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <a class=" float-right edit-btn" (click)="downloadCV()" download>Download CV</a>
+
+          {{applicantCV}}
+          <p class="mt-3">
+            Resume is the most important document recruiters look for.
+            Recruiters generally do not look at profiles without resumes.
+          </p>
+          <div *ngIf="editCV" class="file-block">
+            <div class="row" align="center">
+              <div class="col-md-12">
+                <label>{{file}}
+                  <input
+                    (change)="onFileChange($event)"
+                    type="file"
+                    size="60"
+                /></label>
+              </div>
+              <div class="col-md-12">
+                <p class="mb-0">
+                  Supported formats: doc, docx, rtf, pdf, upto 2 MB
+                </p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="editCV" class="row">
+            <div class="col-md-2 col-6" align="left">
+              <button
+                type="submit"
+                class="btn btn-success cvSaveClass"
+                (click)="updateCv()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block" id="resume-headline">
+          <h4 class="d-inline-block float-left">Resume Headline</h4>
+
+          <a
+            *ngIf="!editResumeHeadlineForm"
+            class="float-right edit-btn"
+            (click)="editResumeHeadline()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editResumeHeadlineForm"
+            (click)="editResumeHeadline()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <!-- <p *ngIf="!editResumeHeadlineForm" class="mt-3">It is the first thing recruiters notice in your profile. Write concisely what makes you unique and right person for the job you are looking for.</p> -->
+
+          <div class="row resume-headline-edit">
+            <div class="col-md-12">
+              <form [formGroup]="resumeHeadlineForm">
+                <textarea
+                  [readonly]="!editResumeHeadlineForm"
+                  formControlName="resume_headline"
+                  class="form-control"
+                  placeholder="It is the first thing recruiters notice in your profile. Write concisely what makes you unique and right person for the job you are looking for."
+                ></textarea>
+                <div *ngIf="editResumeHeadlineForm" class="row">
+                  <div class="col-md-2 col-6 offset-md-8" align="right">
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelResumeHeadlineEmployement()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div class="col-md-2 col-6" align="right">
+                    <button
+                      class="btn btn-success"
+                      (click)="uploadResumeHeadline()"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block" id="key-skills">
+          <h4 class="d-inline-block float-left">Key Skills</h4>
+          <a
+            *ngIf="!editSkill"
+            (click)="editSkills()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editSkill"
+            (click)="editSkills()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <!-- <ul class="key-skill">
+            <li>Marketing</li>
+            <li>Internet Marketing</li>
+          </ul> -->
+
+          <div class="row keyskill-edit">
+            <div class="col-md-12">
+              <form>
+                <tag-input
+                  [removable]="editSkill"
+                  [disable]="!editSkill"
+                  [(ngModel)]="skills"
+                  (onRemove)="onItemRemoved($event)"
+                  name="skill"
+                  (onAdd)="onItemAdded($event)"
+                  [placeholder]="'Enter Skills'"
+                  [secondaryPlaceholder]="'Enter Skills'"
+                >
+                  <tag-input-dropdown
+                    [autocompleteItems]="items"
+                    [showDropdownIfEmpty]="true"
+                    [dynamicUpdate]="false"
+                  >
+                  </tag-input-dropdown>
+                </tag-input>
+                <div class="row">
+                  <div
+                    *ngIf="editSkill"
+                    class="col-md-2 col-6 offset-md-8"
+                    align="right"
+                  >
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelSkills()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div *ngIf="editSkill" class="col-md-2 col-6" align="right">
+                    <button
+                      type="submit"
+                      class="btn btn-success"
+                      (click)="uploadSkills()"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block" id="employment">
+          <h4 class="d-inline-block float-left">Employment</h4>
+          <a
+            *ngIf="!editEmployementDetails"
+            class="float-right edit-btn"
+            (click)="editEmployement()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editEmployementDetails"
+            (click)="editEmployement()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+
+          <div class="clearfix"></div>
+          <div *ngIf="!isEmployment">
+            <p class="mt-3">
+              Mention your employment details including your current and
+              previous company with experience.
+            </p>
+          </div>
+          <div *ngIf="isEmployment" class="row employemnt-edit">
+            <div class="col-md-12">
+              <!-- <form [formGroup]="employementForm" (ngSubmit)="onFormSubmit()" >
+                <label>Your Designation</label>
+                <input type="text" class="form-control" name="" placeholder="Type your designation">
+
+                <label>your Organization</label>
+                <input type="text" class="form-control" name="" placeholder="type your Organization">
+
+                <label>Is this your current company?</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input type="radio" id="test1" name="radio-group" checked>
+                      <label >Yes</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input type="radio" id="test2" name="radio-group" checked>
+                      <label >No</label>
+                    </p>
+                  </div>
+                </div>
+
+                <label>Started working from</label>
+                <ul class="ctc">
+                  <li>
+                    <select class="form-control">
+
+                      <option>Year</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="form-control">
+                      <option>Month</option>
+                    </select>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label>Started working from</label>
+                <ul class="ctc">
+                  <li>
+                    <select class="form-control">
+                      <option>Present</option>
+                    </select>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label>Describe your job profile</label>
+                <textarea class="form-control" placeholder="" rows="5">Describe profile here</textarea>
+
+                <div class="row">
+                  <div class="col-md-2 col-6 offset-md-8" align="right">
+                    <button type="button" class="cancel-btn" onclick="closeEditblock('employemnt-edit')">Cancel</button>
+                  </div>
+                  <div class="col-md-2 col-6" align="right">
+                    <button type="submit" class="btn btn-success" disabled="">Save</button>
+                  </div>
+                </div>
+              </form> -->
+              <form [formGroup]="employementForm" (ngSubmit)="onFormSubmit()">
+                <label
+                  >Current Designation<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <input
+                  [readonly]="!editEmployementDetails"
+                  type="text"
+                  formControlName="current_designation"
+                  class="form-control"
+                  name=""
+                  placeholder="Your job title"
+                />
+
+                <label
+                  >Current Company<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <input
+                  [readonly]="!editEmployementDetails"
+                  type="text"
+                  formControlName="current_company"
+                  class="form-control"
+                  name=""
+                  p
+                  laceholder="Where are you working in present"
+                />
+
+                <label
+                  >Annual Salary<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <ul class="ctc">
+                  <li>
+                    <span style="background: #58c1e2; color: #fff;">INR</span
+                    ><span><i class="fas fa-rupee-sign"></i></span>
+                  </li>
+                  <li>
+                    <select
+                      [attr.disabled]="!editEmployementDetails ? '' : null"
+                      formControlName="current_salary_lakhs"
+                      class="form-control"
+                    >
+                      <option *ngFor="let x of lakhs" value="{{ x.value }}">{{
+                        x.value
+                      }}</option>
+                    </select>
+                  </li>
+                  <li>
+                    <p>Lakhs</p>
+                  </li>
+                  <li>
+                    <select
+                      [attr.disabled]="!editEmployementDetails ? '' : null"
+                      formControlName="current_salary_thousand"
+                      class="form-control"
+                    >
+                      <option
+                        *ngFor="let x of thousand"
+                        value="{{ x.value }}"
+                        >{{ x.value }}</option
+                      >
+                    </select>
+                  </li>
+                  <li>
+                    <p>Thousands</p>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label
+                  >Experience<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <ul class="ctc">
+                  <li>
+                    <select
+                      [attr.disabled]="!editEmployementDetails ? '' : null"
+                      formControlName="experience_year"
+                      class="form-control"
+                    >
+                      <option *ngFor="let x of date" value="{{ x.value }}">{{
+                        x.value
+                      }}</option>
+                    </select>
+                  </li>
+                  <li>
+                    <p>Year</p>
+                  </li>
+                  <li>
+                    <select
+                      [attr.disabled]="!editEmployementDetails ? '' : null"
+                      formControlName="experience_month"
+                      class="form-control"
+                    >
+                      <option
+                        *ngFor="let x of month; let i = index"
+                        value="{{ i }}"
+                        >{{ i }}</option
+                      >
+                    </select>
+                  </li>
+                  <li>
+                    <p>Month</p>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label
+                  >Current Location<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <select
+                  formControlName="current_location"
+                  [attr.disabled]="!editEmployementDetails ? '' : null"
+                  class="form-control mb-0"
+                >
+                  <option value="">Select</option>
+                  <optgroup
+                    class="optGroup"
+                    label="------Top Metropolitan Cities------"
+                    value="-1"
+                  >
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Pune">Pune</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Andhra Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Guntur">Guntur</option>
+                    <option value="Kakinada">Kakinada</option>
+                    <option value="Kurnool">Kurnool</option>
+                    <option value="Nellore">Nellore</option>
+                    <option value="Nizamabad">Nizamabad</option>
+                    <option value="Rajamundry">Rajamundry</option>
+                    <option value="Tirupati">Tirupati</option>
+                    <option value="Vijayawada">Vijayawada</option>
+                    <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Warangal">Warangal</option>
+                    <option value="Anantapur">Anantapur</option>
+                    <option value="Guntakal">Guntakal</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Rajahmundry">Rajahmundry</option>
+                    <option value="Secunderabad">Secunderabad</option>
+                    <option value="Andhra Pradesh - Other"
+                      >Andhra Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Arunachal Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Itanagar">Itanagar</option>
+                    <option value="Arunachal Pradesh - Other"
+                      >Arunachal Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Assam------"
+                    value="-1"
+                  >
+                    <option value="Dispur">Dispur</option>
+                    <option value="Guwahati">Guwahati</option>
+                    <option value="Silchar">Silchar</option>
+                    <option value="Assam - Other">Assam - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Bihar------"
+                    value="-1"
+                  >
+                    <option value="Bhilaigarh">Bhilaigarh</option>
+                    <option value="Patna">Patna</option>
+                    <option value="Bihar - Other">Bihar - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Chhattisgarh------"
+                    value="-1"
+                  >
+                    <option value="Bhagalpur">Bhagalpur</option>
+                    <option value="Bilaspur">Bilaspur</option>
+                    <option value="Raipur">Raipur</option>
+                    <option value="Bhillai">Bhillai</option>
+                    <option value="Chhattisgarh - Other"
+                      >Chhattisgarh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup class="optGroup" label="------Goa------" value="-1">
+                    <option value="Goa">Goa</option>
+                    <option value="Panaji">Panaji</option>
+                    <option value="Panjim">Panjim</option>
+                    <option value="Vasco">Vasco Da Gama</option>
+                    <option value="Goa - Other">Goa - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Gujarat------"
+                    value="-1"
+                  >
+                    <option value="Anand">Anand</option>
+                    <option value="Ankleshwar">Ankleshwar</option>
+                    <option value="Baroda">Baroda</option>
+                    <option value="Bharuch">Bharuch</option>
+                    <option value="Bhavnagar">Bhavnagar</option>
+                    <option value="Bhuj">Bhuj</option>
+                    <option value="Gandhinagar">Gandhinagar</option>
+                    <option value="Jamnagar">Jamnagar</option>
+                    <option value="Kandla">Kandla</option>
+                    <option value="Porbandar">Porbandar</option>
+                    <option value="Rajkot">Rajkot</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Vadodara">Vadodara</option>
+                    <option value="Valsad">Valsad</option>
+                    <option value="Vapi">Vapi</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Gir">Gir</option>
+                    <option value="Gujarat - Other">Gujarat - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Haryana------"
+                    value="-1"
+                  >
+                    <option value="Ambala">Ambala</option>
+                    <option value="Faridabad">Faridabad</option>
+                    <option value="Hisar">Hisar</option>
+                    <option value="Karnal">Karnal</option>
+                    <option value="Kurukshetra">Kurukshetra</option>
+                    <option value="Panipat">Panipat</option>
+                    <option value="Rohtak">Rohtak</option>
+                    <option value="Sonipat">Sonipat / Sonepat</option>
+                    <option value="Yamunanagar">Yamunanagar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Haryana - Other">Haryana - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Himachal Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Baddi">Baddi</option>
+                    <option value="Dalhousie">Dalhousie</option>
+                    <option value="Dharamsala">Dharamsala</option>
+                    <option value="Kulu">Kulu/Manali</option>
+                    <option value="Shimla">Shimla</option>
+                    <option value="Himachal Pradesh - Other"
+                      >Himachal Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Jammu &amp; Kashmir------"
+                    value="-1"
+                  >
+                    <option value="Jammu">Jammu</option>
+                    <option value="Srinagar">Srinagar</option>
+                    <option value="Jammu &amp; Kashmir - Other"
+                      >Jammu &amp; Kashmir - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Jharkhand------"
+                    value="-1"
+                  >
+                    <option value="Bokaro">Bokaro</option>
+                    <option value="Dhanbad">Dhanbad</option>
+                    <option value="Jamshedpur">Jamshedpur</option>
+                    <option value="Ranchi">Ranchi</option>
+                    <option value="Jharkhand - Other">Jharkhand - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Karnataka------"
+                    value="-1"
+                  >
+                    <option value="Bengaluru">Bengaluru / Bangalore</option>
+                    <option value="Belgaum">Belgaum</option>
+                    <option value="Bellary">Bellary</option>
+                    <option value="Bidar">Bidar</option>
+                    <option value="Dharwad">Dharwad</option>
+                    <option value="Gulbarga">Gulbarga</option>
+                    <option value="Hubli">Hubli</option>
+                    <option value="Kolar">Kolar</option>
+                    <option value="Mangalore">Mangalore</option>
+                    <option value="Mysore">Mysore</option>
+                    <option value="Shimoga">Shimoga</option>
+                    <option value="Karnataka - Other">Karnataka - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Kerala------"
+                    value="-1"
+                  >
+                    <option value="Alappuzha">Alappuzha / Alleppey</option>
+                    <option value="Cochin">Cochin / Kochi / Ernakulam</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Kasargod">Kasargod</option>
+                    <option value="Kollam">Kollam</option>
+                    <option value="Kottayam">Kottayam</option>
+                    <option value="Kozhikode">Kozhikode / Calicut</option>
+                    <option value="Malappuram">Malappuram</option>
+                    <option value="Pallakad">Pallakad</option>
+                    <option value="Pathanamthitta">Pathanamthitta</option>
+                    <option value="Thrissur">Thrissur / Trissur</option>
+                    <option value="Thiruvananthapuram"
+                      >Thiruvananthapuram / Trivandrum</option
+                    >
+                    <option value="Wayanad">Wayanad</option>
+                    <option value="Palakkad">Palakkad</option>
+                    <option value="Palghat">Palghat</option>
+                    <option value="Kerala - Other">Kerala - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Madhya Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Bhopal">Bhopal</option>
+                    <option value="Gwalior">Gwalior</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Jabalpur">Jabalpur</option>
+                    <option value="Ujjain">Ujjain</option>
+                    <option value="Madhya Pradesh - Other"
+                      >Madhya Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Maharashtra------"
+                    value="-1"
+                  >
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Jalgaon">Jalgaon</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Nasik">Nasik</option>
+                    <option value="Sholapur">Sholapur</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Mumbai">Mumbai Suburbs</option>
+                    <option value="Navi">Navi Mumbai</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Solapur">Solapur</option>
+                    <option value="Maharashtra - Other"
+                      >Maharashtra - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Manipur------"
+                    value="-1"
+                  >
+                    <option value="Imphal">Imphal</option>
+                    <option value="Manipur - Other">Manipur - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Meghalaya------"
+                    value="-1"
+                  >
+                    <option value="Shillong">Shillong</option>
+                    <option value="Meghalaya - Other">Meghalaya - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Mizoram------"
+                    value="-1"
+                  >
+                    <option value="Aizawal">Aizawal</option>
+                    <option value="Mizoram - Other">Mizoram - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Nagaland------"
+                    value="-1"
+                  >
+                    <option value="Kohima">Kohima</option>
+                    <option value="Dimapur">Dimapur</option>
+                    <option value="Nagaland - Other">Nagaland - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Odisha------"
+                    value="-1"
+                  >
+                    <option value="Bhubaneshwar">Bhubaneshwar</option>
+                    <option value="Cuttack">Cuttack</option>
+                    <option value="Paradeep">Paradeep</option>
+                    <option value="Puri">Puri</option>
+                    <option value="Rourkela">Rourkela</option>
+                    <option value="Odisha - Other">Odisha - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Punjab------"
+                    value="-1"
+                  >
+                    <option value="Amritsar">Amritsar</option>
+                    <option value="Bhatinda">Bhatinda</option>
+                    <option value="Jalandhar">Jalandhar</option>
+                    <option value="Ludhiana">Ludhiana</option>
+                    <option value="Mohali">Mohali</option>
+                    <option value="Pathankot">Pathankot</option>
+                    <option value="Patiala">Patiala</option>
+                    <option value="Bathinda">Bathinda</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Punjab - Other">Punjab - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Rajasthan------"
+                    value="-1"
+                  >
+                    <option value="Ajmer">Ajmer</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Jaisalmer">Jaisalmer</option>
+                    <option value="Jodhpur">Jodhpur</option>
+                    <option value="Kota">Kota</option>
+                    <option value="Udaipur">Udaipur</option>
+                    <option value="Rajasthan - Other">Rajasthan - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Sikkim------"
+                    value="-1"
+                  >
+                    <option value="Gangtok">Gangtok</option>
+                    <option value="Sikkim - Other">Sikkim - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Tamilnadu------"
+                    value="-1"
+                  >
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Erode">Erode</option>
+                    <option value="Hosur">Hosur</option>
+                    <option value="Madurai">Madurai</option>
+                    <option value="Nagercoil">Nagercoil</option>
+                    <option value="Ooty">Ooty</option>
+                    <option value="Salem">Salem</option>
+                    <option value="Thanjavur">Thanjavur</option>
+                    <option value="Tirunalveli">Tirunalveli</option>
+                    <option value="Trichy">Trichy</option>
+                    <option value="Tuticorin">Tuticorin</option>
+                    <option value="Vellore">Vellore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Cuddalore">Cuddalore</option>
+                    <option value="Tamil Nadu - Other"
+                      >Tamil Nadu - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Tripura------"
+                    value="-1"
+                  >
+                    <option value="Agartala">Agartala</option>
+                    <option value="Tripura - Other">Tripura - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Union Territories------"
+                    value="-1"
+                  >
+                    <option value="Daman">Daman</option>
+                    <option value="Kavaratti">Kavaratti</option>
+                    <option value="Pondicherry">Pondicherry</option>
+                    <option value="Port">Port Blair</option>
+                    <option value="Silvassa">Silvassa</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra">Dadra &amp; Nagar Haveli</option>
+                    <option value="Delhi">Delhi</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Uttar Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Agra">Agra</option>
+                    <option value="Aligarh">Aligarh</option>
+                    <option value="Allahabad">Allahabad</option>
+                    <option value="Bareilly">Bareilly</option>
+                    <option value="Faizabad">Faizabad</option>
+                    <option value="Ghaziabad">Ghaziabad</option>
+                    <option value="Gorakhpur">Gorakhpur</option>
+                    <option value="Kanpur">Kanpur</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Mathura">Mathura</option>
+                    <option value="Meerut">Meerut</option>
+                    <option value="Moradabad">Moradabad</option>
+                    <option value="Varanasi">Varanasi</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Uttar Pradesh - Other"
+                      >Uttar Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Uttaranchal------"
+                    value="-1"
+                  >
+                    <option value="Dehradun">Dehradun</option>
+                    <option value="Roorkee">Roorkee</option>
+                    <option value="Uttaranchal - Other"
+                      >Uttaranchal - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------West Bengal------"
+                    value="-1"
+                  >
+                    <option value="Asansol">Asansol</option>
+                    <option value="Durgapur">Durgapur</option>
+                    <option value="Haldia">Haldia</option>
+                    <option value="Kharagpur">Kharagpur</option>
+                    <option value="Siliguri">Siliguri</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="West Bengal - Other"
+                      >West Bengal - Other</option
+                    >
+                    <option value="Other">Other India</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------International Locations------"
+                    value="-1"
+                  >
+                    <option value="Quilon">Quilon</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                  </optgroup>
+                </select>
+                <div class="clearfix"></div>
+
+                <label
+                  >Duration of notice period<span class="text-danger"
+                    ><sup>*</sup></span
+                  ></label
+                >
+                <select
+                  [attr.disabled]="!editEmployementDetails ? '' : null"
+                  formControlName="duration_notice_period"
+                  class="form-control mb-0"
+                >
+                  <option
+                    *ngFor="let x of noticePeriod"
+                    value="{{ x.value }}"
+                    >{{ x.value }}</option
+                  >
+                </select>
+
+                <div class="clearfix"></div>
+
+                <hr class="mb-1 seprater-big" />
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div formArrayName="employement">
+                  <div
+                    *ngFor="let edu of employement.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div>
+                      <hr />
+                      <h4>Previous Experience</h4>
+                      <button
+                        *ngIf="editEmployementDetails"
+                        (click)="deletePhone(i)"
+                        class="removeButton"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    <label>Company</label>
+                    <input
+                      [readonly]="!editEmployementDetails"
+                      formControlName="company"
+                      type="text"
+                      name=""
+                      class="form-control"
+                      placeholder="Your previous company name"
+                    />
+                    <label>Designation</label>
+                    <input
+                      [readonly]="!editEmployementDetails"
+                      formControlName="designation"
+                      type="text"
+                      name=""
+                      class="form-control"
+                      placeholder="Your previous designation"
+                    />
+                    <label>Duration</label>
+                    <ul class="ctc">
+                      <li>
+                        <select
+                          [attr.disabled]="!editEmployementDetails ? '' : null"
+                          formControlName="duration_from_year"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let x of years"
+                            value="{{ x.value }}"
+                            >
+                            {{ x.value }}
+                            </option>
+                        </select>
+                      </li>
+                      <li>
+                        <select
+                          [attr.disabled]="!editEmployementDetails ? '' : null"
+                          formControlName="duration_from_month"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let x of month"
+                            value="{{ x.value }}"
+                            >{{ x.value }}</option
+                          >
+                        </select>
+                      </li>
+                      <li>
+                        <p>To</p>
+                      </li>
+                      <li>
+                        <select
+                          [attr.disabled]="!editEmployementDetails ? '' : null"
+                          formControlName="duration_to_year"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let x of years"
+                            value="{{ x.value }}"
+                            >{{ x.value }}</option
+                          >
+                        </select>
+                      </li>
+                      <li>
+                        <select
+                          [attr.disabled]="!editEmployementDetails ? '' : null"
+                          formControlName="duration_to_month"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let x of month"
+                            value="{{ x.value }}"
+                            >{{ x.value }}</option
+                          >
+                        </select>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                <div *ngIf="editEmployementDetails">
+                  <a (click)="addField()" class="d-inline-block mb-3"
+                    >Add Previous Employment</a
+                  >
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                  <div class="row">
+                    <div
+                      *ngIf="editEmployementDetails"
+                      class="col-md-2 col-6 offset-md-8"
+                      align="right"
+                    >
+                      <button
+                        type="button"
+                        class="cancel-btn"
+                        (click)="cancelEmployement()"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <div
+                      *ngIf="editEmployementDetails"
+                      class="col-md-2 col-6"
+                      align="right"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        (click)="updateEmployement()"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div  *ngIf="editEmployementDetails" class="col-md-2 col-6 offset-md-8" align="right">
+                    <button type="button" class="cancel-btn" (click)="cancelEmployement()">Cancel</button>
+                  </div>
+                  <div *ngIf="editEmployementDetails" class="col-md-2 col-6" align="right">
+                    <button type="submit" class="btn btn-success" (click)="updateEmployement()">Save</button>
+                </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block" id="education">
+          <h4 class="d-inline-block float-left">Education</h4>
+          <a
+            *ngIf="!editEducationForm"
+            class="float-right edit-btn"
+            (click)="editEducation()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editEducationForm"
+            (click)="editEducation()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <p class="mt-3">Manage your education.</p>
+
+          <div *ngIf="isEducation" class="row education-edit">
+            <div class="col-md-12">
+              <!-- <form>
+                <label>Highest Education</label>
+                <select class="form-control">
+                  <option>Masters / Post Graduate</option>
+                </select>
+
+                <label>Course</label>
+                <select class="form-control">
+                  <option>Type your course</option>
+                </select>
+
+                <label>Specialization</label>
+                <select class="form-control">
+                  <option>Select Specialization</option>
+                </select>
+
+                <label>University / College</label>
+                <select class="form-control">
+                  <option>Select University/College</option>
+                </select>
+
+                <label>Course Type</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input type="radio" id="test1" name="radio-group" checked>
+                      <label >Full Time</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input type="radio" id="test2" name="radio-group" checked>
+                      <label >Part Time</label>
+                    </p>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <p>
+                      <input type="radio" id="test2" name="radio-group" checked>
+                      <label >Correspondence / Distance Learning</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <label>Passing Year<span class="text-danger"><sup>*</sup></span></label>
+                <select class="form-control">
+                  <option>Select year</option>
+                </select>
+
+                <label>Skills</label>
+                <ul class="key-skill">
+                  <li>Marketing</li>
+                  <li>Internet Marketing</li>
+                </ul>
+                <input type="text" class="form-control" value="" data-role="tagsinput" placeholder="Add skills" />
+                <div class="row">
+                  <div class="col-md-2 col-6 offset-md-8" align="right">
+                    <button type="button" class="cancel-btn" onclick="closeEditblock('education-edit')">Cancel</button>
+                  </div>
+                  <div class="col-md-2 col-6" align="right">
+                    <button type="submit" class="btn btn-success" disabled="">Save</button>
+                  </div>
+                </div>
+              </form> -->
+              <form
+                [formGroup]="signupEducationForm"
+                (ngSubmit)="updateEducationForm()"
+              >
+                <div formArrayName="education">
+                  <div
+                    *ngFor="let edu of educations.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="i">
+                      <hr />
+                      <h4>Other Education</h4>
+                      <button
+                        *ngIf="editEducationForm"
+                        (click)="deletePhonee(i)"
+                        class="removeButton"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    <div class="form-group">
+                      <label *ngIf="!i"
+                        >Highest Qualification<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <label *ngIf="i"
+                        >Other Qualification<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        formControlName="qualification"
+                        (change)="qualificationChange($event, i)"
+                        class="form-control"
+                      >
+                        <option selected
+                          >Select your highest qualification</option
+                        >
+                        <option
+                          *ngFor="
+                            let x of qualificationsArray[0];
+                            let j = index
+                          "
+                          value="{{ x.value }}"
+                          >{{ x.value }}</option
+                        >
+                      </select>
+                    </div>
+
+                    <div *ngIf="below10" class="form-group">
+                      <label
+                        >Course<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        class="form-control"
+                        formControlName="course"
+                      >
+                        <option>Select your Course</option>
+                        <option
+                          *ngFor="
+                            let x of courses[
+                              educations.controls[i].value.qualification
+                            ]
+                          "
+                          value="{{ x.value }}"
+                          >{{ x.value }}</option
+                        >
+                      </select>
+                    </div>
+
+                    <div *ngIf="below10" class="form-group">
+                      <label
+                        >Specialization<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        class="form-control"
+                        formControlName="specialization"
+                      >
+                        <option>Select your Specialization</option>
+
+                        <option
+                          *ngFor="
+                            let x of specializations[
+                              educations.controls[i].value.course
+                            ]
+                          "
+                          value="{{ x.value }}"
+                          >{{ x.value }}</option
+                        >
+                      </select>
+                    </div>
+
+                    <div *ngIf="below10" class="form-group">
+                      <label
+                        >University/College<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        class="form-control"
+                        formControlName="college"
+                      >
+                        <option>Select your College</option>
+
+                        <option
+                          *ngFor="let x of colleges"
+                          value="{{ x.value }}"
+                          >{{ x.value }}
+                          </option>
+                        <!-- <option value="other">other</option> -->
+                      </select>
+                    </div>
+                    <div *ngIf="below10" class="form-group">
+                      <label
+                        >Course Type<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        class="form-control"
+                        formControlName="course_type"
+                      >
+                        <option>Select your Course Type</option>
+
+                        <option
+                          *ngFor="let x of courseTypes"
+                          value="{{ x.value }}"
+                          >{{ x.value }}</option
+                        >
+                      </select>
+                    </div>
+
+                    <div *ngIf="below10" class="form-group">
+                      <label
+                        >Passing Year<span class="text-danger"
+                          ><sup>*</sup></span
+                        ></label
+                      >
+                      <select
+                        [attr.disabled]="!editEducationForm ? '' : null"
+                        formControlName="passing_year"
+                        class="form-control"
+                      >
+                        <option>Select year</option>
+
+                        <option *ngFor="let x of years" value="{{ x.value }}">{{
+                          x.value
+                        }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <a *ngIf="editEducationForm" (click)="addfieldsFormGroup()"
+                  >+ Add more education</a
+                >
+                <a *ngIf="!editEducationForm" class="disabled"
+                  >+ Add more education</a
+                >
+                <br />
+                <br />
+
+                <div class="form-group">
+                  <div class="row">
+                    <div
+                      *ngIf="editEducationForm"
+                      class="col-md-2 col-6 offset-md-8"
+                      align="right"
+                    >
+                      <button
+                        type="button"
+                        class="cancel-btn"
+                        (click)="cancelEducationForm()"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <div
+                      *ngIf="editEducationForm"
+                      class="col-md-2 col-6"
+                      align="right"
+                    >
+                      <button type="submit" class="btn btn-success">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block">
+          <h4 class="d-inline-block float-left">Profile Summary</h4>
+          <a
+            *ngIf="!editProfileSummaryForm"
+            class="float-right edit-btn"
+            (click)="editProfileSummary()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editProfileSummaryForm"
+            (click)="editProfileSummary()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <!-- <p class="mt-3">Your profile summary should mention the highlights of your career and education, What your professional interests are and what kind of a career you are looking for. Write a meaningful summary of more than 50 characters.</p> -->
+
+          <div class="row profile-edit">
+            <div class="col-md-12">
+              <form
+                [formGroup]="profileSummaryForm"
+                (ngSubmit)="uploadProfileSummary()"
+              >
+                <textarea
+                  [readonly]="!editProfileSummaryForm"
+                  formControlName="profile_summary"
+                  class="form-control"
+                  placeholder="Your profile summary should mention the highlights of your career and education, What your professional interests are and what kind of a career you are looking for. Write a meaningful summary of more than 50 characters."
+                  rows="6"
+                ></textarea>
+                <div *ngIf="editProfileSummaryForm" class="row">
+                  <div class="col-md-2 col-6 offset-md-8" align="right">
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelProfileSummaryEmployement()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div class="col-md-2 col-6" align="right">
+                    <button type="submit" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block">
+          <h4 class="d-inline-block float-left">Desired Career Profile</h4>
+          <a
+            *ngIf="!editCareerForm"
+            class="float-right edit-btn"
+            (click)="editCareerEmployement()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editCareerForm"
+            (click)="editCareerEmployement()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <div *ngIf="!editCareerForm" class="row mt-3 career-profile">
+            <div class="col-md-6">
+              <h6>Industry</h6>
+              <p>{{indus}} </p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Functional Area</h6>
+              <p>{{func}} </p>
+            </div>
+
+            <!-- <div class="col-md-6">
+                <h6>Role</h6>
+                <p>{{desiredCareerForm.value.role}}</p>
+              </div> -->
+
+            <div class="col-md-6">
+              <h6>Job Type</h6>
+              <p>{{ desiredCareerForm.value.job_type }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Employement Type</h6>
+              <p>{{ desiredCareerForm.value.employement_type }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Desired Shift</h6>
+              <p>{{ desiredCareerForm.value.preferred_shift }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Desired Location</h6>
+              <p>{{ desiredCareerForm.value.desired_location }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Expected Salary</h6>
+              <p>
+                {{ desiredCareerForm.value.expected_salary_lacs }}.{{
+                  desiredCareerForm.value.expected_salary_thousand
+                }}
+                LPA
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Desired Industry</h6>
+              <p>{{ indusd }}</p>
+            </div>
+          </div>
+          <div class="row career-profile-edit">
+            <hr />
+            <div *ngIf="editCareerForm" class="col-md-12">
+              <form
+                [formGroup]="desiredCareerForm"
+                (ngSubmit)="onDesiredFormSubmit()"
+              >
+                <!-- <label>Industry</label>
+                <select formControlName="industry" class="form-control">
+                    <option *ngFor= "let i of industries" value="{{i._id}}" >{{i.value}}</option>
+                  </select> -->
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select Industry'"
+                  [data]="industries"
+                  formControlName="industry"
+                  [settings]="dropdownSettingsI"
+                  (onSelect)="onItemSelectI($event)"
+                  (onSelectAll)="onSelectAllI($event)"
+                  (onDeSelect)="OnItemDeSelectI($event)"
+                  (onDeSelectAll)="onDeSelectAllI($event)"
+                >
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select FunctionalArea'"
+                  [data]="functionalArea"
+                  formControlName="functional_area"
+                  [settings]="dropdownSettingsF"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                  (onDeSelect)="OnItemDeSelect($event)"
+                  (onDeSelectAll)="onDeSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+
+                <!-- <div class="mt-10"> -->
+
+                <!-- <label>Functional Area / Department</label>
+                <select formControlName="functional_area" class="form-control">
+                    <option *ngFor= "let i of functionalArea" value="{{i._id}}" >{{i.value}}</option>
+                </select> -->
+                <!--
+                <label>Role</label>
+                <select formControlName="role" class="form-control">
+                  <option>Select Desired Role</option>
+                </select> -->
+
+                <label>Job Type</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <!-- <input type="radio" value="Firm" formControlName="user_type"><span>Firm</span> -->
+
+                      <input
+                        formControlName="job_type"
+                        id="jt1"
+                        type="radio"
+                        value="Permanent"
+                      />
+                      <label for="jt1">Permanent</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="jt2"
+                        formControlName="job_type"
+                        type="radio"
+                        value="Contract"
+                      />
+                      <label for="jt2">Contract</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <label>Employement Type</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="et1"
+                        formControlName="employement_type"
+                        type="radio"
+                        value="Full Time"
+                      />
+                      <label for="et1">Full Time</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="et2"
+                        formControlName="employement_type"
+                        type="radio"
+                        value="Part Time"
+                      />
+                      <label for="et2">Part Time</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <label>Preferred Shift</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="ps1"
+                        formControlName="preferred_shift"
+                        type="radio"
+                        value="Day"
+                      />
+                      <label for="ps1">Day</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="ps2"
+                        formControlName="preferred_shift"
+                        type="radio"
+                        value="Night"
+                      />
+                      <label for="ps2">Night</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="ps3"
+                        formControlName="preferred_shift"
+                        type="radio"
+                        value="Flexible"
+                      />
+                      <label for="ps3">Flexible</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <label>Expected Salary</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="esc1"
+                        formControlName="expected_salary_currency"
+                        type="radio"
+                        value="Indian Rupees"
+                      />
+                      <label for="esc1">Indian Rupees</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        id="esc2"
+                        formControlName="expected_salary_currency"
+                        type="radio"
+                        value="US Dollors"
+                      />
+                      <label for="esc2">US Dollars</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <ul class="ctc">
+                  <li>
+                    <select
+                      formControlName="expected_salary_lacs"
+                      class="form-control"
+                    >
+                      <option *ngFor="let i of lakhs" value="{{ i.value }}">
+                        {{ i.value }}</option
+                      >
+                    </select>
+                  </li>
+                  <li>
+                    <p>Lakhs</p>
+                  </li>
+                  <li>
+                    <select
+                      formControlName="expected_salary_thousand"
+                      class="form-control"
+                    >
+                      <option *ngFor="let i of thousand" value="{{ i.value }}">
+                        {{ i.value }}</option
+                      >
+                    </select>
+                  </li>
+                  <li>
+                    <p>Thousand</p>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label>Desired Location</label>
+
+                <select
+                  formControlName="desired_location"
+                  class="form-control mb-0"
+                >
+                  <option value="">Select</option>
+                  <optgroup
+                    class="optGroup"
+                    label="------Top Metropolitan Cities------"
+                    value="-1"
+                  >
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Pune">Pune</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Andhra Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Guntur">Guntur</option>
+                    <option value="Kakinada">Kakinada</option>
+                    <option value="Kurnool">Kurnool</option>
+                    <option value="Nellore">Nellore</option>
+                    <option value="Nizamabad">Nizamabad</option>
+                    <option value="Rajamundry">Rajamundry</option>
+                    <option value="Tirupati">Tirupati</option>
+                    <option value="Vijayawada">Vijayawada</option>
+                    <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Warangal">Warangal</option>
+                    <option value="Anantapur">Anantapur</option>
+                    <option value="Guntakal">Guntakal</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Rajahmundry">Rajahmundry</option>
+                    <option value="Secunderabad">Secunderabad</option>
+                    <option value="Andhra Pradesh - Other"
+                      >Andhra Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Arunachal Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Itanagar">Itanagar</option>
+                    <option value="Arunachal Pradesh - Other"
+                      >Arunachal Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Assam------"
+                    value="-1"
+                  >
+                    <option value="Dispur">Dispur</option>
+                    <option value="Guwahati">Guwahati</option>
+                    <option value="Silchar">Silchar</option>
+                    <option value="Assam - Other">Assam - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Bihar------"
+                    value="-1"
+                  >
+                    <option value="Bhilaigarh">Bhilaigarh</option>
+                    <option value="Patna">Patna</option>
+                    <option value="Bihar - Other">Bihar - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Chhattisgarh------"
+                    value="-1"
+                  >
+                    <option value="Bhagalpur">Bhagalpur</option>
+                    <option value="Bilaspur">Bilaspur</option>
+                    <option value="Raipur">Raipur</option>
+                    <option value="Bhillai">Bhillai</option>
+                    <option value="Chhattisgarh - Other"
+                      >Chhattisgarh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup class="optGroup" label="------Goa------" value="-1">
+                    <option value="Goa">Goa</option>
+                    <option value="Panaji">Panaji</option>
+                    <option value="Panjim">Panjim</option>
+                    <option value="Vasco">Vasco Da Gama</option>
+                    <option value="Goa - Other">Goa - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Gujarat------"
+                    value="-1"
+                  >
+                    <option value="Anand">Anand</option>
+                    <option value="Ankleshwar">Ankleshwar</option>
+                    <option value="Baroda">Baroda</option>
+                    <option value="Bharuch">Bharuch</option>
+                    <option value="Bhavnagar">Bhavnagar</option>
+                    <option value="Bhuj">Bhuj</option>
+                    <option value="Gandhinagar">Gandhinagar</option>
+                    <option value="Jamnagar">Jamnagar</option>
+                    <option value="Kandla">Kandla</option>
+                    <option value="Porbandar">Porbandar</option>
+                    <option value="Rajkot">Rajkot</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Vadodara">Vadodara</option>
+                    <option value="Valsad">Valsad</option>
+                    <option value="Vapi">Vapi</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Gir">Gir</option>
+                    <option value="Gujarat - Other">Gujarat - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Haryana------"
+                    value="-1"
+                  >
+                    <option value="Ambala">Ambala</option>
+                    <option value="Faridabad">Faridabad</option>
+                    <option value="Hisar">Hisar</option>
+                    <option value="Karnal">Karnal</option>
+                    <option value="Kurukshetra">Kurukshetra</option>
+                    <option value="Panipat">Panipat</option>
+                    <option value="Rohtak">Rohtak</option>
+                    <option value="Sonipat">Sonipat / Sonepat</option>
+                    <option value="Yamunanagar">Yamunanagar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Haryana - Other">Haryana - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Himachal Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Baddi">Baddi</option>
+                    <option value="Dalhousie">Dalhousie</option>
+                    <option value="Dharamsala">Dharamsala</option>
+                    <option value="Kulu">Kulu/Manali</option>
+                    <option value="Shimla">Shimla</option>
+                    <option value="Himachal Pradesh - Other"
+                      >Himachal Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Jammu &amp; Kashmir------"
+                    value="-1"
+                  >
+                    <option value="Jammu">Jammu</option>
+                    <option value="Srinagar">Srinagar</option>
+                    <option value="Jammu &amp; Kashmir - Other"
+                      >Jammu &amp; Kashmir - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Jharkhand------"
+                    value="-1"
+                  >
+                    <option value="Bokaro">Bokaro</option>
+                    <option value="Dhanbad">Dhanbad</option>
+                    <option value="Jamshedpur">Jamshedpur</option>
+                    <option value="Ranchi">Ranchi</option>
+                    <option value="Jharkhand - Other">Jharkhand - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Karnataka------"
+                    value="-1"
+                  >
+                    <option value="Bengaluru">Bengaluru / Bangalore</option>
+                    <option value="Belgaum">Belgaum</option>
+                    <option value="Bellary">Bellary</option>
+                    <option value="Bidar">Bidar</option>
+                    <option value="Dharwad">Dharwad</option>
+                    <option value="Gulbarga">Gulbarga</option>
+                    <option value="Hubli">Hubli</option>
+                    <option value="Kolar">Kolar</option>
+                    <option value="Mangalore">Mangalore</option>
+                    <option value="Mysore">Mysore</option>
+                    <option value="Shimoga">Shimoga</option>
+                    <option value="Karnataka - Other">Karnataka - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Kerala------"
+                    value="-1"
+                  >
+                    <option value="Alappuzha">Alappuzha / Alleppey</option>
+                    <option value="Cochin">Cochin / Kochi / Ernakulam</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Kasargod">Kasargod</option>
+                    <option value="Kollam">Kollam</option>
+                    <option value="Kottayam">Kottayam</option>
+                    <option value="Kozhikode">Kozhikode / Calicut</option>
+                    <option value="Malappuram">Malappuram</option>
+                    <option value="Pallakad">Pallakad</option>
+                    <option value="Pathanamthitta">Pathanamthitta</option>
+                    <option value="Thrissur">Thrissur / Trissur</option>
+                    <option value="Thiruvananthapuram"
+                      >Thiruvananthapuram / Trivandrum</option
+                    >
+                    <option value="Wayanad">Wayanad</option>
+                    <option value="Palakkad">Palakkad</option>
+                    <option value="Palghat">Palghat</option>
+                    <option value="Kerala - Other">Kerala - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Madhya Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Bhopal">Bhopal</option>
+                    <option value="Gwalior">Gwalior</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Jabalpur">Jabalpur</option>
+                    <option value="Ujjain">Ujjain</option>
+                    <option value="Madhya Pradesh - Other"
+                      >Madhya Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Maharashtra------"
+                    value="-1"
+                  >
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Jalgaon">Jalgaon</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Nasik">Nasik</option>
+                    <option value="Sholapur">Sholapur</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Mumbai">Mumbai Suburbs</option>
+                    <option value="Navi">Navi Mumbai</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Solapur">Solapur</option>
+                    <option value="Maharashtra - Other"
+                      >Maharashtra - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Manipur------"
+                    value="-1"
+                  >
+                    <option value="Imphal">Imphal</option>
+                    <option value="Manipur - Other">Manipur - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Meghalaya------"
+                    value="-1"
+                  >
+                    <option value="Shillong">Shillong</option>
+                    <option value="Meghalaya - Other">Meghalaya - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Mizoram------"
+                    value="-1"
+                  >
+                    <option value="Aizawal">Aizawal</option>
+                    <option value="Mizoram - Other">Mizoram - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Nagaland------"
+                    value="-1"
+                  >
+                    <option value="Kohima">Kohima</option>
+                    <option value="Dimapur">Dimapur</option>
+                    <option value="Nagaland - Other">Nagaland - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Odisha------"
+                    value="-1"
+                  >
+                    <option value="Bhubaneshwar">Bhubaneshwar</option>
+                    <option value="Cuttack">Cuttack</option>
+                    <option value="Paradeep">Paradeep</option>
+                    <option value="Puri">Puri</option>
+                    <option value="Rourkela">Rourkela</option>
+                    <option value="Odisha - Other">Odisha - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Punjab------"
+                    value="-1"
+                  >
+                    <option value="Amritsar">Amritsar</option>
+                    <option value="Bhatinda">Bhatinda</option>
+                    <option value="Jalandhar">Jalandhar</option>
+                    <option value="Ludhiana">Ludhiana</option>
+                    <option value="Mohali">Mohali</option>
+                    <option value="Pathankot">Pathankot</option>
+                    <option value="Patiala">Patiala</option>
+                    <option value="Bathinda">Bathinda</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Punjab - Other">Punjab - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Rajasthan------"
+                    value="-1"
+                  >
+                    <option value="Ajmer">Ajmer</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Jaisalmer">Jaisalmer</option>
+                    <option value="Jodhpur">Jodhpur</option>
+                    <option value="Kota">Kota</option>
+                    <option value="Udaipur">Udaipur</option>
+                    <option value="Rajasthan - Other">Rajasthan - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Sikkim------"
+                    value="-1"
+                  >
+                    <option value="Gangtok">Gangtok</option>
+                    <option value="Sikkim - Other">Sikkim - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Tamilnadu------"
+                    value="-1"
+                  >
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Erode">Erode</option>
+                    <option value="Hosur">Hosur</option>
+                    <option value="Madurai">Madurai</option>
+                    <option value="Nagercoil">Nagercoil</option>
+                    <option value="Ooty">Ooty</option>
+                    <option value="Salem">Salem</option>
+                    <option value="Thanjavur">Thanjavur</option>
+                    <option value="Tirunalveli">Tirunalveli</option>
+                    <option value="Trichy">Trichy</option>
+                    <option value="Tuticorin">Tuticorin</option>
+                    <option value="Vellore">Vellore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Cuddalore">Cuddalore</option>
+                    <option value="Tamil Nadu - Other"
+                      >Tamil Nadu - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Tripura------"
+                    value="-1"
+                  >
+                    <option value="Agartala">Agartala</option>
+                    <option value="Tripura - Other">Tripura - Other</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Union Territories------"
+                    value="-1"
+                  >
+                    <option value="Daman">Daman</option>
+                    <option value="Kavaratti">Kavaratti</option>
+                    <option value="Pondicherry">Pondicherry</option>
+                    <option value="Port">Port Blair</option>
+                    <option value="Silvassa">Silvassa</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra">Dadra &amp; Nagar Haveli</option>
+                    <option value="Delhi">Delhi</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Uttar Pradesh------"
+                    value="-1"
+                  >
+                    <option value="Agra">Agra</option>
+                    <option value="Aligarh">Aligarh</option>
+                    <option value="Allahabad">Allahabad</option>
+                    <option value="Bareilly">Bareilly</option>
+                    <option value="Faizabad">Faizabad</option>
+                    <option value="Ghaziabad">Ghaziabad</option>
+                    <option value="Gorakhpur">Gorakhpur</option>
+                    <option value="Kanpur">Kanpur</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Mathura">Mathura</option>
+                    <option value="Meerut">Meerut</option>
+                    <option value="Moradabad">Moradabad</option>
+                    <option value="Varanasi">Varanasi</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Uttar Pradesh - Other"
+                      >Uttar Pradesh - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------Uttaranchal------"
+                    value="-1"
+                  >
+                    <option value="Dehradun">Dehradun</option>
+                    <option value="Roorkee">Roorkee</option>
+                    <option value="Uttaranchal - Other"
+                      >Uttaranchal - Other</option
+                    >
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------West Bengal------"
+                    value="-1"
+                  >
+                    <option value="Asansol">Asansol</option>
+                    <option value="Durgapur">Durgapur</option>
+                    <option value="Haldia">Haldia</option>
+                    <option value="Kharagpur">Kharagpur</option>
+                    <option value="Siliguri">Siliguri</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="West Bengal - Other"
+                      >West Bengal - Other</option
+                    >
+                    <option value="Other">Other India</option>
+                  </optgroup>
+                  <optgroup
+                    class="optGroup"
+                    label="------International Locations------"
+                    value="-1"
+                  >
+                    <option value="Quilon">Quilon</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                  </optgroup>
+                </select>
+
+                <label>Desired Industry</label>
+
+                <select formControlName="desired_industry" class="form-control">
+                  <option *ngFor="let i of industries" value="{{ i._id }}">{{
+                    i.value
+                  }}</option>
+                </select>
+
+                <div class="row">
+                  <div
+                    *ngIf="editCareerForm"
+                    class="col-md-2 col-6 offset-md-8"
+                    align="right"
+                  >
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelCarrerForm()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div
+                    *ngIf="editCareerForm"
+                    class="col-md-2 col-6"
+                    align="right"
+                  >
+                    <button
+                      type="submit"
+                      class="btn btn-success"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block">
+          <h4 class="d-inline-block float-left">Personal Detail</h4>
+          <a
+            *ngIf="!editPersonalForm"
+            class="float-right edit-btn"
+            (click)="editPersonal()"
+            ><i class="fas fa-pencil-alt"></i> Edit</a
+          >
+          <a
+            *ngIf="editPersonalForm"
+            (click)="editPersonal()"
+            class="float-right edit-btn"
+            ><i class="fas fa-pencil-square-o"></i> Editable</a
+          >
+          <div class="clearfix"></div>
+          <div *ngIf="!editPersonalForm" class="row mt-3 career-profile">
+            <div class="col-md-6">
+              <h6>Date of Birth</h6>
+              <p>
+                {{ personalForm.value.date_of_birth_date }}-{{
+                  personalForm.value.date_of_birth_month
+                }}-{{ personalForm.value.date_of_birth_Year }}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Differently Abled</h6>
+              <p>{{ personalForm.value.differntly_abled }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Gender</h6>
+              <p>{{ personalForm.value.gender }}</p>
+            </div>
+
+            <!-- <div class="col-md-6">
+              <h6>Languages</h6>
+              <p>{{personalForm.value.date_of_birth_date}}</p>
+            </div> -->
+
+            <div class="col-md-6">
+              <h6>Marital Status</h6>
+              <p>{{ personalForm.value.marital_status }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>Permanent Address</h6>
+              <p>{{ personalForm.value.address }}</p>
+            </div>
+
+            <!-- <div class="col-md-6">
+              <h6>Category</h6>
+              <p>{{personalForm.value.category}}</p>
+            </div> -->
+
+            <div class="col-md-6">
+              <h6>Area Pin Code</h6>
+              <p>{{ personalForm.value.area_pin_code }}</p>
+            </div>
+          </div>
+
+          <div *ngIf="editPersonalForm" class="row personal_detail-edit">
+            <hr />
+            <div class="col-md-12">
+              <form
+                [formGroup]="personalForm"
+                (ngSubmit)="updatePersonalForm()"
+              >
+                <label>Date of Birth</label>
+                <ul class="ctc">
+                  <li>
+                    <select
+                      formControlName="date_of_birth_date"
+                      class="form-control"
+                    >
+                      <option *ngFor="let x of date" value="{{ x.value }}">{{
+                        x.value
+                      }}</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select
+                      formControlName="date_of_birth_month"
+                      class="form-control"
+                    >
+                      <option *ngFor="let x of month" value="{{ x.value }}">{{
+                        x.value
+                      }}</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select
+                      formControlName="date_of_birth_Year"
+                      class="form-control"
+                    >
+                      <option *ngFor="let x of years" value="{{ x.value }}">{{
+                        x.value
+                      }}</option>
+                      ]
+                    </select>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+
+                <label>Gender</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="gender"
+                        type="radio"
+                        id="gender1"
+                        value="Male"
+                      />
+                      <label for="gender1">Male</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="gender"
+                        type="radio"
+                        id="gender2"
+                        value="Female"
+                      />
+                      <label for="gender2">Female</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <label>Marital Status</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="marital_status"
+                        type="radio"
+                        id="ms1"
+                        value="Married"
+                      />
+                      <label for="ms1">Married</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="marital_status"
+                        type="radio"
+                        id="ms2"
+                        value="Unmarried"
+                      />
+                      <label for="ms2">Unmarried</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <label>Permanent Address</label>
+                <input
+                  formControlName="address"
+                  type="text"
+                  class="form-control"
+                  name=""
+                  placeholder="Enter your Permanent Address"
+                />
+
+                <label>Pincode</label>
+                <input
+                  formControlName="area_pin_code"
+                  type="text"
+                  class="form-control"
+                  name=""
+                  placeholder="Enter Pincode"
+                />
+
+                <!-- <label>Category</label>
+                <select class="form-control"  class="form-control">
+                  <option>-- Select Category --</option>
+                </select> -->
+
+                <label>Different Abled</label>
+                <div class="row">
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="differntly_abled"
+                        type="radio"
+                        id="da1"
+                        value="YES"
+                      />
+                      <label for="da1">YES</label>
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <p>
+                      <input
+                        formControlName="differntly_abled"
+                        type="radio"
+                        id="da2"
+                        value="NO"
+                      />
+                      <label for="da2">NO</label>
+                    </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- <label>Languages</label>
+                <select formControlName="languages" class="form-control">
+                    <option>-- Select Languages --</option>
+                  </select> -->
+                <!-- <div class="row">
+                  <div class="col-md-6 col-12">
+                    <label>Language</label>
+                    <input type="text" class="form-control" name="" placeholder="Enter Language">
+                  </div> -->
+                <!--
+                  <div class="col-md-6 col-12">
+                    <label>Proficiency</label>
+                    <input type="text" class="form-control" name="" placeholder="Enter Proficiency">
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="col-md-3">
+                    <input type="checkbox" name=""><span>Read</span>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" name=""><span>Write</span>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" name=""><span>Speak</span>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <a href="">Add another language</a>
+                  </div>
+                </div> -->
+                <div class="row">
+                  <div
+                    *ngIf="editPersonalForm"
+                    class="col-md-2 col-6 offset-md-8"
+                    align="right"
+                  >
+                    <button
+                      type="button"
+                      class="cancel-btn"
+                      (click)="cancelPersonalForm()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div
+                    *ngIf="editPersonalForm"
+                    class="col-md-2 col-6"
+                    align="right"
+                  >
+                    <button type="submit" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

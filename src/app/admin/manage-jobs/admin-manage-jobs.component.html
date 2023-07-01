@@ -1,0 +1,209 @@
+
+<section>
+    <div class="col-md-3">
+       <div class="filter-job-proposal">
+           <!-- <h1>Resume (520/520)</h1> -->
+          <h4><i _ngcontent-c3="" class="fas fa-plus"></i> Filter</h4>
+          <!-- <form> -->
+             <div class="field-job-proposal">
+                <ul>
+                   <li>
+                      <div class="form-group">
+                         <label>Job Position</label>
+                         <input type="text" name="" [(ngModel)]="userName" class="form-control-cust" placeholder="Type the user name">
+                      </div>
+                   </li>
+                   <li>
+                      <div class="form-group">
+                         <label>Company</label>
+                         <input type="text" name="" [(ngModel)]="companyName" class="form-control-cust" placeholder="Type Company Name">
+                      </div>
+                   </li>
+                    <li>
+                      <div class="form-group">
+                         <label>Deadline</label>
+                         <input type="text" name="" [(ngModel)]="jobDeadline" class="form-control-cust" placeholder="Job Deadline">
+                      </div>
+                   </li>
+                    <li>
+                      <label>Job Status</label>
+                      <div class="select">
+                         <select [(ngModel)]="jobStat">
+                            <option value="">All</option>
+                            <option value="active" >Active</option>
+                            <option value="delete" >Inactive</option>
+                         </select>
+                         <div class="select__arrow"></div>
+                      </div>
+                   </li>
+                   <!--  <li>
+                        <div class="form_field">
+                            <label>CTC</label>
+                            <input class="slider" id="myRange" max="100" min="1" type="range" value="50">
+                        </div>
+                    </li> -->
+                </ul>
+              <!--   <p class="text-center">
+                   <a class="btn btn-success" routerLink="/recruiterHeader/sendProposal">Apply Filters</a>
+                </p> -->
+             </div>
+          <!-- </form> -->
+       </div>
+    </div>
+     <div class="col-md-9">
+     <table class="table table-responsive rwd-table">
+        <thead class="view-job-table-head white_color cst-table ng-star-inserted">
+            <tr>
+                <th>Job position</th>
+                <th>Company</th>
+                <th>Created At</th>
+                <th>Deadline</th>
+                <th>CTC</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr *ngFor = " let jobs of alljobs | jobSearch : userName :companyName : jobDeadline :jobStat | paginate: { itemsPerPage: 10, currentPage: page }">
+                    <td data-th="Job positionn">{{jobs.job_id.job_title}}</td>
+                    <td data-th="Company">{{jobs.job_id.company_name}}</td>
+                    <td data-th="Company">{{jobs.job_id.created_at | date: 'dd/MM/yyyy hh:mm a'}}</td>
+                    <td data-th="Deadline">{{jobs.job_id.deadline}}</td>
+                    <td data-th="CTC">{{jobs.job_id.ctc_max}}</td>
+                    <td data-th="Status">{{jobs.job_id.status}}</td>
+                    <td data-th="Action"><ul><li routerLink = "/admin-home/viewResume/{{jobs._id}}" >View Resumes</li>
+                                             <li (click) = "showJD(jobs.job_id.doc)" >View JD</li></ul></td>
+                </tr>
+        </tbody>
+     </table>
+     <pagination-controls *ngIf= "ShowPagination" (pageChange)="page = $event"></pagination-controls>
+ </div>
+    <!--  <div class="col-md-9">
+           <div class="manage-job-table-head">
+         <ul class="list-inline">
+             <li>job position</li>
+             <li>company</li>
+             <li>deadline</li>
+             <li>ctc</li>
+             <li>status</li>
+             <li>resume</li>
+         </ul>
+     </div>
+            -->
+<!--  <div class="view-job-list-content">
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle reject-stats"></i> not hired</span></li>
+             <li><span class="job-role">120</span>
+                         </li>
+         </ul>
+     </div>
+     
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle active-stats"></i> hired</span></li>
+             <li><span class="job-role">120</span> 
+         <p class="m-t-20"><a routerLink="/main/resdesk" class="theme_color font-12">+ Add more Resume</a></p>
+                         </li>
+         </ul>
+     </div>
+     
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle shortlst-stats"></i> currently hired</span></li>
+             <li><span class="job-role">120</span>
+                         </li>
+         </ul>
+     </div>
+     
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle shortlst-stats"></i> currently hired</span></li>
+             <li><span class="job-role">120</span>
+                 <p class="m-t-20"><a routerLink="/main/resdesk" class="theme_color font-12">+ Add more Resume</a></p>
+                         </li>
+         </ul>
+     </div>
+     
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle reject-stats"></i> not hired</span></li>
+             <li><span class="job-role">120</span>
+                         </li>
+         </ul>
+     </div>
+     
+     
+     <div class="manage-job-table-list">
+         <ul class="list-inline">
+                         <li><span class="name">Aman Gautam</span>
+             <p class="job-position-id m-t-20">(#abcf123541)</p>
+             </li>
+                         <li><span class="name-company">UX Gorilla</span></li>
+             <li><span class="date">26/06/2018</span>
+             </li>
+             <li><span class="ctc">12 lacs p.a.</span></li>
+             <li><span class="status"><i _ngcontent-c9="" class="fas fa-circle reject-stats"></i> not hired</span></li>
+             <li><span class="job-role">120</span>
+                         </li>
+         </ul>
+     </div>
+     
+ </div>
+          -->
+         <!--
+         <div class="footer-pagination m-t-20">
+    <span>Showing 1 to 5 of 15 entries</span>
+    <ul class="pagination pull-right">
+       <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+       <li><a href="#" class="active">1</a></li>
+       <li><a href="#">2</a></li>
+       <li><a href="#">3</a></li>
+       <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+    </ul>
+ </div> 
+     </div>-->
+     
+ </section>
+     
+   

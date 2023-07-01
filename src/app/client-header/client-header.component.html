@@ -1,0 +1,241 @@
+<!--font-->
+<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet" type="text/css"/>
+
+<!--header-->
+<header id="recruiter-haeder">
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" (click)="togglefn()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/clientHeader/clientDashboard">
+          <img src="assets/img/logo.png">
+        </a>
+      </div>
+      <!-- /.navbar-collapse -->
+      <div class="hidden-sm hidden-xs">
+        <ul class="nav navbar-nav navbar-right">
+          <!--               <li><a><i class="fas fa-globe-asia globe"></i></a></li> -->
+          <li class="show-on-hover">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <img [src]="profilePicture ? profilePicture : 'assets/img/user-placeholder.png'" class="img-circle"> {{userD.user_name}} </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a routerLink="/clientHeader/profile"><i class="fas fa-user-circle"></i> Profile</a></li>
+              <li ><a routerLink="/changePassword"><i
+                class="fas fa-user-lock"></i> Change password</a></li>
+              <li class="divider"></li>
+              <li (click)="logout()"><a><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--navbar-collapse-end-->
+    </div>
+  </nav>
+</header>
+<!-- <span class="caret"></span> -->
+<!--mobile-menu-->
+
+<div *ngIf="show" class="mobile-sidebar">
+  <!-- SIDEBAR USERPIC -->
+  <div class="mobile-userpic">
+    <img src="assets/img/user-placeholder.png" class="img-circle img-responsive">
+  </div>
+  <!-- END SIDEBAR USERPIC -->
+  <!-- SIDEBAR USER TITLE -->
+  <div class="mobile-usertitle">
+    <div class="mobile-usertitle-name">
+      {{user.user_name}}
+    </div>
+  </div>
+  <!-- END SIDEBAR USER TITLE -->
+  <!-- SIDEBAR BUTTONS -->
+  <div class="mobile-userbuttons">
+    <button type="button" (click)="mobileEditProfile(); togglefn()" class="btn btn-success btn-sm"><i
+      class="fas fa-user-circle"></i> Profile
+    </button>
+    <button type="button" data-toggle="modal" data-target="#change-password" class="btn btn-success btn-sm"><i
+      class="fas fa-user-lock"></i> Change password
+    </button>
+  </div>
+  <!-- END SIDEBAR BUTTONS -->
+  <!-- SIDEBAR MENU -->
+  <div class="mobile-usermenu">
+    <ul class="nav">
+      <li (click)="activeMenu =1 ; togglefn()" [ngClass]="{'active':activeMenu == 1}">
+        <a routerLink="/clientHeader/clientDashboard">
+          <i class="fas fa-chart-pie"></i>
+          Dashboard </a>
+      </li>
+      <li (click)="activeMenu =2 ; togglefn()" [ngClass]="{'active':activeMenu == 2 && hasDoneSetup}">
+        <a [routerLink]="hasDoneSetup ? ['/clientHeader/manageJobs'] : []">
+          <i class="fab fa-black-tie"></i>
+          Manage Jobs </a>
+      </li>
+      <li (click)="activeMenu =3 ; togglefn()" [ngClass]="{'active':activeMenu == 3 && hasDoneSetup}">
+        <a [routerLink]="hasDoneSetup ? ['/clientHeader/candidates'] : []">
+          <i class="far fa-user-circle"></i>
+          Candidates </a>
+      </li>
+      <li (click)="activeMenu =4 ; togglefn()" [ngClass]="{'active':activeMenu == 4 && hasDoneSetup}">
+        <a [routerLink]="hasDoneSetup ? ['/clientHeader/schedule'] : []">
+          <i class="far fa-calendar-alt"></i>
+          Schedule  </a>
+      </li>
+      <li (click)="activeMenu =5 ; togglefn()" [ngClass]="{'active':activeMenu == 5 && hasDoneSetup}">
+        <a [routerLink]="hasDoneSetup ? ['/clientHeader/supportIssue'] : []"><i class="fas fa-headset"></i> Support Issues</a>
+      </li>
+      <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+    </ul>
+  </div>
+  <!-- END MENU -->
+</div>
+<!--mobile-menu-end-->
+
+
+<!--header-end-->
+<section>
+  <div class="container-fluid main-container">
+    <div class="row">
+      <div class="col-md-2 sidebar hidden-sm hidden-xs">
+        <div class="row">
+          <div [ngClass]="hasDoneSetup ? 'sidebar-sidebar' : 'newUser sidebar-sidebar'">
+            <!-- SIDEBAR BUTTONS -->
+            <div class="sidebar-userbuttons">
+              <button [disabled]="!UserActive" type="button" class="btn btn-success btn-lg postJobBtn" [routerLink]="hasDoneSetup ? ['/clientHeader/postNewJob'] : []"><i
+                class="fa fa-plus" aria-hidden="true"></i> Post new jobs
+              </button>
+            </div>
+            <!-- END SIDEBAR BUTTONS -->
+            <!-- SIDEBAR MENU -->
+            <div [ngClass]="hasDoneSetup ? 'sidebar-usermenu' : 'newUser sidebar-usermenu'">
+              <ul class="nav">
+                <li (click)="activeMenu =1" [ngClass]="{'active':activeMenu == 1}">
+                  <a routerLink="/clientHeader/clientDashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    Dashboard </a>
+                </li>
+                <li (click)="activeMenu =2" [ngClass]="{'active':activeMenu == 2 && hasDoneSetup}">
+                  <a [routerLink]="hasDoneSetup ? ['/clientHeader/manageJobs'] : []">
+                    <i class="fab fa-black-tie"></i>
+                    Manage Jobs </a>
+                </li>
+                <li (click)="activeMenu =3" [ngClass]="{'active':activeMenu == 3 && hasDoneSetup}">
+                  <a [routerLink]="hasDoneSetup ? ['/clientHeader/candidates'] : []">
+                    <i class="far fa-user-circle"></i>
+                    Candidates </a>
+                </li>
+                <li (click)="activeMenu =4" [ngClass]="{'active':activeMenu == 4 && hasDoneSetup}">
+                  <a [routerLink]="hasDoneSetup ? ['/clientHeader/schedule'] : []">
+                    <i class="far fa-calendar-alt"></i>
+                    Schedule </a>
+                </li>
+                <!-- <li (click)="activeMenu =5" [ngClass]="{'active':activeMenu == 5 && hasDoneSetup}">
+                  <a [routerLink]="hasDoneSetup ? ['/clientHeader/subscribe'] : []"><i class="fas fa-headset"></i> subscribe</a>
+                </li> -->
+                <li (click)="activeMenu =6" [ngClass]="{'active':activeMenu == 6 && hasDoneSetup}">
+                  <a [routerLink]="hasDoneSetup ? ['/clientHeader/supportIssue'] : []"><i class="fas fa-headset"></i> Support Issues</a>
+                </li>
+              </ul>
+            </div>
+            <!-- END MENU -->
+          </div>
+        </div>
+      </div>
+      <!--dashboard-Content-->
+      <div class="col-md-10 col-sm-12 col-xs-12 content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>
+<!--roter-->
+
+
+<!-- change-password-modal -->
+
+<!--
+<div id="modal-overview-inquire">
+  <div class="modal fade" id="change-password" role="dialog">
+    <div class="modal-dialog">
+
+      &lt;!&ndash; Modal content&ndash;&gt;
+      <div class="modal-content">
+        <div class="close  cls-cstm" style="margin-top: 10px;margin-right: 10px;transform: scale(0.6);">
+          <a data-dismiss="modal" aria-hidden="true"><img src="assets/img/cancel.png"></a>
+        </div>
+        &lt;!&ndash;inquire-modal&ndash;&gt;
+        <div id="manage-new-acc-sign-up">
+          <div class="signup-box">
+            &lt;!&ndash;heading-text&ndash;&gt;
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Change Password</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="sign-up-form m-t-20">
+                <form [formGroup]="changePasswordForm">
+                  <div class="col-md-12 form-group">
+                    <div class=" input-box">
+                      <div class="input-group">
+                        <label class="control-label">Old password</label>
+                        <input aria-label="password" type="password" name="oldPassword" formControlName="oldPassword"
+                               id="oldPassword" placeholder="Old Password" class="form-control" autocomplete="nope">
+                        <div *ngIf="changeSubmitted && changePasswordForm.controls.oldPassword.hasError('required')"
+                             class="alert alert-danger">Old Password Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <div class=" input-box">
+                      <div class="input-group">
+                        <label class="control-label">New password</label>
+                        <input aria-label="password" type="password" name="password" formControlName="password"
+                               name="first_name" placeholder="Password" class="form-control" autocomplete="nope">
+                        <div *ngIf="changeSubmitted && changePasswordForm.controls.password.hasError('required')"
+                             class="requried alert alert-danger">Password Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <div class="input-box">
+                      <div class="input-group">
+                        <label class="control-label">Confirm password</label>
+                        <input aria-label="password" type="password" name="confirmPassword"
+                               formControlName="confirmPassword"
+                               placeholder="Confirm Password" class="form-control" autocomplete="nope">
+                        <div *ngIf="changeSubmitted && changePasswordForm.controls.confirmPassword.hasError('required')"
+                             class="alert alert-danger">Conform Password Required
+                        </div>
+                        <div
+                          *ngIf="changePasswordForm.controls.confirmPassword.touched && changePasswordForm.controls.confirmPassword.value != changePasswordForm.controls.password.value"
+                          class="alert alert-danger">Password Do not Match
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group text-center cancelPass">
+                    <div class="input-box text-center m-t-40">
+                      <button type="submit" aria-label="submit" (click)="onChangePassword()" class="btn btn-success">
+                        Change Password
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+-->

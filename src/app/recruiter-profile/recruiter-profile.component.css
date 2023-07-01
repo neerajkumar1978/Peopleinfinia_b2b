@@ -1,0 +1,105 @@
+.header{
+    padding:10px 0;
+    border-bottom: 1px solid #ccc
+}
+.backBtn button{
+    padding:8px 30px;
+    color:#fff;
+}
+.logo img{
+    width: 110px;
+}
+.profile{
+    display:flex;
+}
+.profileImg{
+    height:120px;
+    width:120px;
+    border:1px solid #ccc;
+}
+.user-info{
+    width :calc(100% - 120px);
+    padding-left:20px;
+}
+.jobStatus{
+    display:flex;
+    flex-wrap:wrap;
+}
+.jobStatusInn{
+    width:25%;
+    flex-basis:25%;
+}
+.headingCont{
+    background: #eaeaea;
+    padding: 10px 15px;
+}
+.headingCont h2{
+    font-weight: bold;
+    font-size: 16px;
+    color: #8e8e8e;
+}
+.jobStatusInn p{
+    font-size:14px;
+}
+.user-contact-info p{
+    font-size:14px;
+}
+    /* .cst-edit-form{
+
+}
+.backBtn button{
+  padding:8px 30px;
+  color:#fff;
+}
+.logo img{
+  width: 110px;
+}
+.profile{
+  display:flex;
+}
+.profileImg{
+  height:120px;
+  width:120px;
+  border:1px solid #ccc;
+}
+.update-profile-form input[type=password]::-webkit-input-placeholder {
+  color: #ccc;
+    font-size: 10px;
+}
+.update-profile-form input[type=password]::-moz-placeholder {
+  color: #ccc;
+    font-size: 10px;
+}
+.update-profile-form input[type=password]:-ms-input-placeholder {
+  color: #ccc;
+    font-size: 10px;
+}
+.update-profile-form input[type=password]:-moz-placeholder {
+  color: #ccc;
+    font-size: 10px;
+}
+.headingCont h2{
+  font-weight: bold;
+  font-size: 16px;
+  color: #8E8E8E;
+}
+.jobStatusInn p{
+  font-size:14px;
+}
+.user-contact-info p{
+  font-size:14px;
+}
+.update-profile-pic {
+  padding: 25px;
+}
+    .user-job-stats .dashboard-card ul li span.value {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #4C4C4C;
+    line-height: 1.5;
+    vertical-align: middle;
+    margin-left: 20px;
+    margin-top: -25px;
+}
+} */

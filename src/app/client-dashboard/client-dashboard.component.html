@@ -1,0 +1,204 @@
+<!--psot-job-->
+<div [ngClass]="hasDoneSetup ? 'sidebar-userbuttons pst-job' : 'newUser sidebar-userbuttons pst-job'">
+  <button type="button" class="btn btn-success btn-lg" [routerLink]="hasDoneSetup ? ['/clientHeader/postNewJob'] : []"><i class="fa fa-plus" aria-hidden="true"></i>
+    Post new jobs
+  </button>
+</div>
+<!--post-job-end-->
+
+
+<!--welcome-slogan-->
+<div class="welcome-slogan pad-global">
+  <h5>Welcome {{companyName}},</h5>
+  <p>Please look we have summarised the proposals, jobs, interviews reports for you.</p>
+</div>
+<!--welcome-slogan-end-->
+<div class="col-md-8 col-sm-8 col-xs-12">
+  <!--dashboard-card-->
+  <div *ngIf="!UserActive" style="margin-top:80px;" class="noData justify-content-center d-flex align-items-center ">
+    <!-- <h1>No Data Found!</h1> -->
+    <h1>Please wait for the admin to grant you access to post jobs. Meanwhile please keep your profile updated!</h1>
+    
+  </div>
+
+  <div *ngIf="UserActive" class="dashboard-card m-t-40">
+    <div class="row">
+      <ul>
+        <li style="cursor: pointer" routerLink="/clientHeader/manageJobs">
+          <span class="value">{{clientCount.TotalPost}}</span>
+          <span class="text">Total Job<br>Posted</span>
+        </li>
+        <li style="cursor: pointer" routerLink="/clientHeader/schedule">
+          <span class="value">{{clientCount.InterviewToday}}</span>
+          <span class="text">interview<br>scheduled</span>
+        </li>
+        <li style="cursor: pointer" routerLink="/PiShortListed">
+          <span class="value">{{eyCount}}</span>
+          <span class="text">People Infinia Shortlisted Resumes</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--dashboard-card-end-->
+  <!--feeds-->
+  <div class="dashboard-feeds m-t-40">
+    <!--feeds title-->
+    <div class="feeds-title">
+      <div class="row">
+        <p class="text-left">Feed
+          <!--  <span class="f-right">Today <i class="fa fa-angle-down" aria-hidden="true"></i></span> -->
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--feeds-post-->
+  <div class="feed-event-post">
+    <div class="feed-post">
+      <div class="row">
+        <ul>
+          <li *ngFor="let feed of jobFeeds" class="list-item">
+            <div class="list-feed-icon color-voilet">
+              <i class="far fa-file-alt"></i>
+            </div>
+            <div class="list-item-main-info">
+              <p class="list-item-title">
+                Received <b>{{feed.proposal}} resumes</b> for <b>{{feed.job_id.job_title}}</b> job
+              </p>
+              <!--  <div class="list-item-posted">
+                  Job posted on
+                  <span class="list-item-company">june 25</span>
+               </div> -->
+            </div>
+            <div class="list-item-view">
+              <!--                     <a routerLink="/viewResume">view</a>-->
+              <a class="btn btn-success" routerLink="/viewResume/{{feed._id}}">view</a>
+            </div>
+          </li>
+          <li *ngIf="noFeeds" class="list-item nofeeds">
+            <p class="list-item-title">Currently no Job Feeds available!!!!</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--feeds-end-->
+</div>
+<!--end-->
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <!--scheduled-interview-->
+  <div class="scheduled-interview-section m-t-40">
+    <div class="scheduled-time pad-global">
+      <h5><i class="far fa-file-alt"></i> Interviews</h5>
+      <!-- <p>Wednesday, June 27</p> -->
+    </div>
+
+    <!--  <h5>Interview</h5> -->
+    <ul>
+      <li *ngFor="let candidate of intervieweS |  orderBy: key:!reverse:'case-insensitive' | slice:0:2">
+        <div class="recuriter-list-item">
+          <div class="list-item-title">
+            <p class="designation-post">{{candidate.job_id.job_title}}</p>
+          </div>
+          <div class="list-item-posted">
+            <ul class="list-inline">
+              <li>
+                <p>Location: <strong>{{candidate.location}}</strong></p>
+              </li>
+              <li>
+                <p> {{candidate.interview_date | date: 'dd/MM/yyyy'}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="scheduled-list scheduled-list recuriter-scheduled-list">
+          <ul>
+            <li>
+              <span class="time">{{candidate.interview_time| date :'hh:mm'}}<br> {{candidate.interview_time| date :'a'}}</span>
+              <div>
+                Interview with {{candidate.candidate_name}}<br>
+                <!-- <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p> -->
+                <span class="status-call">{{candidate.interview_type}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+
+        <!--    <span class="time">{{candidate.interview_date |date :'hh:mm a'}}</span><br>
+           <div class="inteview-detail">
+              <span>Interview with {{candidate.candidate_name}}</span>
+              <span class="candidate-designation">{{candidate.job_id.job_title}}</span>
+              <span class="call-staus">{{candidate.interview_type}}</span>
+               <span class="date">{{candidate.interview_date | date: 'dd/MM/yyyy'}}</span>
+           </div> -->
+      </li>
+
+      <li *ngIf="noInterviews" class="list-item nofeeds">
+        <p class="list-item-title">Currently no Interviews scheduled !!!!</p>
+      </li>
+    </ul>
+    <!--<p class="text-center">
+    <a class="see-more"><i class="fas fa-plus"></i> See More</a>
+    </p>-->
+  </div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <!--scheduled-interview-->
+  <div class="scheduled-interview-section m-t-40">
+    <div class="scheduled-time pad-global">
+      <h5><i class="far fa-file-alt"></i> Reschedule Requests</h5>
+      <!-- <p>Wednesday, June 27</p> -->
+    </div>
+
+    <!--  <h5>Interview</h5> -->
+    <ul>
+      <li *ngIf="!noRequest">
+        <div class="recuriter-list-item" *ngFor="let request of requestsReschedule | slice:0:2">
+          <div class="list-item-title">
+            <p class="designation-post">{{request.job_id.job_title}}</p>
+            <p class="designation-post">{{request.recruiter_id.user_name}}</p>
+            <span class="status-call" (click)="processRescheduleRequest(request._id)">View Request</span>
+          </div>
+          <div class="list-item-posted">
+            <ul class="list-inline">
+              <li><p>Name: <strong>{{request.candidate_name}}</strong></p>
+                <p>Location & Date: <strong>{{request.location}}</strong></p>
+              </li>
+              <li>
+                <p> {{request.interview_date | date: 'dd/MM/yyyy'}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="scheduled-list scheduled-list recuriter-scheduled-list">
+           <ul>
+              <li>
+                 <span class="time">{{candidate.interview_time| date :'hh:mm'}}<br> {{candidate.interview_time| date :'a'}}</span>
+                 <div>
+                    Interview with {{candidate.candidate_name}}<br>
+                    <span class="status-call">{{candidate.interview_type}}</span>
+                 </div>
+              </li>
+           </ul>
+        </div>
+-->
+
+        <!--    <span class="time">{{candidate.interview_date |date :'hh:mm a'}}</span><br>
+           <div class="inteview-detail">
+              <span>Interview with {{candidate.candidate_name}}</span>
+              <span class="candidate-designation">{{candidate.job_id.job_title}}</span>
+              <span class="call-staus">{{candidate.interview_type}}</span>
+               <span class="date">{{candidate.interview_date | date: 'dd/MM/yyyy'}}</span>
+           </div> -->
+      </li>
+
+      <li *ngIf="noRequest" class="list-item nofeeds">
+        <p class="list-item-title">Currently no request for rescheduled !!!!</p>
+      </li>
+
+    </ul>
+    <!--<p class="text-center">
+    <a class="see-more"><i class="fas fa-plus"></i> See More</a>
+    </p>-->
+  </div>
+</div>

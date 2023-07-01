@@ -1,0 +1,141 @@
+#recruiter-sign-up {
+    position: relative;
+    background: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url("https://unsplash.imgix.net/photo-1416339442236-8ceb164046f8?q=75&fm=jpg&s=8eb83df8a744544977722717b1ea4d09");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    height: 100vh;
+}
+
+.signup-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 40px 40px 20px;
+    -webkit-box-shadow: 0px -1px 22px 2px rgba(0,0,0,0.20);
+-moz-box-shadow: 0px -1px 22px 2px rgba(0,0,0,0.20);
+box-shadow: 0px -1px 22px 2px rgba(0,0,0,0.20);
+
+}
+.signup-box h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #626262;
+    position: relative;
+    display: inline-block;
+}
+.signup-box h1:after{
+    content: '';
+    width: 150px;
+    height: 3px;
+    background-color: #1FB355;
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+.btn-linkedin{
+    padding: 15px 20px;
+    font-size: 12px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.btn-linkedin i{
+    font-size: 20px;
+}
+
+.sign-up-profile img{
+    width: 100px;
+    height: 100px;
+}
+
+.sign-up-profile .user-info{
+    padding: 20px 40px;
+}
+
+.sign-up-profile .user-info h4{
+    font-size: 16px;
+    color: #626262;
+    font-weight: 500;
+}
+.sign-up-profile .user-info h6{
+    font-size: 12px;
+    color: #626262;
+    font-weight: 300;
+}
+
+.sign-up-profile .upadate-img{
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    background-color:#1FB355; 
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    line-height: 40px;
+}
+
+.sign-up-form label{
+    font-size: 14px;
+    color: #626262;
+    font-size: 500;
+}
+
+.sign-up-form .form-group{
+    margin: 30px 0;
+}
+.sign-up-form .form-group input[type=text] {
+    height: 40px;
+    font-size: 12px;
+    border: 1px solid #eee;
+    border-width: thin;
+    border-style:solid;
+}
+.sign-up-form  .form-group textarea {
+    position: relative;
+    display: block;
+    width: 100%;
+    border: 1px solid #eee;
+    border-width: thin;
+    border-style:solid;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    font-weight: normal;
+    outline: 0;
+    color: #000;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border-radius: 0px;
+    height: 80px;
+     resize: none;
+    font-size: 12px;
+}
+.sign-up-form .form-group input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+    font-size: 10px;
+}
+.sign-up-form .form-group input[type=text]::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+    font-size: 10px;
+}
+.sign-up-form .form-group input[type=text]:-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
+    font-size: 10px;
+}
+.sign-up-form .form-group input[type=text]:-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
+    font-size: 10px;
+}
+.sign-up-form .form-group textarea::-webkit-input-placeholder {
+color: #ccc;
+    font-size: 10px;
+}

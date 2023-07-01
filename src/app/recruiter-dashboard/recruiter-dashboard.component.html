@@ -1,0 +1,688 @@
+<div class="col-md-8 col-sm-8 col-xs-12">
+  <!--welcome-slogan-->
+  <div class="welcome-slogan pad-global">
+    <h5>Welcome, {{name}}</h5>
+    <p>Please look we have summarised the proposal, jobs, Interview for you.</p>
+
+  </div>
+  <!--welcome-slogan-end-->
+  <!--graph-view-->
+  <!--  <div class="row m-t-20">
+      <div class="col-md-12">
+         <div class="col-md-8">
+            <div class="graph-view">
+               <img src="../../assets/img/graph.png" class="img-responsive">
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="interview-card">
+               <p><span class="value">5</span>
+                  <span class="text">Interview<br>Today</span>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div> -->
+  <!--dashboard-card-->
+  <div class="dashboard-card-recruiter m-t-40">
+    <ul>
+      <li style="cursor: pointer" routerLink="/recruiterHeader/recuiterManageJobs">
+        <span class="value">{{dashboardCount.TotalcanidateUpload}}</span>
+        <span class="text">Total No. of Candidates<br>Posted</span>
+      </li>
+      <li style="cursor: pointer" routerLink="/PiShortListed">
+        <span class="value">{{eyCount}}</span>
+        <span class="text">People Infinia<br>Qualified</span>
+      </li>
+      <li style="cursor: pointer" routerLink="/recruiterHeader/candidateRecuiter">
+        <span class="value">{{Totalshortlist}}</span>
+        <span class="text">Candidates<br>Shortlisted</span>
+      </li>
+      <li style="cursor: pointer" routerLink="/recruiterHeader/candidateRecuiter">
+        <span class="value">{{TotalPlaced}}</span>
+        <span class="text">Candidates<br>Placed</span>
+      </li>
+    </ul>
+  </div>
+  <!--dashboard-card-end-->
+  <!--feeds-->
+  <div class="dashboard-feeds m-t-40">
+    <!--feeds title-->
+    <div class="feeds-title">
+      <p class="text-left">New Jobs
+        <!--  <span class="f-right">Since you left <i class="fa fa-angle-down" aria-hidden="true"></i></span> -->
+      </p>
+    </div>
+  </div>
+  <!--feeds-post-->
+  <div class="feed-event-post recruicter-feed-post">
+    <div class="feed-post">
+      <ul>
+        <li *ngFor="let feed of dashboardJobs" class="list-item"
+            routerLink="/recruiterHeader/ViewProposal/{{feed._id}}">
+          <div class="list-feed-icon color-voilet">
+            <i class="far fa-file-alt"></i>
+          </div>
+          <div class="list-item-main-info">
+            <div class="list-item-title">
+              <p class="designation-post">{{feed.job_title}}
+                <!-- <span class="rec-company">{{}}</span> --></p>
+            </div>
+            <div *ngFor="let item of feed.industry | slice:0:2; let i=index">{{item.value}} </div>
+
+            <div class="list-item-posted">
+              <ul class="list-inline">
+                <li>
+                  <p>Location: <span *ngFor="let loc of feed.Location">
+                              <strong>{{loc.value}}, </strong>
+                           </span></p></li>
+                <li>
+                  <p>CTC: <strong>{{feed.ctc_min}}-{{feed.ctc_max}}</strong></p>
+                </li>
+                <!-- <li>
+                   <p>Fee: <strong>{{feed.commission}}% of ctc</strong></p>
+                </li> -->
+                <li>
+                  <p>Deadline: <strong>{{feed.deadline}}</strong></p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="list-item-view">
+            <div class="bookmark-wrapper">
+              <a class="bookmark" (click)="saveBookMark(dashboardJobs._id)"><i class="fas fa-bookmark"></i></a>
+              <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!--  <li class="list-item" routerLink="/recruiterHeader/ViewProposal">
+          <div class="list-feed-icon color-voilet">
+             <i class="far fa-file-alt"></i>
+          </div>
+          <div class="list-item-main-info">
+             <div class="list-item-title">
+                <p class="designation-post">hr manager <span class="rec-company">ux gorilla</span></p>
+             </div>
+             <div class="list-item-posted">
+                <ul class="list-inline">
+                   <li>
+                      <p>Location: <strong>Delhi</strong></p>
+                   </li>
+                   <li>
+                      <p>CTC: <strong>12 lacs p.a.</strong></p>
+                   </li>
+                   <li>
+                      <p>Fee: <strong>8% of ctc</strong></p>
+                   </li>
+                   <li>
+                      <p>Deadline: <strong>26/06/2018</strong></p>
+                   </li>
+                </ul>
+             </div>
+          </div>
+          <div class="list-item-view">
+             <div class="bookmark-wrapper">
+                <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+                <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+             </div>
+          </div>
+       </li> -->
+      <!-- <li class="list-item">
+         <div class="list-feed-icon color-voilet" routerLink="/recruiterHeader/ViewProposal">
+            <i class="far fa-file-alt"></i>
+         </div>
+         <div class="list-item-main-info">
+            <div class="list-item-title">
+               <p class="designation-post">hr manager <span class="rec-company">ux gorilla</span></p>
+            </div>
+            <div class="list-item-posted">
+               <ul class="list-inline">
+                  <li>
+                     <p>Location: <strong>Delhi</strong></p>
+                  </li>
+                  <li>
+                     <p>CTC: <strong>12 lacs p.a.</strong></p>
+                  </li>
+                  <li>
+                     <p>Fee: <strong>8% of ctc</strong></p>
+                  </li>
+                  <li>
+                     <p>Deadline: <strong>26/06/2018</strong></p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="list-item-view">
+            <div class="bookmark-wrapper">
+               <a class="bookmark"><i class="fas fa-bookmark"></i></a>
+               <a class="ellipsis"><i class="fas fa-ellipsis-h"></i></a>
+            </div>
+         </div>
+      </li> -->
+
+      <p class="text-center">
+        <a class="btn btn-success" routerLink="/recruiterHeader/sendProposal">See all Proposal requests</a>
+      </p>
+    </div>
+  </div>
+  <!--feeds-end-->
+</div>
+<!--end-->
+<div bsModal #frstModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file">
+            <div class="close">
+               <a (click)="frstModal.hide()"><img src="../../assets/img/cancel.png"></a>
+            </div>
+            <h6>Upload filled excel file of candidate</h6>
+            <!-- <p>Upload a resume of candidate, Preferby .pdf (less then 1 Mb)</p> -->
+            <!--   <a class="btn btn-purple m-t-20"><i class="fas fa-upload"></i> Download Excel template</a> -->
+            <p class="note">Note: Please block the candidate contact details on the resume to be upload in the next
+               step</p>
+            <div class="uload-excel-resume">
+               <form method="post" action="#" id="#">
+                  <div class="form-group files color">
+                     <!--   <h6><i class="fas fa-hand-rock"></i> Drag a file here</h6>
+                     <p>OR</p> -->
+                     <div class="inputfile-box">
+                        <input  #xlsxInput type="file" id="file" class="inputfile" (change)='onChange($event)'>
+                        <label for="file">
+                           <!-- <span id="file-name" class="file-box"></span>
+                        <span class="file-button"> -->
+                           Select a file from computer
+                           <!-- </span> -->
+                        </label>
+                     </div>
+                     <div class="excelFile" *ngIf = "showName">
+                     {{fileNameXlsx}}
+                      <button (click)="removeXlsx()" class="btn btn-danger my-dismiss">x</button>
+                     </div>
+                     <!-- <p class="error">Error occured! We have detected you haven't blocked Email ID / Phone No. on the resume.</p> -->
+                  </div>
+               </form>
+            </div>
+            <p class="text-center m-t-40">
+               <a class="btn btn-success" (click)="onSubmit()">Upload</a>
+            </p>
+         </div>
+      </div>
+   </div>
+</div>
+<div bsModal #secondModal="bs-modal" class="modal fade proposal-modal" tabindex="-1" role="dialog"  [config]="{backdrop: 'static',  keyboard: false}" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file" style="padding: 20px;">
+            <table class="table table-list-data">
+               <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Age</th>
+                     <th>Sex</th>
+                     <th>Experience</th>
+                     <th>Qualification</th>
+                     <th>Current Organisation</th>
+                     <th>CTC</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let candidate of candidates| paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
+                     <td>{{candidate.NAME}}</td>
+                     <td>{{candidate.EMAIL}}</td>
+                     <td>{{candidate.AGE}}</td>
+                     <td>{{candidate.SEX}}</td>
+                     <td>{{candidate.EXPERIENCE}}</td>
+                     <td>{{candidate.QUALIFICATION}}</td>
+                     <td>{{candidate.CURRENT_ORGANISATION}}</td>
+                     <td>{{candidate.CTC}}</td>
+                     <td>
+                        <!--   <button (click)="uploadResume()">Upload CV</button> -->
+                        <div *ngIf = "showButton">
+                           <div *ngIf=" candidate.cv === null" class="file-upload">
+                              <label for="uploadCv">
+                                  Choose file
+                              </label>
+                              <input aria-label="file" id="uploadCv" type="file" (change)="handleFileSelect($event, i)"
+                                 multiple style="display:none">
+                              <!-- <p>  </p> -->
+                           </div>
+                           <div *ngIf="candidate.cv === 'duplicate'" class = "text-danger"> Candidate Already Exist  </div>
+                           <div *ngIf = "candidate.cv != null">
+                              <div *ngIf = " candidate.cv != 'duplicate'">
+                                    <button class="btn btn-primary pro-btn" (click)="showCV(candidate.cv)" style="margin-bottom:5px; width: 100%;">View CV</button>
+                                 <div class="my-replace" >
+                                          <input id="replaceCv12" aria-label="file" type="file" (change)="handleFileSelect1($event,i)"
+                                             multiple style="display: none;">
+                                          <label for="replaceCv12" style="width: 100%; margin-top:10px"> Replace CV </label>
+                                       </div>
+                              </div>
+                           </div>
+                            <div *ngIf ="candidate.cv === 'uploaded'" class="text-success">Uploaded</div>
+                           <!-- <div *ngIf=" candidate.cv != null" class="file-upload">
+                              <button class="btn btn-primary pro-btn" (click)="showCV(candidate.cv)">View CV</button>
+                              <div class="my-replace">
+                                 <input class="" aria-label="file" type="file" (change)="handleFileSelect($event,candidate._id)"
+                                    multiple>
+                                 <p> Replace CV </p>
+                              </div>
+
+                           </div> -->
+                        </div>
+                        <!-- <div *ngIf="candidate.is_candidate_duplicate">
+                           <div class="file-upload">
+                              <p class="alert-mine">Candidate already exists for this profile</p>
+                           </div>
+                        </div> -->
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <div *ngIf="duplicacy">
+               <p class="text-right m-t-20">
+                  <a class="btn btn-success" (click)="close()">Submit</a>
+               </p>
+            </div>
+            <div *ngIf="!duplicacy">
+               <p class="text-right m-t-20">
+                  <a class="btn btn-success" (click)="submitXlsx()">Submit Resume</a>
+               </p>
+            </div>
+
+
+         </div>
+
+      </div>
+   </div>
+</div>
+<div bsModal #forthModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center excel-importer-file">
+            <div class="close">
+               <a><img src="../../assets/img/cancel.png"></a>
+            </div>
+            <div class="tick m-t-50">
+               <span><i class="fas fa-check-circle"></i></span>
+            </div>
+            <h6>Resume are submitted for preliminary evalution.</h6>
+            <p>You will hear from us when we recive any update.</p>
+            <a class="btn btn-purple m-t-40" routerLink="/recruiterHeader/recuiterDashboard">Go to Dashboard</a>
+         </div>
+      </div>
+   </div>
+</div>
+<div *ngIf="upResume" class="col-md-4 col-sm-4 col-xs-12">
+   <div class="import-resume">
+      <!-- <p>Make sure you have our excel template to import resumes.</p> -->
+      <div class="text-left">
+         <!-- <a class="btn btn-purple" (click)="getDataAndDownlaodEXCEL()"><i class="fas fa-upload"></i> Download -->
+         <a class="btn btn-primary" href="../../assets/candidateList.xlsx"><i class="fas fa-upload"></i> Download
+            Excel template</a>
+         <br><br>
+         <a class="btn btn-warning" (click)="frstModal.show()"><i class="fas fa-download"></i> Start
+            Importing Resume</a>
+      </div>
+   </div>
+ 
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <!--scheduled-interview-->
+
+  <div class="notification-recuriter-feed mt-10">
+
+
+
+
+    <div class="notification-head ">
+      <p>Notification Feed<span></span></p>
+    </div>
+    <div class="natification-stepper">
+      <!--  <ul class="nav nav-tabs">
+          <li class="active">
+             <a data-toggle="tab" href="#all">
+                <span class="tab-icon"><i class="fas fa-search"></i></span>
+                <p>All</p>
+             </a>
+          </li> -->
+      <!-- <li>
+         <a data-toggle="tab" href="#menu1">
+            <span class="tab-icon"><i class="fas fa-search"></i></span>
+            <p>Candidates</p>
+         </a>
+      </li>
+      <li>
+         <a data-toggle="tab" href="#menu2">
+            <span class="tab-icon"><i class="fas fa-search"></i></span>
+            <p>Calender</p>
+         </a>
+      </li>
+      <li>
+         <a data-toggle="tab" href="#menu3">
+            <span class="tab-icon"><i class="fas fa-search"></i></span>
+            <p>Review</p>
+         </a>
+      </li> -->
+      <!-- </ul> -->
+      <div class="tab-content">
+        <!-- <div id="all" class="tab-pane fade in active">-->
+        <div id="all">
+          <!--job-fixed-wrapper-->
+          <ul>
+            <li *ngFor="let feed of feeds" style="background-color: #FCFCFC; margin-bottom: 16px;">
+              <div class="recuriter-list-item">
+                <div class="list-item-title">
+                  <p class="designation-post">{{feed.job_id.job_title}}</p>
+                </div>
+                <div class="list-item-posted">
+                  <ul class="list-inline">
+                    <li>
+                      <p>Location: <span>
+                                    <strong>{{feed.location}}, </strong>
+                                 </span></p>
+                    </li>
+
+                    <!-- <li>
+                        <p>Location: <span *ngFor="let loc of feed.location">
+                           <strong>{{loc.value}}, </strong>
+                        </span></p>
+                     </li>-->
+                    <!--<li>
+                      <p> {{feed.interview_date | date: 'dd/MM/yyyy'}}</p>
+                    </li>-->
+                  </ul>
+                  <ul class="list-inline">
+                    <li>
+                      <p>Interview Date & Time:
+                        <span><strong>{{feed.interview_date | date: 'dd/MM/yyyy'}}</strong>&nbsp; <span
+                          class="time">{{feed.interview_time| date :'hh:mm'}}
+                          {{feed.interview_time| date :'a'}}</span></span></p>
+                    </li>
+                  </ul>
+
+                  <ul class="list-inline">
+                    <li>
+                      <p>Interview With:
+                        <span><strong>{{feed.candidate_name}}</strong></span></p>
+                    </li>
+                  </ul>
+                  <ul class="list-inline">
+                    <li>
+                      <p>Interview Type:
+                        <span class="status-call"><strong>{{feed.interview_type}}</strong></span></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <!--  <div class="scheduled-list scheduled-list recuriter-scheduled-list">
+                <ul>
+                  <li>
+                   &lt;!&ndash; <span class="time">{{feed.interview_time| date :'hh:mm'}}
+                      <br> {{feed.interview_time| date :'a'}}</span>&ndash;&gt;
+                    <div>
+                      Interview with {{feed.candidate_name}}<br>
+                      &lt;!&ndash; <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p> &ndash;&gt;
+                      <span class="status-call">{{feed.interview_type}}</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>-->
+            </li>
+
+            <li *ngIf="feeds && !feeds.length"> No notification feed available yet !!!</li>
+            <!--  <li>
+                <div class="recuriter-list-item">
+                   <div class="list-item-title">
+                      <p class="designation-post">hr manager</p>
+                      <span class="rec-company">ux gorilla</span>
+                   </div>
+                   <div class="list-item-posted">
+                      <ul class="list-inline">
+                         <li>
+                            <p>Location: <strong>Delhi</strong></p>
+                         </li>
+                         <li>
+                            <p>Deadline: 26/06/2018</p>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+                <div class="scheduled-list scheduled-list recuriter-scheduled-list">
+                   <ul>
+                      <li>
+                         <span class="time">6:00<br>PM</span>
+                         <div>
+                            Interview with Ankit
+                            <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p>
+                            <span class="status-call">in-office</span>
+                         </div>
+                      </li>
+                   </ul>
+                </div>
+             </li> -->
+          </ul>
+        </div>
+        <!-- <div id="menu1" class="tab-pane fade">
+           <div class="candidate-feed">
+              <ul>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <div>
+                             <p class="designation-post">Shiristi</p>
+                             <span class="rec-company">Shortlisted</span>
+                          </div>
+                          <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p>
+                          <br>
+                          <a class="">Scheduled Inreview</a>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <div>
+                             <p class="designation-post">Shiristi</p>
+                             <span class="rec-company">Shortlisted</span>
+                          </div>
+                          <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p>
+                          <br>
+                          <a class="">Scheduled Inreview</a>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <div>
+                             <p class="designation-post">Shiristi</p>
+                             <span class="rec-company">Shortlisted</span>
+                          </div>
+                          <p class="designation-post">hr manager,<span class="rec-company">ux gorilla</span></p>
+                          <br>
+                          <a class="">Scheduled Inreview</a>
+                       </div>
+                    </div>
+                 </li>
+              </ul>
+           </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+           <div class="calender-feed">
+              <ul>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                             <span class="status-call">in-office</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <span class="time block">1:30 PM - 2:00 PM</span>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                             <span class="status-call">in-office</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <span class="time block">1:30 PM - 2:00 PM</span>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                             <span class="status-call">in-office</span>
+                          </p>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <span class="time block">1:30 PM - 2:00 PM</span>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                             <span class="status-call">in-office</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <span class="time block">1:30 PM - 2:00 PM</span>
+                       </div>
+                    </div>
+                 </li>
+              </ul>
+           </div>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+           <div class="calender-feed">
+              <ul>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <div class="star">
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star"></span>
+                             <span class="fas fa-star"></span>
+                          </div>
+                          <cite class="candidate-description">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque egestas arcu tincidunt purus varius facilisis. Aenean imperdiet dui vitae quam vehicula malesuada.
+                          </cite>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <div class="star">
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star"></span>
+                             <span class="fas fa-star"></span>
+                          </div>
+                          <cite class="candidate-description">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque egestas arcu tincidunt purus varius facilisis. Aenean imperdiet dui vitae quam vehicula malesuada.
+                          </cite>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <div class="star">
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star"></span>
+                             <span class="fas fa-star"></span>
+                          </div>
+                          <cite class="candidate-description">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque egestas arcu tincidunt purus varius facilisis. Aenean imperdiet dui vitae quam vehicula malesuada.
+                          </cite>
+                       </div>
+                    </div>
+                 </li>
+                 <li>
+                    <div class="recuriter-list-item">
+                       <div class="list-item-title">
+                          <p>
+                             <span class="designation-post">Shiristi</span>
+                          </p>
+                          <br>
+                          <p class="designation-post">hr manager, <span class="rec-company">ux gorilla</span></p>
+                          <div class="star">
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star checked"></span>
+                             <span class="fas fa-star"></span>
+                             <span class="fas fa-star"></span>
+                          </div>
+                          <cite class="candidate-description">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque egestas arcu tincidunt purus varius facilisis. Aenean imperdiet dui vitae quam vehicula malesuada.
+                          </cite>
+                       </div>
+                    </div>
+                 </li>
+              </ul>
+           </div>
+        </div> -->
+        <div class="see-more">
+          <a class="" (click)="noMore()">Load More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------->
+<!--welcome-slogan-->
+<!-- <div class="welcome-slogan pad-global">
+   <h5>Welcome Jagriti,</h5>
+   <p>We have registered your accounts, we are setting up afew things for you.</p>
+   </div>-->
+<!--welcome-slogan-end-->
+<!--<div class="masthead">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12 text-center">
+               <div class="mail-img-wrapper">
+               <img src="../../assets/img/mail.png" class="center-block img-responsive">
+                   </div>
+               <h4 class="my-heading ">Congratualations, on creating an account with People Infinia.</h4>
+               <p class="text-center">Someone will get in touch with you for account activation in next 24 hrs.</p>
+               <div class="contact-support text-center m-t-50">Contact our support: +91 99999 99999</div>
+           </div>
+       </div>
+   </div>
+   </div>-->

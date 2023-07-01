@@ -1,0 +1,26 @@
+@media (max-width: 550px) {
+  .filter-job-proposal {
+    padding: 25px 20px;
+  }
+  .dashboard-feeds .feeds-title p span {
+    display: block;
+  }
+  .dashboard-feeds .feeds-title p span.f-right {
+    float: none;
+  }
+  .feeds-title {
+    display: block;
+    text-align: center;
+    margin: 20px 0 0 0;
+  }
+  .dashboard-feeds .feeds-title p {
+    font-weight: 600;
+    color: #7a818e;
+    text-align: center;
+  }
+  .feeds-title p a {
+    color: #000;
+    text-align: left;
+    display: block;
+  }
+}
